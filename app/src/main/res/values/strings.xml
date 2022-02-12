@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Cancer</string>
+    <string name="some_id">Добавить новую запись</string>
+    <string name="some_id_1">Перейти к сканированию</string>
+    <string name="some_id_6">Мои записи</string>
+    <string name="some_id_7">История сканов</string>
+</resources>
