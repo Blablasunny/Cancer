@@ -5,4 +5,10 @@
     <string name="some_id_6">Мои записи</string>
     <string name="some_id_7">История сканов</string>
     <string name="back">Назад</string>
+    <string name="cancer_1">Рак груди</string>
+    <string name="cancer_2">Рак головного мозга</string>
+    <string name="cancer_3">Рак кожи</string>
+    <string name="cancer_4">Рак легких</string>
+    <string name="cancer_5">Лейкемия</string>
+    <string name="cancer_6">Рак полости рта</string>
 </resources>
