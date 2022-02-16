@@ -132,7 +132,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/rec"
-        android:text="@string/some_id"
+        android:text="@string/some_id_1"
         android:textColor="@color/black"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
