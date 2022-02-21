@@ -7,6 +7,18 @@
     tools:context=".MainActivity3">
 
     <View
+        android:id="@+id/unionx"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:background="@drawable/rec_white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent="0.35"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1" />
+
+    <View
         android:id="@+id/group_shadow_3"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -41,18 +53,46 @@
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1" />
 
-    <EditText
-        android:id="@+id/editText1"
+    <ScrollView
+        android:id="@+id/scroll"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.2"
+        app:layout_constraintHeight_percent="0.23"
         app:layout_constraintHorizontal_bias="0.45"
-        app:layout_constraintVertical_bias="0.32"
+        app:layout_constraintVertical_bias="0.34"
         app:layout_constraintWidth_percent="0.8"
-        android:inputType="textMultiLine"
-        android:lines="8"
-        android:hint="@string/edtext"
-        android:textSize="12sp"
+        android:background="#E9E7E7"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1">
+        <HorizontalScrollView
+            android:id="@+id/hscroll"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent">
+            <EditText
+                android:id="@+id/editText1"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:inputType="textMultiLine"
+                android:lines="40"
+                android:hint="@string/edtext"
+                android:textSize="12sp" />
+        </HorizontalScrollView>
+    </ScrollView>
+
+
+    <ImageView
+        android:id="@+id/img1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/rec_img"
+        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintHorizontal_bias="0.17"
+        app:layout_constraintVertical_bias="0.575"
+        app:layout_constraintWidth_percent="0.4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -60,20 +100,22 @@
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1"/>
 
-    <ImageView
+    <TextView
+        android:id="@+id/txt1"
+        android:textSize="12sp"
+        android:text="@string/download"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintHeight_percent="0.1"
         app:layout_constraintHorizontal_bias="0.17"
-        app:layout_constraintVertical_bias="0.55"
+        app:layout_constraintVertical_bias="0.575"
         app:layout_constraintWidth_percent="0.4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintRight_creator="1"
-        />
+        tools:layout_constraintRight_creator="1"/>
 
     <Button
         android:id="@+id/group_5"
@@ -89,7 +131,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.66"
+        app:layout_constraintVertical_bias="0.70"
         app:layout_constraintWidth_percent="0.37"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1" />
@@ -105,7 +147,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.67"
+        app:layout_constraintVertical_bias="0.705"
         app:layout_constraintWidth_percent="0.37"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1" />
@@ -114,7 +156,7 @@
         android:id="@+id/union"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.28"
+        app:layout_constraintHeight_percent="0.23"
         android:background="@drawable/img"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -126,7 +168,7 @@
         android:id="@+id/union1"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.23"
+        app:layout_constraintHeight_percent="0.22"
         android:background="@drawable/img_2"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -138,7 +180,7 @@
         android:id="@+id/union2"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.23"
+        app:layout_constraintHeight_percent="0.22"
         android:background="@drawable/img_3"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -150,12 +192,12 @@
         android:id="@+id/pulse"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.45"
+        app:layout_constraintHeight_percent="0.3"
         android:background="@drawable/img_1"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@id/unionx"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintRight_creator="1"/>
+        tools:layout_constraintRight_creator="1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

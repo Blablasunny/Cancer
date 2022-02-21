@@ -13,4 +13,5 @@
     <string name="cancer_6">Рак полости рта</string>
     <string name="edtext">Введите текст</string>
     <string name="save">Сохранить</string>
+    <string name="download">Загрузить изображение</string>
 </resources>

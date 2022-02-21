@@ -7,18 +7,30 @@
     tools:context=".MainActivity2">
 
     <View
+        android:id="@+id/unionx"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:background="@drawable/rec_white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent="0.35"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1" />
+
+    <View
         android:id="@+id/group_shadow_6"
         android:layout_width="0dp"
-        app:layout_constraintHeight_percent="0.095"
         android:layout_height="0dp"
-        app:layout_constraintWidth_percent="0.37"
         android:background="@drawable/rec_gray"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintVertical_bias="0.045"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent="0.095"
+        app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.045"
+        app:layout_constraintWidth_percent="0.37"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1" />
 
@@ -257,7 +269,7 @@
         android:layout_height="0dp"
         android:background="@drawable/img"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHeight_percent="0.28"
+        app:layout_constraintHeight_percent="0.23"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         tools:layout_constraintLeft_creator="1"
@@ -267,7 +279,7 @@
         android:id="@+id/union1"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.23"
+        app:layout_constraintHeight_percent="0.22"
         android:background="@drawable/img_2"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -279,7 +291,7 @@
         android:id="@+id/union2"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.23"
+        app:layout_constraintHeight_percent="0.22"
         android:background="@drawable/img_3"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -291,12 +303,12 @@
         android:id="@+id/pulse"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.45"
+        app:layout_constraintHeight_percent="0.3"
         android:background="@drawable/img_1"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@id/unionx"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintRight_creator="1"/>
+        tools:layout_constraintRight_creator="1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
