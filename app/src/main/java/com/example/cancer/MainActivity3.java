@@ -26,7 +26,8 @@ public class MainActivity3 extends AppCompatActivity {
         TextView txtv = (TextView) findViewById(R.id.txt1);
         EditText edt = (EditText) findViewById(R.id.editText1);
         Button button1 = (Button) findViewById(R.id.group_6);
-        edt.setOnClickListener(new View.OnClickListener(){
+        Button s = (Button) findViewById(R.id.group_5);
+        s.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 String strCatName = edt.getText().toString();
