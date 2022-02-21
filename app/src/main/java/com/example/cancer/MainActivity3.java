@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.io.IOException;
 
@@ -20,9 +21,11 @@ public class MainActivity3 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
         ImageView imv = (ImageView) findViewById(R.id.img1);
+        TextView txtv = (TextView) findViewById(R.id.txt1);
         imv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                txtv.setText("");
                 Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
                 photoPickerIntent.setType("image/*");
                 startActivityForResult(photoPickerIntent, GALLERY_REQUEST);
