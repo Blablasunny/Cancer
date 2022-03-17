@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -23,17 +24,10 @@ public class MainActivity3 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
         ImageView imv = (ImageView) findViewById(R.id.img1);
-        TextView txtv = (TextView) findViewById(R.id.txt1);
         EditText edt = (EditText) findViewById(R.id.editText1);
-        Button button1 = (Button) findViewById(R.id.group_6);
-        Button s = (Button) findViewById(R.id.group_5);
-        s.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                String strCatName = edt.getText().toString();
-                edt.setText(strCatName);
-            }
-        });
+        Button button1 = (Button) findViewById(R.id.group_history);
+        Button s = (Button) findViewById(R.id.save);
+        TextView txtv = (TextView) findViewById(R.id.txt1);
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
