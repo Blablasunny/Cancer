@@ -5,16 +5,18 @@
     <string name="some_id_6">Мои записи</string>
     <string name="some_id_7">История сканов</string>
     <string name="back">Назад</string>
-    <string name="cancer_1">Рак шейки матки</string>
-    <string name="cancer_2">Рак молочной железы</string>
-    <string name="cancer_3">Рак кожи</string>
-    <string name="cancer_4">Рак легких</string>
-    <string name="cancer_5">Лейкемия</string>
-    <string name="cancer_6">Рак толстой кишки</string>
+    <string name="cancer_1">Рак легких (КТ)</string>
+    <string name="cancer_2">Рак кожи</string>
+    <string name="cancer_3">Рак молочной железы (биопсия)</string>
+    <string name="cancer_4">Рак толстой кишки (биопсия)</string>
+    <string name="cancer_5">Рак молочной железы (МРТ)</string>
+    <string name="cancer_6">Рак полости рта (биопсия)</string>
     <string name="edtext">Введите текст</string>
     <string name="save">Сохранить</string>
     <string name="download">Загрузить изображение</string>
     <string name="send">Отправить</string>
+    <string name="edtext_name">Введите имя файла</string>
+    <string name="edit">Редактировать</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

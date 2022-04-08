@@ -12,40 +12,46 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-public class MainActivity5 extends AppCompatActivity {
+public class TypeOfCancer5Activity extends AppCompatActivity {
 
     static final int GALLERY_REQUEST = 1;
+    Uri selectedImage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main5);
+        setContentView(R.layout.activity_type_of_cancer_5);
         ImageView imv = (ImageView) findViewById(R.id.img1);
         Button button1 = (Button) findViewById(R.id.group_history);
         Button button2 = (Button) findViewById(R.id.send);
         TextView txtv = (TextView) findViewById(R.id.txt1);
+
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity5.this, MainActivity2.class);
+                Intent i = new Intent(TypeOfCancer5Activity.this, TypesOfCancerActivity.class);
                 startActivity(i);
             }
         });
+
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity5.this, MainActivity2.class);
+                Intent i = new Intent(TypeOfCancer5Activity.this, TypeOfCancer5ResultActivity.class);
+                if (selectedImage != null) {
+                    i.putExtra("selectImage", selectedImage.toString());
+                }
                 startActivity(i);
-
             }
         });
+
         imv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 txtv.setText("");
-                Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+                Intent photoPickerIntent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
                 photoPickerIntent.setType("image/*");
                 startActivityForResult(photoPickerIntent, GALLERY_REQUEST);
             }
@@ -61,7 +67,7 @@ public class MainActivity5 extends AppCompatActivity {
         switch (requestCode) {
             case GALLERY_REQUEST:
                 if (resultCode == RESULT_OK) {
-                    Uri selectedImage = imageReturnedIntent.getData();
+                    selectedImage = imageReturnedIntent.getData();
                     try {
                         bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
                     } catch (IOException e) {

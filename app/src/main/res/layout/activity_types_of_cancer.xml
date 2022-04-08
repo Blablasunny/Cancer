@@ -4,10 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity2"
+    tools:context=".TypesOfCancerActivity"
     android:orientation="vertical"
     android:weightSum="100">
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -199,14 +198,12 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="40">
-
         <View
             android:id="@+id/union"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="18dp"
             android:background="@drawable/img" />
-
         <View
             android:id="@+id/pulse"
             android:layout_width="match_parent"

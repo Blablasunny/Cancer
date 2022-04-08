@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity5"
+    tools:context=".CreatingRecordActivity"
     android:orientation="vertical"
     android:weightSum="100">
     <FrameLayout
@@ -39,55 +39,74 @@
             android:layout_marginLeft="5dp"
             android:background="@drawable/rec_gray" />
     </FrameLayout>
-    <FrameLayout
+    <TextView
+        android:id="@+id/editText2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="34">
-        <ImageView
-            android:id="@+id/img1"
-            android:layout_width="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginTop="40dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            android:layout_marginBottom="20dp"
-            android:layout_height="match_parent"
-            android:background="@drawable/rec_img" />
+        android:layout_weight="5"
+        android:textSize="12sp"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:background="#E9E7E7"/>
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_height="0dp"
+        android:layout_weight="18"
+        android:background="#E9E7E7">
         <TextView
-            android:id="@+id/txt1"
-            android:textSize="16sp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="@string/download"
-            android:layout_width="match_parent"
+            android:id="@+id/editText1"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:textSize="12sp" />
+    </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:orientation="horizontal"
+        android:weightSum="2">
+        <FrameLayout
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginTop="40dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            android:layout_marginBottom="20dp" />
-    </FrameLayout>
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/img1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/rec_img"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="10dp"/>
+        </FrameLayout>
+    </LinearLayout>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="14">
+        android:layout_weight="13">
         <Button
-            android:id="@+id/send"
+            android:id="@+id/edit"
             android:layout_width="160dp"
             android:layout_height="70dp"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="center"
             android:background="@drawable/rec"
-            android:text="@string/send"
+            android:text="@string/edit"
             android:textColor="@color/black"
-            android:layout_marginTop="20dp"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:layout_marginTop="3dp" />
         <View
             android:id="@+id/save_shadow"
             android:layout_width="160dp"
             android:layout_height="72dp"
             android:background="@drawable/rec_gray"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginTop="22dp"
-            android:layout_gravity="center_horizontal" />
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center" />
     </FrameLayout>
     <FrameLayout
         android:layout_width="match_parent"
@@ -99,13 +118,11 @@
             android:layout_height="match_parent"
             android:layout_marginTop="18dp"
             android:background="@drawable/img" />
-
         <View
             android:id="@+id/pulse"
             android:layout_width="match_parent"
             android:layout_height="180dp"
             android:background="@drawable/img_1" />
     </FrameLayout>
-
 
 </LinearLayout>

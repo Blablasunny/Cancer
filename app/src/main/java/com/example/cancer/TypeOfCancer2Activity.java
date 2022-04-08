@@ -4,34 +4,43 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.IOException;
 
-public class MainActivity3 extends AppCompatActivity {
+public class TypeOfCancer2Activity extends AppCompatActivity {
 
     static final int GALLERY_REQUEST = 1;
+    Uri selectedImage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main3);
+        setContentView(R.layout.activity_type_of_cancer_2);
         ImageView imv = (ImageView) findViewById(R.id.img1);
-        EditText edt = (EditText) findViewById(R.id.editText1);
         Button button1 = (Button) findViewById(R.id.group_history);
-        Button s = (Button) findViewById(R.id.save);
+        Button button2 = (Button) findViewById(R.id.send);
         TextView txtv = (TextView) findViewById(R.id.txt1);
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity3.this, MainActivity.class);
+                Intent i = new Intent(TypeOfCancer2Activity.this, TypesOfCancerActivity.class);
+                startActivity(i);
+            }
+        });
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(TypeOfCancer2Activity.this, TypeOfCancer2ResultActivity.class);
+                if (selectedImage != null) {
+                    i.putExtra("selectImage", selectedImage.toString());
+                }
                 startActivity(i);
             }
         });
@@ -39,7 +48,7 @@ public class MainActivity3 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 txtv.setText("");
-                Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+                Intent photoPickerIntent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
                 photoPickerIntent.setType("image/*");
                 startActivityForResult(photoPickerIntent, GALLERY_REQUEST);
             }
@@ -55,7 +64,7 @@ public class MainActivity3 extends AppCompatActivity {
         switch (requestCode) {
             case GALLERY_REQUEST:
                 if (resultCode == RESULT_OK) {
-                    Uri selectedImage = imageReturnedIntent.getData();
+                    selectedImage = imageReturnedIntent.getData();
                     try {
                         bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
                     } catch (IOException e) {

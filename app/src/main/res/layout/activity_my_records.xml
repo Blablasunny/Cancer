@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MyRecordsActivity"
+    android:orientation="vertical"
+    android:weightSum="100">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="22">
+        <View
+            android:id="@+id/union3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/img_3" />
+        <View
+            android:id="@+id/union2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/img_2" />
+        <Button
+            android:id="@+id/group_history"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:background="@drawable/rec_white"
+            android:text="@string/back"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:layout_marginTop="13dp"
+            android:layout_marginLeft="5dp"/>
+        <View
+            android:id="@+id/group_shadow_history"
+            android:layout_width="150dp"
+            android:layout_height="62dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/rec_gray" />
+    </FrameLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:padding="7dp"
+        android:layout_marginTop="15dp"
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="48">
+    </androidx.recyclerview.widget.RecyclerView>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="40">
+        <View
+            android:id="@+id/union"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/img" />
+        <View
+            android:id="@+id/pulse"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:background="@drawable/img_1" />
+    </FrameLayout>
+
+</LinearLayout>
