@@ -6,12 +6,8 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 
-public interface Cancer1Interface {
+public interface Cancer2Interface {
     @Multipart
-    @POST("/lung/")
-    Call<Cancer1> getResCancer1(@Part MultipartBody.Part image);
-
-    @Multipart
-    @POST("/piel/")
+    @POST("/breast/")
     Call<Cancer1> getResCancer2(@Part MultipartBody.Part image);
 }

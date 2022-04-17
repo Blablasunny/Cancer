@@ -1,21 +1,29 @@
 package com.example.cancer;
 
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -60,8 +68,7 @@ public class TypeOfCancer1ResultActivity extends AppCompatActivity {
                     Uri selectedImage = Uri.parse(str);
                     imv.setImageURI(selectedImage);
                     try {
-                        is = getContentResolver().openInputStream(selectedImage);
-                        doRequest(getBytes(is));
+                        doRequest(selectedImage);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -72,32 +79,22 @@ public class TypeOfCancer1ResultActivity extends AppCompatActivity {
         }
     }
 
-    public byte[] getBytes(InputStream is) throws IOException {
-        ByteArrayOutputStream byteBuff = new ByteArrayOutputStream();
+    private void doRequest(Uri fileUri) {
 
-        int buffSize = 2048;
-        byte[] buff = new byte[buffSize];
+        File file = new File(createCopyAndReturnRealPath(this, fileUri));
 
-        int len = 0;
-        while ((len = is.read(buff)) != -1) {
-            byteBuff.write(buff, 0, len);
-        }
-
-        return byteBuff.toByteArray();
-    }
-
-    private void doRequest(byte[] imageBytes) {
-
-        RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), imageBytes);
-        MultipartBody.Part body = MultipartBody.Part.createFormData("image", "image.*", requestFile);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("file", file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
 
         Call<Cancer1> call = ci.getResCancer1(body);
         call.enqueue(new Callback<Cancer1>() {
             @Override
-            public void onResponse(Call<Cancer1> call, Response<Cancer1> response) {
-                Cancer1 body = response.body();
-                System.out.println(body.res);
-                txt.setText(body.res);
+            public void onResponse(@NonNull Call<Cancer1> call, @NonNull Response<Cancer1> response) {
+                if (response.isSuccessful()) {
+                    Cancer1 body = response.body();
+                    txt.setText(body.getResult());
+                } else {
+                    Toast.makeText(TypeOfCancer1ResultActivity.this, "Произошла ошибка", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
@@ -108,5 +105,30 @@ public class TypeOfCancer1ResultActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+    @Nullable
+    public static String createCopyAndReturnRealPath(
+            @NonNull Context context, @NonNull Uri uri) {
+        final ContentResolver contentResolver = context.getContentResolver();
+        if (contentResolver == null)
+            return null;
+
+        String filePath = context.getApplicationInfo().dataDir + File.separator + "temp_file";
+        File file = new File(filePath);
+        try {
+            InputStream inputStream = contentResolver.openInputStream(uri);
+            if (inputStream == null)
+                return null;
+            OutputStream outputStream = new FileOutputStream(file);
+            byte[] buf = new byte[1024];
+            int len;
+            while ((len = inputStream.read(buf)) > 0)
+                outputStream.write(buf, 0, len);
+            outputStream.close();
+            inputStream.close();
+        } catch (IOException ignore) {
+            return null;
+        }
+        return file.getAbsolutePath();
     }
 }
