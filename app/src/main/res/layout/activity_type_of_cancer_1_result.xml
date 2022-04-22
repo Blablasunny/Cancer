@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TypeOfCancer1ResultActivity"
+    tools:context=".activities.TypeOfCancer1ResultActivity"
     android:orientation="vertical"
     android:weightSum="100">
     <FrameLayout

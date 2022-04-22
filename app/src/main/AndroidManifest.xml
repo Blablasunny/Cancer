@@ -17,60 +17,60 @@
         tools:targetApi="m"
         android:theme="@style/Theme.Cancer">
         <activity
-            android:name=".TypeOfCancer6ResultActivity"
+            android:name=".activities.TypeOfCancer6ResultActivity"
             android:exported="false" />
         <activity
-            android:name=".TypeOfCancer5ResultActivity"
+            android:name=".activities.TypeOfCancer5ResultActivity"
             android:exported="false" />
         <activity
-            android:name=".TypeOfCancer4ResultActivity"
+            android:name=".activities.TypeOfCancer4ResultActivity"
             android:exported="false" />
         <activity
-            android:name=".TypeOfCancer6Activity"
+            android:name=".activities.TypeOfCancer6Activity"
             android:exported="false" />
         <activity
-            android:name=".TypeOfCancer5Activity"
+            android:name=".activities.TypeOfCancer5Activity"
             android:exported="false" />
         <activity
-            android:name=".TypeOfCancer4Activity"
+            android:name=".activities.TypeOfCancer4Activity"
             android:exported="false" />
         <activity
-            android:name=".TypeOfCancer3ResultActivity"
+            android:name=".activities.TypeOfCancer3ResultActivity"
             android:exported="false" />
         <activity
-            android:name=".TypeOfCancer3Activity"
+            android:name=".activities.TypeOfCancer3Activity"
             android:exported="false" />
         <activity
-            android:name=".TypeOfCancer2ResultActivity"
+            android:name=".activities.TypeOfCancer2ResultActivity"
             android:exported="false" />
         <activity
-            android:name=".TypeOfCancer2Activity"
+            android:name=".activities.TypeOfCancer2Activity"
             android:exported="false" />
         <activity
-            android:name=".EditRecordActivity"
+            android:name=".activities.EditRecordActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".MyRecordActivity"
+            android:name=".activities.MyRecordActivity"
             android:exported="false" />
         <activity
-            android:name=".TypeOfCancer1ResultActivity"
+            android:name=".activities.TypeOfCancer1ResultActivity"
             android:exported="false" />
         <activity
-            android:name=".TypeOfCancer1Activity"
+            android:name=".activities.TypeOfCancer1Activity"
             android:exported="false" />
         <activity
-            android:name=".MyRecordsActivity"
+            android:name=".activities.MyRecordsActivity"
             android:exported="false" />
         <activity
-            android:name=".CreatingRecordActivity"
+            android:name=".activities.CreatingRecordActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".TypesOfCancerActivity"
+            android:name=".activities.TypesOfCancerActivity"
             android:exported="false" />
         <activity
-            android:name=".MainScreenActivity"
+            android:name=".activities.MainScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

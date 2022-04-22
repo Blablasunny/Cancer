@@ -1,4 +1,4 @@
-package com.example.cancer;
+package com.example.cancer.data;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;

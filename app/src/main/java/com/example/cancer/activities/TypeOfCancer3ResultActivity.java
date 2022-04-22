@@ -1,5 +1,4 @@
-package com.example.cancer;
-
+package com.example.cancer.activities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -10,14 +9,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.ByteArrayOutputStream;
+import com.example.cancer.client.Cancer1;
+import com.example.cancer.client.Cancer1Client;
+import com.example.cancer.client.Cancer1Interface;
+import com.example.cancer.R;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -32,8 +34,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-
-public class TypeOfCancer1ResultActivity extends AppCompatActivity {
+public class TypeOfCancer3ResultActivity extends AppCompatActivity {
 
     ImageView imv;
     TextView txt;
@@ -44,7 +45,7 @@ public class TypeOfCancer1ResultActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_type_of_cancer_1_result);
+        setContentView(R.layout.activity_type_of_cancer_3_result);
         Button button1 = (Button) findViewById(R.id.group_history);
         imv = (ImageView) findViewById(R.id.img1);
         txt = (TextView) findViewById(R.id.txt2);
@@ -55,7 +56,7 @@ public class TypeOfCancer1ResultActivity extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(TypeOfCancer1ResultActivity.this, TypeOfCancer1Activity.class);
+                Intent i = new Intent(TypeOfCancer3ResultActivity.this, TypeOfCancer3Activity.class);
                 startActivity(i);
             }
         });
@@ -75,17 +76,16 @@ public class TypeOfCancer1ResultActivity extends AppCompatActivity {
                 }
             }
         }else{
-            Toast.makeText(TypeOfCancer1ResultActivity.this, "Произошла ошибка", Toast.LENGTH_SHORT).show();
+            Toast.makeText(TypeOfCancer3ResultActivity.this, "Произошла ошибка", Toast.LENGTH_SHORT).show();
         }
     }
-
     private void doRequest(Uri fileUri) {
 
         File file = new File(createCopyAndReturnRealPath(this, fileUri));
 
         MultipartBody.Part body = MultipartBody.Part.createFormData("file", file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
 
-        Call<Cancer1> call = ci.getResCancer1(body);
+        Call<Cancer1> call = ci.getResCancer3(body);
         call.enqueue(new Callback<Cancer1>() {
             @Override
             public void onResponse(@NonNull Call<Cancer1> call, @NonNull Response<Cancer1> response) {
@@ -93,14 +93,14 @@ public class TypeOfCancer1ResultActivity extends AppCompatActivity {
                     Cancer1 body = response.body();
                     txt.setText(body.getResult());
                 } else {
-                    Toast.makeText(TypeOfCancer1ResultActivity.this, "Произошла ошибка", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TypeOfCancer3ResultActivity.this, "Произошла ошибка", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Cancer1> call, Throwable t) {
                 runOnUiThread(() -> {
-                    Toast.makeText(TypeOfCancer1ResultActivity.this, "Произошла ошибка", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TypeOfCancer3ResultActivity.this, "Произошла ошибка", Toast.LENGTH_SHORT).show();
                     t.printStackTrace();
                 });
             }

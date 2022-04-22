@@ -1,4 +1,4 @@
-package com.example.cancer;
+package com.example.cancer.client;
 
 import com.google.gson.annotations.SerializedName;
 

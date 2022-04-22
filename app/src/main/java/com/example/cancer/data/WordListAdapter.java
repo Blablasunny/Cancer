@@ -1,4 +1,4 @@
-package com.example.cancer;
+package com.example.cancer.data;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,11 +9,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cancer.R;
+
 import java.util.ArrayList;
 
 public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.ViewHolder> {
 
-    interface OnWordClickListener{
+    public interface OnWordClickListener{
         void onWordClick(Word word, int position);
     }
 

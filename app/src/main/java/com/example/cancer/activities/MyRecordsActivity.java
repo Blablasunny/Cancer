@@ -1,4 +1,4 @@
-package com.example.cancer;
+package com.example.cancer.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -8,7 +8,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
+
+import com.example.cancer.R;
+import com.example.cancer.data.Word;
+import com.example.cancer.data.WordListAdapter;
+import com.example.cancer.data.WordRoomDatabase;
 
 import java.util.ArrayList;
 

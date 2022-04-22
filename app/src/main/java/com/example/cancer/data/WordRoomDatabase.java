@@ -1,4 +1,4 @@
-package com.example.cancer;
+package com.example.cancer.data;
 
 import android.content.Context;
 
@@ -12,7 +12,7 @@ public abstract class WordRoomDatabase extends RoomDatabase {
 
     private static volatile WordRoomDatabase INSTANCE;
 
-    static WordRoomDatabase getInstance(final Context context) {
+    public static WordRoomDatabase getInstance(final Context context) {
         if (INSTANCE == null) {
             synchronized (WordRoomDatabase.class) {
                 if (INSTANCE == null) {

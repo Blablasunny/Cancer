@@ -1,4 +1,6 @@
-package com.example.cancer;
+package com.example.cancer.client;
+
+import com.example.cancer.client.Cancer1;
 
 import okhttp3.MultipartBody;
 import retrofit2.Call;

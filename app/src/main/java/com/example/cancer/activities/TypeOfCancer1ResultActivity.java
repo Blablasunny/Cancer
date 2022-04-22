@@ -1,8 +1,4 @@
-package com.example.cancer;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.cancer.activities;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -14,6 +10,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.cancer.client.Cancer1;
+import com.example.cancer.client.Cancer1Client;
+import com.example.cancer.client.Cancer1Interface;
+import com.example.cancer.R;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -29,7 +34,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class TypeOfCancer4ResultActivity extends AppCompatActivity {
+public class TypeOfCancer1ResultActivity extends AppCompatActivity {
 
     ImageView imv;
     TextView txt;
@@ -40,7 +45,7 @@ public class TypeOfCancer4ResultActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_type_of_cancer_4_result);
+        setContentView(R.layout.activity_type_of_cancer_1_result);
         Button button1 = (Button) findViewById(R.id.group_history);
         imv = (ImageView) findViewById(R.id.img1);
         txt = (TextView) findViewById(R.id.txt2);
@@ -51,7 +56,7 @@ public class TypeOfCancer4ResultActivity extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(TypeOfCancer4ResultActivity.this, TypeOfCancer4Activity.class);
+                Intent i = new Intent(TypeOfCancer1ResultActivity.this, TypeOfCancer1Activity.class);
                 startActivity(i);
             }
         });
@@ -70,17 +75,18 @@ public class TypeOfCancer4ResultActivity extends AppCompatActivity {
                     }
                 }
             }
-        }else{
-            Toast.makeText(TypeOfCancer4ResultActivity.this, "Произошла ошибка", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(TypeOfCancer1ResultActivity.this, "Произошла ошибка", Toast.LENGTH_SHORT).show();
         }
     }
+
     private void doRequest(Uri fileUri) {
 
         File file = new File(createCopyAndReturnRealPath(this, fileUri));
 
         MultipartBody.Part body = MultipartBody.Part.createFormData("file", file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
 
-        Call<Cancer1> call = ci.getResCancer4(body);
+        Call<Cancer1> call = ci.getResCancer1(body);
         call.enqueue(new Callback<Cancer1>() {
             @Override
             public void onResponse(@NonNull Call<Cancer1> call, @NonNull Response<Cancer1> response) {
@@ -88,19 +94,20 @@ public class TypeOfCancer4ResultActivity extends AppCompatActivity {
                     Cancer1 body = response.body();
                     txt.setText(body.getResult());
                 } else {
-                    Toast.makeText(TypeOfCancer4ResultActivity.this, "Произошла ошибка", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TypeOfCancer1ResultActivity.this, "Произошла ошибка", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Cancer1> call, Throwable t) {
                 runOnUiThread(() -> {
-                    Toast.makeText(TypeOfCancer4ResultActivity.this, "Произошла ошибка", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TypeOfCancer1ResultActivity.this, "Произошла ошибка", Toast.LENGTH_SHORT).show();
                     t.printStackTrace();
                 });
             }
         });
     }
+
     @Nullable
     public static String createCopyAndReturnRealPath(
             @NonNull Context context, @NonNull Uri uri) {

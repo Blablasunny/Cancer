@@ -1,4 +1,4 @@
-package com.example.cancer;
+package com.example.cancer.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,6 +13,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.cancer.R;
+import com.example.cancer.data.Word;
+import com.example.cancer.data.WordDao;
+import com.example.cancer.data.WordListAdapter;
+import com.example.cancer.data.WordRoomDatabase;
 
 import java.io.IOException;
 import java.util.ArrayList;

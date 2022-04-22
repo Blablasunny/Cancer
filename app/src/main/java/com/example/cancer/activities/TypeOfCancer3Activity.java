@@ -1,4 +1,4 @@
-package com.example.cancer;
+package com.example.cancer.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,9 +12,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.cancer.R;
+
 import java.io.IOException;
 
-public class TypeOfCancer4Activity extends AppCompatActivity {
+public class TypeOfCancer3Activity extends AppCompatActivity {
 
     static final int GALLERY_REQUEST = 1;
     Uri selectedImage;
@@ -22,7 +24,7 @@ public class TypeOfCancer4Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_type_of_cancer_4);
+        setContentView(R.layout.activity_type_of_cancer_3);
         ImageView imv = (ImageView) findViewById(R.id.img1);
         Button button1 = (Button) findViewById(R.id.group_history);
         Button button2 = (Button) findViewById(R.id.send);
@@ -31,7 +33,7 @@ public class TypeOfCancer4Activity extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(TypeOfCancer4Activity.this, TypesOfCancerActivity.class);
+                Intent i = new Intent(TypeOfCancer3Activity.this, TypesOfCancerActivity.class);
                 startActivity(i);
             }
         });
@@ -39,7 +41,7 @@ public class TypeOfCancer4Activity extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(TypeOfCancer4Activity.this, TypeOfCancer4ResultActivity.class);
+                Intent i = new Intent(TypeOfCancer3Activity.this, TypeOfCancer3ResultActivity.class);
                 if (selectedImage != null) {
                     i.putExtra("selectImage", selectedImage.toString());
                 }
