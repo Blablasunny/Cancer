@@ -84,7 +84,7 @@ public class TypeOfCancer2ResultActivity extends AppCompatActivity {
 
         MultipartBody.Part body = MultipartBody.Part.createFormData("file", file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
 
-        Call<Cancer1> call = ci.getResCancer1(body);
+        Call<Cancer1> call = ci.getResCancer2(body);
         call.enqueue(new Callback<Cancer1>() {
             @Override
             public void onResponse(@NonNull Call<Cancer1> call, @NonNull Response<Cancer1> response) {
