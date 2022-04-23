@@ -22,7 +22,7 @@ public interface Cancer1Interface {
     Call<Cancer1> getResCancer3(@Part MultipartBody.Part image);
 
     @Multipart
-    @POST("/lung/")
+    @POST("/colon/")
     Call<Cancer1> getResCancer4(@Part MultipartBody.Part image);
 
     @Multipart
