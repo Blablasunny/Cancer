@@ -58,7 +58,7 @@ public class EditRecordActivity extends AppCompatActivity {
                 Thread thread1=new Thread(new AnotherRunnable1());
                 thread1.start();
             }else{
-                Toast.makeText(this, "Введите имя записи и текст", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Введите текст", Toast.LENGTH_SHORT).show();
             }
         });
     }
