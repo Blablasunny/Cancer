@@ -3,8 +3,10 @@ package com.example.cancer.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -16,10 +18,12 @@ import com.example.cancer.data.Word;
 import com.example.cancer.data.WordDao;
 import com.example.cancer.data.WordRoomDatabase;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class EditRecordActivity extends AppCompatActivity {
 
+    static final int GALLERY_REQUEST = 1;
     WordRoomDatabase wordRoomDatabase;
     ArrayList<Word> data;
     WordDao wd;
@@ -27,6 +31,7 @@ public class EditRecordActivity extends AppCompatActivity {
     TextView in;
     ImageView im;
     Uri selectedImage;
+    Uri selectedImage1;
     String str;
 
     @Override
@@ -35,6 +40,7 @@ public class EditRecordActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_record);
         Button button1 = (Button) findViewById(R.id.group_history);
         Button s = (Button) findViewById(R.id.save);
+        Button imv = (Button) findViewById(R.id.button_imv);
         n = (TextView) findViewById(R.id.editText2);
         in = (TextView) findViewById(R.id.editText1);
         im = (ImageView) findViewById(R.id.img1);
@@ -58,9 +64,38 @@ public class EditRecordActivity extends AppCompatActivity {
                 Thread thread1=new Thread(new AnotherRunnable1());
                 thread1.start();
             }else{
-                Toast.makeText(this, "Введите текст", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Введите имя записи и текст", Toast.LENGTH_SHORT).show();
             }
         });
+
+        imv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent photoPickerIntent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                photoPickerIntent.setType("image/*");
+                startActivityForResult(photoPickerIntent, GALLERY_REQUEST);
+            }
+        });
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
+        super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
+
+        Bitmap bitmap = null;
+        ImageView imv = (ImageView) findViewById(R.id.img1);
+
+        switch (requestCode) {
+            case GALLERY_REQUEST:
+                if (resultCode == RESULT_OK) {
+                    selectedImage1 = imageReturnedIntent.getData();
+                    try {
+                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage1);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    imv.setImageBitmap(bitmap);
+                }
+        }
     }
 
 
@@ -72,13 +107,14 @@ public class EditRecordActivity extends AppCompatActivity {
                     .loadAll();
             wd = wordRoomDatabase.getWordDao();
             Bundle bundle = getIntent().getExtras();
-            String str = bundle.getString("name_info");
-            String str_in = wd.getInfoByName(str);
-            String str_im = wd.getImageByName(str);
+            long str_id = bundle.getLong("id_info");
+            String str_in = wd.getInfoById(str_id);
+            String str_im = wd.getImageById(str_id);
+            String str_n = wd.getNameById(str_id);
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    n.setText(str);
+                    n.setText(str_n);
                     in.setText(str_in);
                     if (str_im != null) {
                         if (!str_im.equals("")) {
@@ -103,9 +139,16 @@ public class EditRecordActivity extends AppCompatActivity {
                     .loadAll();
             wd = wordRoomDatabase.getWordDao();
             Bundle bundle = getIntent().getExtras();
-            String str = bundle.getString("name_info");
-            String str_im = wd.getImageByName(str);
-            Word word = new Word(n.getText().toString(), in.getText().toString(), str_im);
+            long str_id = bundle.getLong("id_info");
+            String str_im = wd.getImageById(str_id);
+            if (selectedImage1 == null && (str_im == null || str_im.equals(""))){
+                str = "";
+            }else if (selectedImage1 == null) {
+                str = wd.getImageById(str_id);
+            }else{
+                str = selectedImage1.toString();
+            }
+            Word word = new Word(str_id, n.getText().toString(), in.getText().toString(), str);
             wd.update(word);
         }
     }

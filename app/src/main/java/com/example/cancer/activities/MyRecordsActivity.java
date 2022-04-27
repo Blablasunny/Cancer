@@ -56,7 +56,7 @@ public class MyRecordsActivity extends AppCompatActivity {
                         @Override
                         public void onWordClick(Word word, int position) {
                             Intent i = new Intent(MyRecordsActivity.this, MyRecordActivity.class);
-                            i.putExtra("name_info", word.getName());
+                            i.putExtra("id_info", word.getId());
                             startActivity(i);
                         }
                     };

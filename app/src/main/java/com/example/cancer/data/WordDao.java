@@ -21,14 +21,17 @@ public interface WordDao {
     void delete(Word word);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAll(Word... words);
+    long insert(Word word);
 
     @Update
-    void update(Word... words);
+    void update(Word word);
 
-    @Query("SELECT image FROM information where name = :name")
-    String getImageByName(String name);
+    @Query("SELECT image FROM information where id = :id")
+    String getImageById(long id);
 
-    @Query("SELECT info FROM information where name = :name")
-    String getInfoByName(String name);
+    @Query("SELECT info FROM information where id = :id")
+    String getInfoById(long id);
+
+    @Query("SELECT name FROM information where id = :id")
+    String getNameById(long id);
 }

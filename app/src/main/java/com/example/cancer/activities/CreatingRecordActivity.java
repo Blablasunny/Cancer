@@ -30,11 +30,11 @@ public class CreatingRecordActivity extends AppCompatActivity {
     private EditText edt2;
     private EditText edt;
     ArrayList<Word> data;
-    WordListAdapter wordAdapter;
     WordRoomDatabase wordRoomDatabase;
     WordDao wd;
     Uri selectedImage;
     String str;
+    long id = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,8 +111,13 @@ public class CreatingRecordActivity extends AppCompatActivity {
             }else{
                 str = selectedImage.toString();
             }
-            Word word = new Word(edt2.getText().toString(), edt.getText().toString(), str);
-            wd.insertAll(word);
+            if (id == -1) {
+                Word word = new Word(edt2.getText().toString(), edt.getText().toString(), str);
+                id = wd.insert(word);
+            }else{
+                Word word = new Word(id, edt2.getText().toString(), edt.getText().toString(), str);
+                wd.update(word);
+            }
         }
     }
 }

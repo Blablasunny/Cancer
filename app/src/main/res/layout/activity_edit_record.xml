@@ -29,28 +29,28 @@
             android:text="@string/back"
             android:textColor="@color/black"
             android:textSize="12sp"
-            android:layout_marginTop="13dp"
-            android:layout_marginLeft="5dp"/>
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"/>
         <View
             android:id="@+id/group_shadow_history"
             android:layout_width="150dp"
             android:layout_height="62dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="5dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginLeft="10dp"
             android:background="@drawable/rec_gray" />
     </FrameLayout>
-    <TextView
+    <EditText
         android:id="@+id/editText2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="5"
+        android:hint="@string/edtext_name"
         android:textSize="12sp"
         android:layout_gravity="center"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:background="#E9E7E7"
-        android:hint="@string/edtext_name"/>
+        android:background="#E9E7E7"/>
     <ScrollView
         android:id="@+id/scroll"
         android:layout_width="match_parent"
@@ -85,6 +85,22 @@
                 android:background="@drawable/rec_img"
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="10dp"/>
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+        <Button
+            android:id="@+id/button_imv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/rec_img"
+            android:text="@string/some_id_2"
+            android:textColor="@color/black"
+            android:textSize="11sp"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"/>
         </FrameLayout>
     </LinearLayout>
     <FrameLayout

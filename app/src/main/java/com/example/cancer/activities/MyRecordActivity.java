@@ -54,8 +54,8 @@ public class MyRecordActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(MyRecordActivity.this, EditRecordActivity.class);
                 Bundle bundle = getIntent().getExtras();
-                String str = bundle.getString("name_info");
-                i.putExtra("name_info", str);
+                long str_id = bundle.getLong("id_info");
+                i.putExtra("id_info", str_id);
                 startActivity(i);
             }
         });
@@ -68,13 +68,14 @@ public class MyRecordActivity extends AppCompatActivity {
                     .loadAll();
             wd = wordRoomDatabase.getWordDao();
             Bundle bundle = getIntent().getExtras();
-            String str = bundle.getString("name_info");
-            String str_in = wd.getInfoByName(str);
-            String str_im = wd.getImageByName(str);
+            long str_id = bundle.getLong("id_info");
+            String str_in = wd.getInfoById(str_id);
+            String str_im = wd.getImageById(str_id);
+            String str_n = wd.getNameById(str_id);
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    n.setText(str);
+                    n.setText(str_n);
                     in.setText(str_in);
                     if (str_im != null) {
                         if (!str_im.equals("")) {
