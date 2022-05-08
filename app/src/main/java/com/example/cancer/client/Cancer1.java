@@ -6,7 +6,7 @@ public class Cancer1 {
     @SerializedName("s")
     public String res = "";
 
-    public void setOrigin(String res) {
+    public void setResult(String res) {
         this.res = res;
     }
 

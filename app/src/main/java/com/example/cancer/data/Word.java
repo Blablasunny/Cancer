@@ -4,12 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
-import androidx.room.Insert;
 import androidx.room.PrimaryKey;
-import androidx.room.Query;
 
-import java.util.ArrayList;
-import java.util.List;
+
 @Entity(tableName = "information")
 public class Word {
 

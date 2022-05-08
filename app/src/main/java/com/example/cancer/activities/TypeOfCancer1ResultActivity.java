@@ -40,7 +40,6 @@ public class TypeOfCancer1ResultActivity extends AppCompatActivity {
     TextView txt;
     private Retrofit retrofit;
     private Cancer1Interface ci;
-    InputStream is;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

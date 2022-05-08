@@ -22,7 +22,7 @@
             android:layout_height="match_parent"
             android:background="@drawable/img_2" />
         <Button
-            android:id="@+id/group_history"
+            android:id="@+id/back"
             android:layout_width="150dp"
             android:layout_height="60dp"
             android:background="@drawable/rec_white"
@@ -32,92 +32,96 @@
             android:layout_marginTop="20dp"
             android:layout_marginLeft="10dp"/>
         <View
-            android:id="@+id/group_shadow_history"
+            android:id="@+id/back_shadow"
             android:layout_width="150dp"
             android:layout_height="62dp"
             android:layout_marginTop="22dp"
             android:layout_marginLeft="10dp"
             android:background="@drawable/rec_gray" />
     </FrameLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7"/>
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/editText1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="5"
-        android:hint="@string/edtext_name"
+        android:hint="@string/email"
         android:textSize="12sp"
         android:layout_gravity="center"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:background="#E9E7E7"/>
-    <ScrollView
-        android:id="@+id/scroll"
+        android:background="#E9E7E7"
+        android:inputType="textEmailAddress"/>
+    <View
         android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3" />
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
         android:layout_marginLeft="40dp"
+        android:layout_marginTop="15dp"
         android:layout_marginRight="40dp"
-        android:layout_height="0dp"
-        android:layout_weight="18"
-        android:background="#E9E7E7">
-        <EditText
-            android:id="@+id/editText1"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:hint="@string/edtext"
-            android:textSize="12sp" />
-    </ScrollView>
-    <LinearLayout
+        android:background="#E9E7E7"
+        android:hint="@string/password"
+        android:textSize="12sp"
+        android:inputType="textPassword"/>
+    <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="10"
-        android:orientation="horizontal"
-        android:weightSum="2">
-        <FrameLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-            <ImageView
-                android:id="@+id/img1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/rec_img"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="10dp"/>
-            <TextView
-                android:id="@+id/txt1"
-                android:textSize="12sp"
-                android:text="@string/download"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="10dp"/>
-        </FrameLayout>
-    </LinearLayout>
+        android:layout_weight="3" />
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:layout_gravity="center"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="40dp"
+        android:background="#E9E7E7"
+        android:hint="@string/password2"
+        android:textSize="12sp"
+        android:inputType="textPassword"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"/>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="13">
         <Button
-            android:id="@+id/save"
+            android:id="@+id/sign_up"
             android:layout_width="160dp"
             android:layout_height="70dp"
             android:layout_gravity="center"
+            android:layout_marginTop="3dp"
             android:background="@drawable/rec"
-            android:text="@string/save"
+            android:text="@string/sign_up"
             android:textColor="@color/black"
-            android:textSize="12sp"
-            android:layout_marginTop="3dp" />
+            android:textSize="12sp" />
+
         <View
-            android:id="@+id/save_shadow"
+            android:id="@+id/sign_up_shadow"
             android:layout_width="160dp"
             android:layout_height="72dp"
-            android:background="@drawable/rec_gray"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_gravity="center"
             android:layout_marginTop="5dp"
-            android:layout_gravity="center" />
+            android:background="@drawable/rec_gray"
+            app:layout_constraintBottom_toBottomOf="parent" />
     </FrameLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"/>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -134,5 +138,4 @@
             android:layout_height="180dp"
             android:background="@drawable/img_1" />
     </FrameLayout>
-
 </LinearLayout>

@@ -26,18 +26,39 @@
             android:layout_width="150dp"
             android:layout_height="60dp"
             android:background="@drawable/rec_white"
-            android:text="@string/some_id_6"
+            android:text="@string/back"
             android:textColor="@color/black"
             android:textSize="12sp"
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="left"/>
         <View
             android:id="@+id/group_shadow_history"
             android:layout_width="150dp"
             android:layout_height="62dp"
             android:layout_marginTop="22dp"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/rec_gray" />
+            android:background="@drawable/rec_gray"
+            android:layout_gravity="left"/>
+        <Button
+            android:id="@+id/group_history1"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:background="@drawable/rec_white"
+            android:text="@string/sign_out"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="right"/>
+        <View
+            android:id="@+id/group_shadow_history1"
+            android:layout_width="150dp"
+            android:layout_height="62dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/rec_gray"
+            android:layout_gravity="right"/>
     </FrameLayout>
     <FrameLayout
         android:layout_width="match_parent"

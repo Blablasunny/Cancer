@@ -15,9 +15,11 @@ public class MainScreenActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
+
         Button button1 = (Button) findViewById(R.id.group_scan);
         Button button2 = (Button) findViewById(R.id.group_new);
         Button button3 = (Button) findViewById(R.id.group_history);
+        Button button4 = (Button) findViewById(R.id.group_history1);
 
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,6 +41,14 @@ public class MainScreenActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(MainScreenActivity.this, MyRecordsActivity.class);
+                startActivity(i);
+            }
+        });
+
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainScreenActivity.this, AuthActivity.class);
                 startActivity(i);
             }
         });
