@@ -27,27 +27,35 @@ import java.util.ArrayList;
 public class CreatingRecordActivity extends AppCompatActivity {
 
     static final int GALLERY_REQUEST = 1;
-    private EditText edt2;
-    private EditText edt;
+
     ArrayList<Word> data;
     WordRoomDatabase wordRoomDatabase;
     WordDao wd;
+
     Uri selectedImage;
     String str;
     long id = -1;
+
+    Button bBack;
+    Button bSave;
+    ImageView imv;
+    private EditText etName;
+    private EditText etBook;
+    TextView tvHint;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creating_record);
-        ImageView imv = (ImageView) findViewById(R.id.img1);
-        Button button1 = (Button) findViewById(R.id.group_history);
-        Button s = (Button) findViewById(R.id.save);
-        edt = (EditText) findViewById(R.id.editText1);
-        edt2 = (EditText) findViewById(R.id.editText2);
-        TextView txtv = (TextView) findViewById(R.id.txt1);
 
-        button1.setOnClickListener(new View.OnClickListener() {
+        imv = (ImageView) findViewById(R.id.imv);
+        bBack = (Button) findViewById(R.id.bt_back);
+        bSave = (Button) findViewById(R.id.bt_save);
+        etBook = (EditText) findViewById(R.id.et_book);
+        etName = (EditText) findViewById(R.id.et_name);
+        tvHint = (TextView) findViewById(R.id.tv_hint);
+
+        bBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(CreatingRecordActivity.this, MainScreenActivity.class);
@@ -58,14 +66,14 @@ public class CreatingRecordActivity extends AppCompatActivity {
         imv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtv.setText("");
+                tvHint.setText("");
                 Intent photoPickerIntent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
                 photoPickerIntent.setType("image/*");
                 startActivityForResult(photoPickerIntent, GALLERY_REQUEST);
             }
         });
 
-        s.setOnClickListener(view -> {
+        bSave.setOnClickListener(view -> {
             if (isInputValid()){
                 wordRoomDatabase = WordRoomDatabase.getInstance(this);
                 Thread thread=new Thread(new AnotherRunnable());
@@ -80,7 +88,6 @@ public class CreatingRecordActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
 
         Bitmap bitmap = null;
-        ImageView imv = (ImageView) findViewById(R.id.img1);
 
         switch (requestCode) {
             case GALLERY_REQUEST:
@@ -96,7 +103,7 @@ public class CreatingRecordActivity extends AppCompatActivity {
         }
     }
     boolean isInputValid(){
-        return !edt2.getText().toString().isEmpty() && !edt.getText().toString().isEmpty();
+        return !etName.getText().toString().isEmpty() && !etBook.getText().toString().isEmpty();
     }
 
     class AnotherRunnable implements Runnable {
@@ -112,10 +119,10 @@ public class CreatingRecordActivity extends AppCompatActivity {
                 str = selectedImage.toString();
             }
             if (id == -1) {
-                Word word = new Word(edt2.getText().toString(), edt.getText().toString(), str);
+                Word word = new Word(etName.getText().toString(), etBook.getText().toString(), str);
                 id = wd.insert(word);
             }else{
-                Word word = new Word(id, edt2.getText().toString(), edt.getText().toString(), str);
+                Word word = new Word(id, etName.getText().toString(), etBook.getText().toString(), str);
                 wd.update(word);
             }
         }

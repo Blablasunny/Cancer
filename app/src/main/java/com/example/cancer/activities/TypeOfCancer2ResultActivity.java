@@ -36,24 +36,26 @@ import retrofit2.Retrofit;
 
 public class TypeOfCancer2ResultActivity extends AppCompatActivity {
 
-    ImageView imv;
-    TextView txt;
     private Retrofit retrofit;
     private Cancer1Interface ci;
-    InputStream is;
+
+    ImageView imv;
+    TextView tvResult;
+    Button bBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_type_of_cancer_2_result);
-        Button button1 = (Button) findViewById(R.id.group_history);
-        imv = (ImageView) findViewById(R.id.img1);
-        txt = (TextView) findViewById(R.id.txt2);
+
+        bBack = (Button) findViewById(R.id.bt_back);
+        imv = (ImageView) findViewById(R.id.imv);
+        tvResult = (TextView) findViewById(R.id.tv_result);
 
         retrofit = Cancer1Client.getClient();
         ci = retrofit.create(Cancer1Interface.class);
 
-        button1.setOnClickListener(new View.OnClickListener() {
+        bBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(TypeOfCancer2ResultActivity.this, TypeOfCancer2Activity.class);
@@ -92,7 +94,7 @@ public class TypeOfCancer2ResultActivity extends AppCompatActivity {
             public void onResponse(@NonNull Call<Cancer1> call, @NonNull Response<Cancer1> response) {
                 if (response.isSuccessful()) {
                     Cancer1 body = response.body();
-                    txt.setText(body.getResult());
+                    tvResult.setText(body.getResult());
                 } else {
                     Toast.makeText(TypeOfCancer2ResultActivity.this, "Произошла ошибка", Toast.LENGTH_SHORT).show();
                 }

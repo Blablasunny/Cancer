@@ -22,7 +22,7 @@
             android:layout_height="match_parent"
             android:background="@drawable/img_2" />
         <Button
-            android:id="@+id/back"
+            android:id="@+id/bt_back"
             android:layout_width="150dp"
             android:layout_height="60dp"
             android:background="@drawable/rec_white"
@@ -32,7 +32,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginLeft="10dp"/>
         <View
-            android:id="@+id/back_shadow"
+            android:id="@+id/bt_back_shadow"
             android:layout_width="150dp"
             android:layout_height="62dp"
             android:layout_marginTop="22dp"
@@ -44,24 +44,25 @@
         android:layout_height="0dp"
         android:layout_weight="7"/>
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/et_email"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="5"
         android:hint="@string/email"
-        android:textSize="12sp"
+        android:textSize="14sp"
         android:layout_gravity="center"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:background="#E9E7E7"
-        android:inputType="textEmailAddress"/>
+        android:inputType="textEmailAddress"
+        android:padding="5dp"/>
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="3" />
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/et_password"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="5"
@@ -71,14 +72,15 @@
         android:layout_marginRight="40dp"
         android:background="#E9E7E7"
         android:hint="@string/password3"
-        android:textSize="12sp"
-        android:inputType="textPassword"/>
+        android:textSize="14sp"
+        android:inputType="textPassword"
+        android:padding="5dp"/>
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="3" />
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/et_password_2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="5"
@@ -88,8 +90,9 @@
         android:layout_marginRight="40dp"
         android:background="#E9E7E7"
         android:hint="@string/password2"
-        android:textSize="12sp"
-        android:inputType="textPassword"/>
+        android:textSize="14sp"
+        android:inputType="textPassword"
+        android:padding="5dp"/>
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"

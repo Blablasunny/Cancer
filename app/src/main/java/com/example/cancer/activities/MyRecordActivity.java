@@ -22,26 +22,31 @@ public class MyRecordActivity extends AppCompatActivity {
     WordRoomDatabase wordRoomDatabase;
     ArrayList<Word> data;
     WordDao wd;
-    TextView n;
-    TextView in;
-    ImageView im;
+
+    TextView tvName;
+    TextView tvBook;
+    ImageView imv;
+    Button bBack;
+    Button bEdit;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_record);
-        Button button1 = (Button) findViewById(R.id.group_history);
-        Button ed = (Button) findViewById(R.id.edit);
-        n = (TextView) findViewById(R.id.editText2);
-        in = (TextView) findViewById(R.id.editText1);
-        im = (ImageView) findViewById(R.id.img1);
+
+        bBack = (Button) findViewById(R.id.bt_back);
+        bEdit = (Button) findViewById(R.id.bt_edit);
+        tvName = (TextView) findViewById(R.id.tv_name);
+        tvBook = (TextView) findViewById(R.id.tv_book);
+        imv = (ImageView) findViewById(R.id.imv);
 
         wordRoomDatabase = WordRoomDatabase.getInstance(this);
 
         Thread thread=new Thread(new MyRecordActivity.AnotherRunnable());
         thread.start();
 
-        button1.setOnClickListener(new View.OnClickListener() {
+        bBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(MyRecordActivity.this, MyRecordsActivity.class);
@@ -49,7 +54,7 @@ public class MyRecordActivity extends AppCompatActivity {
             }
         });
 
-        ed.setOnClickListener(new View.OnClickListener() {
+        bEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(MyRecordActivity.this, EditRecordActivity.class);
@@ -75,12 +80,12 @@ public class MyRecordActivity extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    n.setText(str_n);
-                    in.setText(str_in);
+                    tvName.setText(str_n);
+                    tvBook.setText(str_in);
                     if (str_im != null) {
                         if (!str_im.equals("")) {
                             Uri selectedImage = Uri.parse(str_im);
-                            im.setImageURI(selectedImage);
+                            imv.setImageURI(selectedImage);
                         }
                     }
                 }

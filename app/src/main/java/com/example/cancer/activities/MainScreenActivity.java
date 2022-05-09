@@ -14,19 +14,24 @@ public class MainScreenActivity extends AppCompatActivity{
 
     private FirebaseAuth mAuth;
 
+    Button bScan;
+    Button bNew;
+    Button bBooks;
+    Button bSignOut;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
 
-        Button button1 = (Button) findViewById(R.id.group_scan);
-        Button button2 = (Button) findViewById(R.id.group_new);
-        Button button3 = (Button) findViewById(R.id.group_history);
-        Button button4 = (Button) findViewById(R.id.group_history1);
+        bScan = (Button) findViewById(R.id.bt_scan);
+        bNew = (Button) findViewById(R.id.bt_new);
+        bBooks = (Button) findViewById(R.id.bt_books);
+        bSignOut = (Button) findViewById(R.id.bt_sign_out);
 
         mAuth = FirebaseAuth.getInstance();
 
-        button1.setOnClickListener(new View.OnClickListener() {
+        bScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(MainScreenActivity.this, TypesOfCancerActivity.class);
@@ -34,7 +39,7 @@ public class MainScreenActivity extends AppCompatActivity{
             }
         });
 
-        button2.setOnClickListener(new View.OnClickListener() {
+        bNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(MainScreenActivity.this, CreatingRecordActivity.class);
@@ -42,7 +47,7 @@ public class MainScreenActivity extends AppCompatActivity{
             }
         });
 
-        button3.setOnClickListener(new View.OnClickListener() {
+        bBooks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(MainScreenActivity.this, MyRecordsActivity.class);
@@ -50,7 +55,7 @@ public class MainScreenActivity extends AppCompatActivity{
             }
         });
 
-        button4.setOnClickListener(new View.OnClickListener() {
+        bSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mAuth.signOut();

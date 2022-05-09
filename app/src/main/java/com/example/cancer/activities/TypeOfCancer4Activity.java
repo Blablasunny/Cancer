@@ -19,18 +19,25 @@ import java.io.IOException;
 public class TypeOfCancer4Activity extends AppCompatActivity {
 
     static final int GALLERY_REQUEST = 1;
+
     Uri selectedImage;
+
+    Button bBack;
+    Button bSend;
+    TextView tv;
+    ImageView imv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_type_of_cancer_4);
-        ImageView imv = (ImageView) findViewById(R.id.img1);
-        Button button1 = (Button) findViewById(R.id.group_history);
-        Button button2 = (Button) findViewById(R.id.send);
-        TextView txtv = (TextView) findViewById(R.id.txt1);
 
-        button1.setOnClickListener(new View.OnClickListener() {
+        bBack = (Button) findViewById(R.id.bt_back);
+        bSend = (Button) findViewById(R.id.bt_send);
+        tv = (TextView) findViewById(R.id.tv);
+        imv = (ImageView) findViewById(R.id.imv);
+
+        bBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(TypeOfCancer4Activity.this, TypesOfCancerActivity.class);
@@ -38,7 +45,7 @@ public class TypeOfCancer4Activity extends AppCompatActivity {
             }
         });
 
-        button2.setOnClickListener(new View.OnClickListener() {
+        bSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(TypeOfCancer4Activity.this, TypeOfCancer4ResultActivity.class);
@@ -52,7 +59,7 @@ public class TypeOfCancer4Activity extends AppCompatActivity {
         imv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtv.setText("");
+                tv.setText("");
                 Intent photoPickerIntent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
                 photoPickerIntent.setType("image/*");
                 startActivityForResult(photoPickerIntent, GALLERY_REQUEST);
@@ -64,7 +71,6 @@ public class TypeOfCancer4Activity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
 
         Bitmap bitmap = null;
-        ImageView imv = (ImageView) findViewById(R.id.img1);
 
         switch (requestCode) {
             case GALLERY_REQUEST:

@@ -24,33 +24,39 @@ import java.util.ArrayList;
 public class EditRecordActivity extends AppCompatActivity {
 
     static final int GALLERY_REQUEST = 1;
+
     WordRoomDatabase wordRoomDatabase;
     ArrayList<Word> data;
     WordDao wd;
-    TextView n;
-    TextView in;
-    ImageView im;
-    Uri selectedImage;
+
     Uri selectedImage1;
     String str;
+
+    TextView etName;
+    TextView etBook;
+    ImageView imv;
+    Button bBack;
+    Button bSave;
+    Button bImv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_record);
-        Button button1 = (Button) findViewById(R.id.group_history);
-        Button s = (Button) findViewById(R.id.save);
-        Button imv = (Button) findViewById(R.id.button_imv);
-        n = (TextView) findViewById(R.id.editText2);
-        in = (TextView) findViewById(R.id.editText1);
-        im = (ImageView) findViewById(R.id.img1);
+
+        bBack = (Button) findViewById(R.id.bt_back);
+        bSave = (Button) findViewById(R.id.bt_save);
+        bImv = (Button) findViewById(R.id.bt_imv);
+        etName = (TextView) findViewById(R.id.et_name);
+        etBook = (TextView) findViewById(R.id.et_book);
+        imv = (ImageView) findViewById(R.id.imv);
 
         wordRoomDatabase = WordRoomDatabase.getInstance(this);
 
         Thread thread=new Thread(new EditRecordActivity.AnotherRunnable());
         thread.start();
 
-        button1.setOnClickListener(new View.OnClickListener() {
+        bBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(EditRecordActivity.this, MyRecordsActivity.class);
@@ -58,7 +64,7 @@ public class EditRecordActivity extends AppCompatActivity {
             }
         });
 
-        s.setOnClickListener(view -> {
+        bSave.setOnClickListener(view -> {
             if (isInputValid()){
                 wordRoomDatabase = WordRoomDatabase.getInstance(this);
                 Thread thread1=new Thread(new AnotherRunnable1());
@@ -68,7 +74,7 @@ public class EditRecordActivity extends AppCompatActivity {
             }
         });
 
-        imv.setOnClickListener(new View.OnClickListener() {
+        bImv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent photoPickerIntent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
@@ -82,7 +88,6 @@ public class EditRecordActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
 
         Bitmap bitmap = null;
-        ImageView imv = (ImageView) findViewById(R.id.img1);
 
         switch (requestCode) {
             case GALLERY_REQUEST:
@@ -114,12 +119,12 @@ public class EditRecordActivity extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    n.setText(str_n);
-                    in.setText(str_in);
+                    etName.setText(str_n);
+                    etBook.setText(str_in);
                     if (str_im != null) {
                         if (!str_im.equals("")) {
                             Uri selectedImage = Uri.parse(str_im);
-                            im.setImageURI(selectedImage);
+                            imv.setImageURI(selectedImage);
                         }
                     }
                 }
@@ -128,7 +133,7 @@ public class EditRecordActivity extends AppCompatActivity {
     }
 
     boolean isInputValid(){
-        return !n.getText().toString().isEmpty() && !in.getText().toString().isEmpty();
+        return !etName.getText().toString().isEmpty() && !etBook.getText().toString().isEmpty();
     }
 
     class AnotherRunnable1 implements Runnable {
@@ -148,7 +153,7 @@ public class EditRecordActivity extends AppCompatActivity {
             }else{
                 str = selectedImage1.toString();
             }
-            Word word = new Word(str_id, n.getText().toString(), in.getText().toString(), str);
+            Word word = new Word(str_id, etName.getText().toString(), etBook.getText().toString(), str);
             wd.update(word);
         }
     }

@@ -22,9 +22,9 @@ public class RegistrActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
-    private EditText ETPassword;
-    private EditText ETEmail;
-    private EditText ETPassword2;
+    private EditText etPassword;
+    private EditText etEmail;
+    private EditText etPassword2;
     private Button bBack;
     private Button bSignUp;
 
@@ -33,10 +33,10 @@ public class RegistrActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registr);
 
-        ETPassword = (EditText) findViewById(R.id.editText2);
-        ETEmail = (EditText) findViewById(R.id.editText1);
-        ETPassword2 = (EditText) findViewById(R.id.editText3);
-        bBack = (Button) findViewById(R.id.back);
+        etPassword = (EditText) findViewById(R.id.et_password);
+        etEmail = (EditText) findViewById(R.id.et_email);
+        etPassword2 = (EditText) findViewById(R.id.et_password_2);
+        bBack = (Button) findViewById(R.id.bt_back);
         bSignUp = (Button) findViewById(R.id.sign_up);
 
         mAuth = FirebaseAuth.getInstance();
@@ -56,7 +56,7 @@ public class RegistrActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (isInputValid()) {
-                    signUp(ETEmail.getText().toString(), ETPassword.getText().toString(), ETPassword2.getText().toString());
+                    signUp(etEmail.getText().toString(), etPassword.getText().toString(), etPassword2.getText().toString());
                 } else {
                     Toast.makeText(RegistrActivity.this, "Заполните все поля", Toast.LENGTH_SHORT).show();
                 }
@@ -93,6 +93,6 @@ public class RegistrActivity extends AppCompatActivity {
     }
 
     boolean isInputValid(){
-        return !ETEmail.getText().toString().isEmpty() && !ETPassword.getText().toString().isEmpty() && !ETPassword2.getText().toString().isEmpty();
+        return !etEmail.getText().toString().isEmpty() && !etPassword.getText().toString().isEmpty() && !etPassword2.getText().toString().isEmpty();
     }
 }

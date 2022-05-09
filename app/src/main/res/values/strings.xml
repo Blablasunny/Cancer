@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">Cancer</string>
-    <string name="some_id">Добавить новую запись</string>
-    <string name="some_id_1">
+    <string name="add_new_book">Добавить новую запись</string>
+    <string name="go_to_scan">
         Перейти к\n
         диагностике</string>
-    <string name="some_id_2">Загрузить новое изображение</string>
-    <string name="some_id_6">Мои записи</string>
+    <string name="download_new">Загрузить новое изображение</string>
+    <string name="my_books">Мои записи</string>
     <string name="back">Назад</string>
     <string name="cancer_1">Рак легких (КТ)</string>
     <string name="cancer_2">Рак кожи</string>
@@ -22,10 +22,12 @@
     <string name="email">Введите email</string>
     <string name="password">Введите пароль</string>
     <string name="sign_in">Войти</string>
-    <string name="sign_up">Зарегестрироваться</string>
+    <string name="sign_up">Зарегистрироваться</string>
     <string name="password2">Введите пароль еще раз</string>
     <string name="sign_out">Выйти</string>
     <string name="password3">Введите пароль. Длина не менее 8 символов</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="answer">Введите имя записи для поиска</string>
+    <string name="ans">НАЙТИ</string>
 </resources>

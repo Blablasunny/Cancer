@@ -22,7 +22,7 @@
             android:layout_height="match_parent"
             android:background="@drawable/img_2" />
         <Button
-            android:id="@+id/group_history"
+            android:id="@+id/bt_back"
             android:layout_width="150dp"
             android:layout_height="60dp"
             android:background="@drawable/rec_white"
@@ -32,20 +32,45 @@
             android:layout_marginTop="20dp"
             android:layout_marginLeft="10dp"/>
         <View
-            android:id="@+id/group_shadow_history"
+            android:id="@+id/bt_back_shadow"
             android:layout_width="150dp"
             android:layout_height="62dp"
             android:layout_marginTop="22dp"
             android:layout_marginLeft="10dp"
             android:background="@drawable/rec_gray" />
     </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="16dp"
+        android:background="#E9E7E7">
+        <EditText
+            android:id="@+id/et_answer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:hint="@string/answer"
+            android:padding="5dp"/>
+        <Button
+            android:id="@+id/bt_answer"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:background="#70F2E5"
+            android:text="@string/ans"
+            android:textColor="@color/black"
+            android:textSize="12sp"/>
+    </FrameLayout>
     <androidx.recyclerview.widget.RecyclerView
-        android:padding="7dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="12dp"
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="48">
+        android:layout_weight="42"
+        android:layout_margin="20dp">
     </androidx.recyclerview.widget.RecyclerView>
     <FrameLayout
         android:layout_width="match_parent"

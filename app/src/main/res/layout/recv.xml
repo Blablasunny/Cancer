@@ -3,13 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="5dp">
+    android:background="#CEF8F8"
+    android:layout_marginTop="17dp">
     <TextView
-        android:id="@+id/name"
-        android:background="#CEF8F8"
+        android:id="@+id/tv_name"
         android:textColor="@color/black"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:textSize="15sp"/>
+        android:layout_height="50dp"
+        android:textSize="15sp"
+        android:layout_margin="5dp"
+        android:lineSpacingMultiplier="1.5"/>
 
 </LinearLayout>

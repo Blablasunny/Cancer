@@ -34,7 +34,7 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.ViewHo
 
         public ViewHolder(View view) {
             super(view);
-            nameTextView = view.findViewById(R.id.name);
+            nameTextView = view.findViewById(R.id.tv_name);
         }
     }
 

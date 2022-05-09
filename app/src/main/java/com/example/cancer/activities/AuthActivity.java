@@ -22,8 +22,8 @@ public class AuthActivity extends AppCompatActivity{
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
-    private EditText ETPassword;
-    private EditText ETEmail;
+    private EditText etPassword;
+    private EditText etEmail;
     private Button bSignIn;
     private Button bSignUp;
 
@@ -32,8 +32,8 @@ public class AuthActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
 
-        ETPassword = (EditText) findViewById(R.id.editText1);
-        ETEmail = (EditText) findViewById(R.id.editText2);
+        etPassword = (EditText) findViewById(R.id.et_password);
+        etEmail = (EditText) findViewById(R.id.et_email);
         bSignIn = (Button) findViewById(R.id.sign_in);
         bSignUp = (Button) findViewById(R.id.sign_up);
 
@@ -52,7 +52,7 @@ public class AuthActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 if (isInputValid()) {
-                    signIn(ETEmail.getText().toString(), ETPassword.getText().toString());
+                    signIn(etEmail.getText().toString(), etPassword.getText().toString());
                 } else {
                     Toast.makeText(AuthActivity.this, "Заполните все поля", Toast.LENGTH_SHORT).show();
                 }
@@ -85,6 +85,6 @@ public class AuthActivity extends AppCompatActivity{
     }
 
     boolean isInputValid(){
-        return !ETPassword.getText().toString().isEmpty() && !ETEmail.getText().toString().isEmpty();
+        return !etPassword.getText().toString().isEmpty() && !etEmail.getText().toString().isEmpty();
     }
 }

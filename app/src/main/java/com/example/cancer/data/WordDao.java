@@ -34,4 +34,7 @@ public interface WordDao {
 
     @Query("SELECT name FROM information where id = :id")
     String getNameById(long id);
+
+    @Query("SELECT * FROM information where name = :name")
+    List<Word> loadAllByName(String name);
 }
