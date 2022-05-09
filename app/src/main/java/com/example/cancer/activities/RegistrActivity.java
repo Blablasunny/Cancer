@@ -17,7 +17,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class RegistActivity extends AppCompatActivity {
+public class RegistrActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -58,7 +58,7 @@ public class RegistActivity extends AppCompatActivity {
                 if (isInputValid()) {
                     signUp(ETEmail.getText().toString(), ETPassword.getText().toString(), ETPassword2.getText().toString());
                 } else {
-                    Toast.makeText(RegistActivity.this, "Заполните все поля", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegistrActivity.this, "Заполните все поля", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -66,7 +66,7 @@ public class RegistActivity extends AppCompatActivity {
         bBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(RegistActivity.this, AuthActivity.class);
+                Intent i = new Intent(RegistrActivity.this, AuthActivity.class);
                 startActivity(i);
             }
         });
@@ -77,14 +77,16 @@ public class RegistActivity extends AppCompatActivity {
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful() && password2.equals(password)) {
-                    Toast.makeText(RegistActivity.this, "Регистрация прошла успешно", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(RegistActivity.this, AuthActivity.class);
+                if (task.isSuccessful() && password2.equals(password) && password.length() >= 8) {
+                    Toast.makeText(RegistrActivity.this, "Регистрация прошла успешно", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(RegistrActivity.this, AuthActivity.class);
                     startActivity(i);
-                } else if (!password2.equals(password)){
-                    Toast.makeText(RegistActivity.this, "Пароли должны совпадать", Toast.LENGTH_SHORT).show();
+                } else if (!password2.equals(password)) {
+                    Toast.makeText(RegistrActivity.this, "Пароли должны совпадать", Toast.LENGTH_SHORT).show();
+                } else if (password.length() < 8) {
+                    Toast.makeText(RegistrActivity.this, "Слишком короткий пароль", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(RegistActivity.this, "Не удалось зарегистрироваться", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegistrActivity.this, "Не удалось зарегистрироваться", Toast.LENGTH_SHORT).show();
                 }
             }
         });

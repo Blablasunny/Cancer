@@ -70,7 +70,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginRight="40dp"
         android:background="#E9E7E7"
-        android:hint="@string/password"
+        android:hint="@string/password3"
         android:textSize="12sp"
         android:inputType="textPassword"/>
     <View

@@ -43,9 +43,7 @@ public class AuthActivity extends AppCompatActivity{
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-
                 } else {
-
                 }
             }
         };
@@ -64,7 +62,7 @@ public class AuthActivity extends AppCompatActivity{
         bSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(AuthActivity.this, RegistActivity.class);
+                Intent i = new Intent(AuthActivity.this, RegistrActivity.class);
                 startActivity(i);
             }
         });
