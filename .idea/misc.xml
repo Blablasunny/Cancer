@@ -3,9 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/blasu/AndroidStudioProjects/Cancer/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1358974358974359" />
         <entry key="..\:/Users/blasu/AndroidStudioProjects/Cancer/app/src/main/res/drawable-v24/rec_gray.xml" value="0.1170940170940171" />
         <entry key="..\:/Users/blasu/AndroidStudioProjects/Cancer/app/src/main/res/drawable/group_4_r.xml" value="0.35213032581453635" />
         <entry key="..\:/Users/blasu/AndroidStudioProjects/Cancer/app/src/main/res/drawable/ic_launcher_background.xml" value="0.14635416666666667" />
+        <entry key="..\:/Users/blasu/AndroidStudioProjects/Cancer/app/src/main/res/drawable/ic_slice_1.xml" value="0.1358974358974359" />
         <entry key="..\:/Users/blasu/AndroidStudioProjects/Cancer/app/src/main/res/drawable/icon.xml" value="0.2189873417721519" />
         <entry key="..\:/Users/blasu/AndroidStudioProjects/Cancer/app/src/main/res/drawable/photo.xml" value="0.14270833333333333" />
         <entry key="..\:/Users/blasu/AndroidStudioProjects/Cancer/app/src/main/res/drawable/rec.xml" value="0.14270833333333333" />
@@ -48,6 +50,7 @@
         <entry key="..\:/Users/blasu/AndroidStudioProjects/Cancer/app/src/main/res/layout/main_screen.xml" value="0.10683760683760683" />
         <entry key="..\:/Users/blasu/AndroidStudioProjects/Cancer/app/src/main/res/layout/recv.xml" value="0.20854700854700856" />
         <entry key="..\:/Users/blasu/AndroidStudioProjects/Cancer/app/src/main/res/layout/types_of_cancer.xml" value="0.1" />
+        <entry key="..\:/Users/blasu/AndroidStudioProjects/Cancer/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1358974358974359" />
       </map>
     </option>
   </component>
