@@ -78,6 +78,8 @@ public class CreatingRecordActivity extends AppCompatActivity {
                 wordRoomDatabase = WordRoomDatabase.getInstance(this);
                 Thread thread=new Thread(new AnotherRunnable());
                 thread.start();
+                Intent i = new Intent(CreatingRecordActivity.this, MainScreenActivity.class);
+                startActivity(i);
             }else{
                 Toast.makeText(this, "Введите имя записи и текст", Toast.LENGTH_SHORT).show();
             }
@@ -118,13 +120,8 @@ public class CreatingRecordActivity extends AppCompatActivity {
             }else{
                 str = selectedImage.toString();
             }
-            if (id == -1) {
-                Word word = new Word(etName.getText().toString(), etBook.getText().toString(), str);
-                id = wd.insert(word);
-            }else{
-                Word word = new Word(id, etName.getText().toString(), etBook.getText().toString(), str);
-                wd.update(word);
-            }
+            Word word = new Word(etName.getText().toString(), etBook.getText().toString(), str);
+            id = wd.insert(word);
         }
     }
 }
