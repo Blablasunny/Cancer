@@ -155,6 +155,15 @@ public class EditRecordActivity extends AppCompatActivity {
             }
             Word word = new Word(str_id, etName.getText().toString(), etBook.getText().toString(), str);
             wd.update(word);
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Intent i = new Intent(EditRecordActivity.this, MyRecordActivity.class);
+                    i.putExtra("id_info", word.getId());
+                    startActivity(i);
+                }
+            });
         }
     }
 }
