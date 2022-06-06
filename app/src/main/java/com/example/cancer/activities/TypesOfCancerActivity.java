@@ -4,88 +4,76 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 
 import com.example.cancer.R;
+import com.example.cancer.databinding.ActivityTypesOfCancerBinding;
 
 public class TypesOfCancerActivity extends AppCompatActivity {
 
-    Button bBack;
-    Button bCancer1;
-    Button bCancer2;
-    Button bCancer3;
-    Button bCancer4;
-    Button bCancer5;
-    Button bCancer6;
+    ActivityTypesOfCancerBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_types_of_cancer);
 
-        bBack = (Button) findViewById(R.id.bt_back);
-        bCancer1 = (Button) findViewById(R.id.bt_cancer_1);
-        bCancer2 = (Button) findViewById(R.id.bt_cancer_2);
-        bCancer3 = (Button) findViewById(R.id.bt_cancer_3);
-        bCancer4 = (Button) findViewById(R.id.bt_cancer_4);
-        bCancer5 = (Button) findViewById(R.id.bt_cancer_5);
-        bCancer6 = (Button) findViewById(R.id.bt_cancer_6);
+        binding = ActivityTypesOfCancerBinding.inflate(getLayoutInflater());
 
-        bBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(TypesOfCancerActivity.this, MainScreenActivity.class);
-                startActivity(i);
-            }
+        setContentView(binding.getRoot());
+
+        binding.btnProfile.setOnClickListener(view -> {
+            Intent i = new Intent(TypesOfCancerActivity.this, AccountActivity.class);
+            startActivity(i);
         });
 
-        bCancer1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(TypesOfCancerActivity.this, TypeOfCancer1Activity.class);
-                startActivity(i);
-            }
+        binding.btnEdit.setOnClickListener(view -> {
+            Intent i = new Intent(TypesOfCancerActivity.this, CreatingRecordActivity.class);
+            startActivity(i);
         });
 
-        bCancer2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(TypesOfCancerActivity.this, TypeOfCancer2Activity.class);
-                startActivity(i);
-            }
+        binding.btnScroll.setOnClickListener(view -> {
+            Intent i = new Intent(TypesOfCancerActivity.this, MyRecordsActivity.class);
+            startActivity(i);
         });
 
-        bCancer3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(TypesOfCancerActivity.this, TypeOfCancer3Activity.class);
-                startActivity(i);
-            }
+        binding.btnNews.setOnClickListener(view -> {
+            Intent i = new Intent(TypesOfCancerActivity.this, NewsActivity.class);
+            startActivity(i);
         });
 
-        bCancer4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(TypesOfCancerActivity.this, TypeOfCancer4Activity.class);
-                startActivity(i);
-            }
+        binding.btnCancer1.setOnClickListener(view ->  {
+            Intent i = new Intent(TypesOfCancerActivity.this, TypeOfCancerActivity.class);
+            i.putExtra("type_cancer", 1);
+            startActivity(i);
         });
 
-        bCancer5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(TypesOfCancerActivity.this, TypeOfCancer5Activity.class);
-                startActivity(i);
-            }
+        binding.btnCancer2.setOnClickListener(view ->  {
+            Intent i = new Intent(TypesOfCancerActivity.this, TypeOfCancerActivity.class);
+            i.putExtra("type_cancer", 2);
+            startActivity(i);
         });
 
-        bCancer6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(TypesOfCancerActivity.this, TypeOfCancer6Activity.class);
-                startActivity(i);
-            }
+        binding.btnCancer3.setOnClickListener(view ->  {
+            Intent i = new Intent(TypesOfCancerActivity.this, TypeOfCancerActivity.class);
+            i.putExtra("type_cancer", 3);
+            startActivity(i);
+        });
+
+        binding.btnCancer4.setOnClickListener(view ->  {
+            Intent i = new Intent(TypesOfCancerActivity.this, TypeOfCancerActivity.class);
+            i.putExtra("type_cancer", 4);
+            startActivity(i);
+        });
+
+        binding.btnCancer5.setOnClickListener(view ->  {
+            Intent i = new Intent(TypesOfCancerActivity.this, TypeOfCancerActivity.class);
+            i.putExtra("type_cancer", 5);
+            startActivity(i);
+        });
+
+        binding.btnCancer6.setOnClickListener(view ->  {
+            Intent i = new Intent(TypesOfCancerActivity.this, TypeOfCancerActivity.class);
+            i.putExtra("type_cancer", 6);
+            startActivity(i);
         });
     }
 }

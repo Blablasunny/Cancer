@@ -9,24 +9,36 @@
     android:orientation="vertical">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_name_news"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="@string/writes"
-        android:textColor="@color/dark_gray"
+        android:layout_weight="2"
         android:textStyle="bold"
-        android:textSize="35sp"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="10dp"/>
+        android:textColor="@color/dark_gray"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="15dp"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerview"
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7"
+        android:layout_margin="15dp">
+
+        <soup.neumorphism.NeumorphCardView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="8"
-            android:layout_margin="20dp" />
+            android:layout_height="match_parent"
+            android:background="@drawable/ic_rect_text"
+            app:neumorph_shapeType="flat"/>
+
+        <TextView
+            android:id="@+id/tv_info_news"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="15sp"
+            android:textColor="@color/dark_gray"
+            android:padding="25dp"/>
+
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -40,7 +52,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/ic_profile"/>
+            android:background="@drawable/ic_profile_active"
+            android:clickable="false"/>
 
         <Button
             android:id="@+id/btn_edit"
@@ -54,8 +67,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/ic_scroll_active"
-            android:clickable="false"/>
+            android:background="@drawable/ic_scroll"/>
 
         <Button
             android:id="@+id/btn_diagnosis"

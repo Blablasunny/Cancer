@@ -1,33 +1,27 @@
 <resources>
     <string name="app_name">Cancer</string>
-    <string name="add_new_book">Добавить новую запись</string>
-    <string name="go_to_scan">
-        Перейти к\n
-        диагностике</string>
-    <string name="download_new">Загрузить новое изображение</string>
-    <string name="my_books">Мои записи</string>
-    <string name="back">Назад</string>
-    <string name="cancer_1">Рак легких (КТ)</string>
-    <string name="cancer_2">Рак кожи</string>
-    <string name="cancer_3">Рак молочной железы (биопсия)</string>
-    <string name="cancer_4">Рак толстой кишки (биопсия)</string>
-    <string name="cancer_5">Рак молочной железы (МРТ)</string>
-    <string name="cancer_6">Рак полости рта (биопсия)</string>
-    <string name="edtext">Введите текст</string>
-    <string name="save">Сохранить</string>
-    <string name="download">Загрузить изображение</string>
-    <string name="send">Отправить</string>
-    <string name="edtext_name">Введите имя записи</string>
-    <string name="edit">Редактировать</string>
-    <string name="email">Введите email</string>
-    <string name="password">Введите пароль</string>
-    <string name="sign_in">Войти</string>
-    <string name="sign_up">Зарегистрироваться</string>
-    <string name="password2">Введите пароль еще раз</string>
-    <string name="sign_out">Выйти</string>
-    <string name="password3">Введите пароль. Длина не менее 8 символов</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="answer">Введите имя записи для поиска</string>
-    <string name="ans">НАЙТИ</string>
+    <string name="new_write">Новая запись</string>
+    <string name="name_write">Название записи</string>
+    <string name="writes">Записи</string>
+    <string name="diagnosis">Диагностика</string>
+    <string name="cancer_1">Рак легких по КТ</string>
+    <string name="cancer_2">Рак кожи</string>
+    <string name="cancer_3">Рак молочной железы по биопсии</string>
+    <string name="cancer_4">Рак молочной железы по МРТ</string>
+    <string name="cancer_5">Рак толстой кишки по биопсии</string>
+    <string name="cancer_6">Рак полости рта по биопсии</string>
+    <string name="news">Новости</string>
+    <string name="auth">Авторизация</string>
+    <string name="no_acc">Нет аккаунта?</string>
+    <string name="email">Email</string>
+    <string name="password">Пароль</string>
+    <string name="log_up">Регистрация</string>
+    <string name="surname">Фамилия</string>
+    <string name="name">Имя</string>
+    <string name="patronymic">Отчество</string>
+    <string name="med">Медицинское учреждение</string>
+    <string name="phone">Телефон</string>
+    <string name="password_2">Пароль не менее 8 символов</string>
+    <string name="password_3">Пароль еще раз</string>
 </resources>

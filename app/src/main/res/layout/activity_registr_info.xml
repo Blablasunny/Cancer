@@ -31,7 +31,8 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginVertical="30dp">
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp">
 
             <soup.neumorphism.NeumorphCardView
                 android:layout_width="match_parent"
@@ -40,14 +41,13 @@
                 app:neumorph_shapeType="flat"/>
 
             <EditText
-                android:id="@+id/et_email"
+                android:id="@+id/et_surname"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="@string/email"
+                android:hint="@string/surname"
                 android:textSize="15sp"
                 android:textColor="@color/dark_gray"
                 android:padding="20dp"
-                android:inputType="textEmailAddress"
                 android:background="@null"
                 android:gravity="center_vertical"/>
 
@@ -58,8 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginVertical="10dp">
+            android:layout_marginHorizontal="30dp">
 
             <soup.neumorphism.NeumorphCardView
                 android:layout_width="match_parent"
@@ -68,10 +67,10 @@
                 app:neumorph_shapeType="flat"/>
 
             <EditText
-                android:id="@+id/et_password"
+                android:id="@+id/et_name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="@string/password_2"
+                android:hint="@string/name"
                 android:textSize="15sp"
                 android:textColor="@color/dark_gray"
                 android:padding="20dp"
@@ -85,7 +84,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginVertical="30dp">
+            android:layout_marginVertical="20dp">
 
             <soup.neumorphism.NeumorphCardView
                 android:layout_width="match_parent"
@@ -94,10 +93,10 @@
                 app:neumorph_shapeType="flat"/>
 
             <EditText
-                android:id="@+id/et_password_2"
+                android:id="@+id/et_patronymic"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="@string/password_3"
+                android:hint="@string/patronymic"
                 android:textSize="15sp"
                 android:textColor="@color/dark_gray"
                 android:padding="20dp"
@@ -106,10 +105,57 @@
 
         </FrameLayout>
 
-        <View
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"/>
+            android:layout_weight="1"
+            android:layout_marginHorizontal="30dp">
+
+            <soup.neumorphism.NeumorphCardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/ic_rect_text"
+                app:neumorph_shapeType="flat"/>
+
+            <EditText
+                android:id="@+id/et_med"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/med"
+                android:textSize="15sp"
+                android:textColor="@color/dark_gray"
+                android:padding="25dp"
+                android:background="@null"
+                android:gravity="center_vertical"/>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginVertical="20dp">
+
+            <soup.neumorphism.NeumorphCardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/ic_rect_text"
+                app:neumorph_shapeType="flat"/>
+
+            <EditText
+                android:id="@+id/et_phone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/phone"
+                android:textSize="15sp"
+                android:textColor="@color/dark_gray"
+                android:padding="20dp"
+                android:inputType="phone"
+                android:background="@null"
+                android:gravity="center_vertical"/>
+
+        </FrameLayout>
 
     </LinearLayout>
 
@@ -122,7 +168,7 @@
         android:layout_marginBottom="25dp">
 
         <soup.neumorphism.NeumorphButton
-            android:id="@+id/btn_sign_up"
+            android:id="@+id/btn_next"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/ic_rect_text"
@@ -131,7 +177,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_plus"
+            android:background="@drawable/ic_right_arrow"
             android:layout_gravity="center" />
 
     </FrameLayout>

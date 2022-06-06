@@ -4,21 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cancer.R;
 import com.example.cancer.data.Word;
 import com.example.cancer.data.WordDao;
-import com.example.cancer.data.WordListAdapter;
 import com.example.cancer.data.WordRoomDatabase;
+import com.example.cancer.databinding.ActivityCreatingRecordBinding;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,60 +22,63 @@ import java.util.ArrayList;
 
 public class CreatingRecordActivity extends AppCompatActivity {
 
+    ActivityCreatingRecordBinding binding;
+
     static final int GALLERY_REQUEST = 1;
 
     ArrayList<Word> data;
     WordRoomDatabase wordRoomDatabase;
     WordDao wd;
 
-    Uri selectedImage;
-    String str;
-    long id = -1;
-
-    Button bBack;
-    Button bSave;
-    ImageView imv;
-    private EditText etName;
-    private EditText etBook;
-    TextView tvHint;
+    private Uri selectedImage;
+    private String str;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creating_record);
 
-        imv = (ImageView) findViewById(R.id.imv);
-        bBack = (Button) findViewById(R.id.bt_back);
-        bSave = (Button) findViewById(R.id.bt_save);
-        etBook = (EditText) findViewById(R.id.et_book);
-        etName = (EditText) findViewById(R.id.et_name);
-        tvHint = (TextView) findViewById(R.id.tv_hint);
+        binding = ActivityCreatingRecordBinding.inflate(getLayoutInflater());
 
-        bBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(CreatingRecordActivity.this, MainScreenActivity.class);
-                startActivity(i);
-            }
+        setContentView(binding.getRoot());
+
+        binding.imvWrite.setImageResource(R.drawable.ic_add_image);
+
+        binding.btnProfile.setOnClickListener(view -> {
+            Intent i = new Intent(CreatingRecordActivity.this, AccountActivity.class);
+            startActivity(i);
         });
 
-        imv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tvHint.setText("");
-                Intent photoPickerIntent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-                photoPickerIntent.setType("image/*");
-                startActivityForResult(photoPickerIntent, GALLERY_REQUEST);
-            }
+        binding.btnScroll.setOnClickListener(view -> {
+            Intent i = new Intent(CreatingRecordActivity.this, MyRecordsActivity.class);
+            startActivity(i);
         });
 
-        bSave.setOnClickListener(view -> {
+        binding.btnDiagnosis.setOnClickListener(view -> {
+            Intent i = new Intent(CreatingRecordActivity.this, TypesOfCancerActivity.class);
+            startActivity(i);
+        });
+
+        binding.btnNews.setOnClickListener(view -> {
+            Intent i = new Intent(CreatingRecordActivity.this, NewsActivity.class);
+            startActivity(i);
+        });
+
+        binding.btnIm.setOnClickListener(view ->  {
+            Intent photoPickerIntent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+            photoPickerIntent.setType("image/*");
+            startActivityForResult(photoPickerIntent, GALLERY_REQUEST);
+        });
+
+        binding.btnApprove.setOnClickListener(view -> {
             if (isInputValid()){
                 wordRoomDatabase = WordRoomDatabase.getInstance(this);
                 Thread thread=new Thread(new AnotherRunnable());
                 thread.start();
-                Intent i = new Intent(CreatingRecordActivity.this, MainScreenActivity.class);
-                startActivity(i);
+                Toast.makeText(this, "Запись создана", Toast.LENGTH_SHORT).show();
+                binding.etName.setText("");
+                binding.etInfo.setText("");
+                binding.imvWrite.setImageResource(R.drawable.ic_add_image);
             }else{
                 Toast.makeText(this, "Введите имя записи и текст", Toast.LENGTH_SHORT).show();
             }
@@ -100,12 +99,12 @@ public class CreatingRecordActivity extends AppCompatActivity {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    imv.setImageBitmap(bitmap);
+                    binding.imvWrite.setImageBitmap(bitmap);
                 }
         }
     }
     boolean isInputValid(){
-        return !etName.getText().toString().isEmpty() && !etBook.getText().toString().isEmpty();
+        return !binding.etName.getText().toString().isEmpty() && !binding.etInfo.getText().toString().isEmpty();
     }
 
     class AnotherRunnable implements Runnable {
@@ -120,8 +119,8 @@ public class CreatingRecordActivity extends AppCompatActivity {
             }else{
                 str = selectedImage.toString();
             }
-            Word word = new Word(etName.getText().toString(), etBook.getText().toString(), str);
-            id = wd.insert(word);
+            Word word = new Word(binding.etName.getText().toString(), binding.etInfo.getText().toString(), str);
+            wd.insert(word);
         }
     }
 }

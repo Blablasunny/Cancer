@@ -4,127 +4,157 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.CreatingRecordActivity"
-    android:orientation="vertical"
-    android:weightSum="100">
+    tools:context=".activities.AccountActivity"
+    android:background="@color/smoky_white"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="10dp"/>
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="22">
-        <View
-            android:id="@+id/union3"
+        android:layout_weight="1"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginVertical="5dp">
+
+        <soup.neumorphism.NeumorphCardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/img_3" />
-        <View
-            android:id="@+id/union2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/img_2" />
-        <Button
-            android:id="@+id/bt_back"
-            android:layout_width="150dp"
-            android:layout_height="60dp"
-            android:background="@drawable/rec_white"
-            android:text="@string/back"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"/>
-        <View
-            android:id="@+id/bt_back_shadow"
-            android:layout_width="150dp"
-            android:layout_height="62dp"
-            android:layout_marginTop="22dp"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/rec_gray" />
-    </FrameLayout>
-    <TextView
-        android:id="@+id/tv_name"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="5"
-        android:textSize="12sp"
-        android:layout_gravity="center"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:background="#E9E7E7"
-        android:padding="5dp"/>
-    <ScrollView
-        android:id="@+id/scroll"
-        android:layout_width="match_parent"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_height="0dp"
-        android:layout_weight="18"
-        android:background="#E9E7E7">
+            android:background="@drawable/ic_rect_text"
+            app:neumorph_shapeType="pressed"/>
+
         <TextView
-            android:id="@+id/tv_book"
+            android:id="@id/tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="15sp"
+            android:textColor="@color/dark_gray"
+            android:padding="22dp"
+            android:gravity="center_vertical"/>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3.5"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginVertical="5dp">
+
+        <soup.neumorphism.NeumorphCardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/ic_rect_text"
+            app:neumorph_shapeType="pressed"/>
+
+        <TextView
+            android:id="@+id/tv_info"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="15sp"
+            android:textColor="@color/dark_gray"
+            android:padding="22dp"
+            android:gravity="start"/>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="15dp">
+
+        <soup.neumorphism.NeumorphButton
+            android:id="@+id/btn_im"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/ic_rect_text"
+            app:neumorph_shapeType="pressed" />
+
+        <ImageView
+            android:id="@+id/imv_write"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:padding="5dp"/>
-    </ScrollView>
+            android:layout_gravity="center"
+            android:padding="25dp"/>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        android:layout_marginHorizontal="45dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="25dp">
+
+        <soup.neumorphism.NeumorphButton
+            android:id="@+id/btn_edit_write"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/ic_rect_text"
+            app:neumorph_shapeType="flat"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_edit_write"
+            android:layout_gravity="center"/>
+
+    </FrameLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="10"
-        android:orientation="horizontal"
-        android:weightSum="2">
-        <FrameLayout
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_profile"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1">
-            <ImageView
-                android:id="@+id/imv"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/rec_img"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="10dp"/>
-        </FrameLayout>
-    </LinearLayout>
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="13">
+            android:layout_weight="1"
+            android:background="@drawable/ic_profile"/>
+
         <Button
-            android:id="@+id/bt_edit"
-            android:layout_width="160dp"
-            android:layout_height="70dp"
-            android:layout_gravity="center"
-            android:background="@drawable/rec"
-            android:text="@string/edit"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            android:layout_marginTop="3dp" />
-        <View
-            android:id="@+id/bt_edit_shadow"
-            android:layout_width="160dp"
-            android:layout_height="72dp"
-            android:background="@drawable/rec_gray"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginTop="5dp"
-            android:layout_gravity="center" />
-    </FrameLayout>
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="40">
-        <View
-            android:id="@+id/union"
-            android:layout_width="match_parent"
+            android:id="@+id/btn_edit"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginTop="18dp"
-            android:background="@drawable/img" />
-        <View
-            android:id="@+id/pulse"
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:background="@drawable/img_1" />
-    </FrameLayout>
+            android:layout_weight="1"
+            android:background="@drawable/ic_edit"/>
+
+        <Button
+            android:id="@+id/btn_scroll"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/ic_scroll_active"
+            android:clickable="false"/>
+
+        <Button
+            android:id="@+id/btn_diagnosis"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/ic_heart"/>
+
+        <Button
+            android:id="@+id/btn_news"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/ic_news"/>
+
+    </LinearLayout>
+
 
 </LinearLayout>

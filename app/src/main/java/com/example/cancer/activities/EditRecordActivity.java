@@ -7,21 +7,20 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cancer.R;
 import com.example.cancer.data.Word;
 import com.example.cancer.data.WordDao;
 import com.example.cancer.data.WordRoomDatabase;
+import com.example.cancer.databinding.ActivityEditRecordBinding;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class EditRecordActivity extends AppCompatActivity {
+
+    ActivityEditRecordBinding binding;
 
     static final int GALLERY_REQUEST = 1;
 
@@ -29,42 +28,45 @@ public class EditRecordActivity extends AppCompatActivity {
     ArrayList<Word> data;
     WordDao wd;
 
-    Uri selectedImage1;
-    String str;
-
-    TextView etName;
-    TextView etBook;
-    ImageView imv;
-    Button bBack;
-    Button bSave;
-    Button bImv;
+    private Uri selectedImage1;
+    private String str;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_record);
 
-        bBack = (Button) findViewById(R.id.bt_back);
-        bSave = (Button) findViewById(R.id.bt_save);
-        bImv = (Button) findViewById(R.id.bt_imv);
-        etName = (TextView) findViewById(R.id.et_name);
-        etBook = (TextView) findViewById(R.id.et_book);
-        imv = (ImageView) findViewById(R.id.imv);
+        binding = ActivityEditRecordBinding.inflate(getLayoutInflater());
+
+        setContentView(binding.getRoot());
+
+        binding.imvWrite.setImageResource(R.drawable.ic_add_image);
+
+        binding.btnProfile.setOnClickListener(view -> {
+            Intent i = new Intent(EditRecordActivity.this, AccountActivity.class);
+            startActivity(i);
+        });
+
+        binding.btnEdit.setOnClickListener(view -> {
+            Intent i = new Intent(EditRecordActivity.this, CreatingRecordActivity.class);
+            startActivity(i);
+        });
+
+        binding.btnDiagnosis.setOnClickListener(view -> {
+            Intent i = new Intent(EditRecordActivity.this, TypesOfCancerActivity.class);
+            startActivity(i);
+        });
+
+        binding.btnNews.setOnClickListener(view -> {
+            Intent i = new Intent(EditRecordActivity.this, NewsActivity.class);
+            startActivity(i);
+        });
 
         wordRoomDatabase = WordRoomDatabase.getInstance(this);
 
         Thread thread=new Thread(new EditRecordActivity.AnotherRunnable());
         thread.start();
 
-        bBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(EditRecordActivity.this, MyRecordsActivity.class);
-                startActivity(i);
-            }
-        });
-
-        bSave.setOnClickListener(view -> {
+        binding.btnApprove.setOnClickListener(view -> {
             if (isInputValid()){
                 wordRoomDatabase = WordRoomDatabase.getInstance(this);
                 Thread thread1=new Thread(new AnotherRunnable1());
@@ -74,13 +76,10 @@ public class EditRecordActivity extends AppCompatActivity {
             }
         });
 
-        bImv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent photoPickerIntent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-                photoPickerIntent.setType("image/*");
-                startActivityForResult(photoPickerIntent, GALLERY_REQUEST);
-            }
+        binding.btnIm.setOnClickListener(view ->  {
+            Intent photoPickerIntent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+            photoPickerIntent.setType("image/*");
+            startActivityForResult(photoPickerIntent, GALLERY_REQUEST);
         });
     }
     @Override
@@ -98,7 +97,7 @@ public class EditRecordActivity extends AppCompatActivity {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    imv.setImageBitmap(bitmap);
+                    binding.imvWrite.setImageBitmap(bitmap);
                 }
         }
     }
@@ -119,12 +118,12 @@ public class EditRecordActivity extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    etName.setText(str_n);
-                    etBook.setText(str_in);
+                    binding.etName.setText(str_n);
+                    binding.etInfo.setText(str_in);
                     if (str_im != null) {
                         if (!str_im.equals("")) {
                             Uri selectedImage = Uri.parse(str_im);
-                            imv.setImageURI(selectedImage);
+                            binding.imvWrite.setImageURI(selectedImage);
                         }
                     }
                 }
@@ -133,7 +132,7 @@ public class EditRecordActivity extends AppCompatActivity {
     }
 
     boolean isInputValid(){
-        return !etName.getText().toString().isEmpty() && !etBook.getText().toString().isEmpty();
+        return !binding.etName.getText().toString().isEmpty() && !binding.etInfo.getText().toString().isEmpty();
     }
 
     class AnotherRunnable1 implements Runnable {
@@ -153,7 +152,7 @@ public class EditRecordActivity extends AppCompatActivity {
             }else{
                 str = selectedImage1.toString();
             }
-            Word word = new Word(str_id, etName.getText().toString(), etBook.getText().toString(), str);
+            Word word = new Word(str_id, binding.etName.getText().toString(), binding.etInfo.getText().toString(), str);
             wd.update(word);
 
             runOnUiThread(new Runnable() {

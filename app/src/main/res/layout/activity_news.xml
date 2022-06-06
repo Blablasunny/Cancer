@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="@string/writes"
+        android:text="@string/news"
         android:textColor="@color/dark_gray"
         android:textStyle="bold"
         android:textSize="35sp"
@@ -21,12 +21,12 @@
         android:layout_marginTop="30dp"
         android:layout_marginBottom="10dp"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerview"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="8"
-            android:layout_margin="20dp" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8"
+        android:layout_margin="20dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -54,8 +54,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/ic_scroll_active"
-            android:clickable="false"/>
+            android:background="@drawable/ic_scroll"/>
 
         <Button
             android:id="@+id/btn_diagnosis"
@@ -69,7 +68,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/ic_news"/>
+            android:background="@drawable/ic_news_active"
+            android:clickable="false"/>
 
     </LinearLayout>
 
