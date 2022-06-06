@@ -7,8 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.example.cancer.R;
-import com.example.cancer.data.User;
+import com.example.cancer.user.User;
 import com.example.cancer.databinding.ActivityRegistrBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -74,8 +73,10 @@ public class RegistrActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful() && password2.equals(password) && password.length() >= 8) {
                     Toast.makeText(RegistrActivity.this, "Регистрация прошла успешно", Toast.LENGTH_SHORT).show();
+
                     User user = new User(name, surname, patronymic, med, phone, email);
                     mDatabase.push().setValue(user);
+
                     Intent i = new Intent(RegistrActivity.this, AuthActivity.class);
                     startActivity(i);
                 } else if (!password2.equals(password)) {

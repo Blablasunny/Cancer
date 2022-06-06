@@ -36,7 +36,7 @@ public class NewsActivity extends AppCompatActivity {
         });
 
         binding.btnProfile.setOnClickListener(view -> {
-            Intent i = new Intent(NewsActivity.this, NewsActivity.class);
+            Intent i = new Intent(NewsActivity.this, AccountActivity.class);
             startActivity(i);
         });
     }
