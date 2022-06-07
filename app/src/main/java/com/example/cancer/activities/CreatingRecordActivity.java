@@ -1,20 +1,34 @@
 package com.example.cancer.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
+import android.webkit.MimeTypeMap;
 import android.widget.Toast;
 
 import com.example.cancer.R;
 import com.example.cancer.data.Word;
 import com.example.cancer.data.WordDao;
 import com.example.cancer.data.WordRoomDatabase;
+import com.example.cancer.data.Write;
 import com.example.cancer.databinding.ActivityCreatingRecordBinding;
+import com.example.cancer.user.User;
+import com.example.cancer.user.UserInfo;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,12 +40,14 @@ public class CreatingRecordActivity extends AppCompatActivity {
 
     static final int GALLERY_REQUEST = 1;
 
+    private DatabaseReference mDatabase;
+    private StorageReference mStorageRef;
+
     ArrayList<Word> data;
     WordRoomDatabase wordRoomDatabase;
     WordDao wd;
 
     private Uri selectedImage;
-    private String str;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +57,9 @@ public class CreatingRecordActivity extends AppCompatActivity {
         binding = ActivityCreatingRecordBinding.inflate(getLayoutInflater());
 
         setContentView(binding.getRoot());
+
+        mDatabase = FirebaseDatabase.getInstance().getReference("write");
+        mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
 
         binding.imvWrite.setImageResource(R.drawable.ic_add_image);
 
@@ -75,10 +94,6 @@ public class CreatingRecordActivity extends AppCompatActivity {
                 wordRoomDatabase = WordRoomDatabase.getInstance(this);
                 Thread thread=new Thread(new AnotherRunnable());
                 thread.start();
-                Toast.makeText(this, "Запись создана", Toast.LENGTH_SHORT).show();
-                binding.etName.setText("");
-                binding.etInfo.setText("");
-                binding.imvWrite.setImageResource(R.drawable.ic_add_image);
             }else{
                 Toast.makeText(this, "Введите имя записи и текст", Toast.LENGTH_SHORT).show();
             }
@@ -107,20 +122,67 @@ public class CreatingRecordActivity extends AppCompatActivity {
         return !binding.etName.getText().toString().isEmpty() && !binding.etInfo.getText().toString().isEmpty();
     }
 
+    String getFileExtension(Uri uri) {
+        ContentResolver cR = getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cR.getType(uri));
+    }
+
     class AnotherRunnable implements Runnable {
         @Override
         public void run() {
-            data = (ArrayList<Word>) wordRoomDatabase
-                    .getWordDao()
-                    .loadAll();
             wd = wordRoomDatabase.getWordDao();
-            if (selectedImage == null){
-                str = "";
-            }else{
-                str = selectedImage.toString();
+            if (selectedImage != null) {
+                Word word = new Word(binding.etName.getText().toString(), binding.etInfo.getText().toString(), selectedImage.toString());
+                wd.insert(word);
+            } else {
+                Word word = new Word(binding.etName.getText().toString(), binding.etInfo.getText().toString(), "");
+                wd.insert(word);
             }
-            Word word = new Word(binding.etName.getText().toString(), binding.etInfo.getText().toString(), str);
-            wd.insert(word);
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+
+                    if (selectedImage != null) {
+                        StorageReference fileRef = mStorageRef.child(System.currentTimeMillis()
+                                + "." + getFileExtension(selectedImage));
+                        UploadTask uploadTask = fileRef.putFile(selectedImage);
+
+                        String name = binding.etName.getText().toString();
+                        String info = binding.etInfo.getText().toString();
+
+                        uploadTask.addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception exception) {
+                                Toast.makeText(CreatingRecordActivity.this, "Не удалось сохранить изображение", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                                fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        Write write = new Write(UserInfo.email, name, info, uri.toString());
+                                        mDatabase.push().setValue(write);
+                                    }
+                                });
+                                Toast.makeText(CreatingRecordActivity.this, "Запись создана", Toast.LENGTH_SHORT).show();
+                                binding.etName.setText("");
+                                binding.etInfo.setText("");
+                                binding.imvWrite.setImageResource(R.drawable.ic_add_image);
+                            }
+                        });
+                    } else {
+                        Write write = new Write(UserInfo.email, binding.etName.getText().toString(), binding.etInfo.getText().toString(), "");
+                        mDatabase.push().setValue(write);
+                        Toast.makeText(CreatingRecordActivity.this, "Запись создана", Toast.LENGTH_SHORT).show();
+                        binding.etName.setText("");
+                        binding.etInfo.setText("");
+                        binding.imvWrite.setImageResource(R.drawable.ic_add_image);
+                    }
+                }
+            });
         }
     }
 }

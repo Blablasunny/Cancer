@@ -1,16 +1,27 @@
 package com.example.cancer.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import com.example.cancer.R;
+import android.webkit.MimeTypeMap;
+
 import com.example.cancer.data.Word;
 import com.example.cancer.data.WordDao;
 import com.example.cancer.data.WordRoomDatabase;
 import com.example.cancer.databinding.ActivityMyRecordBinding;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class MyRecordActivity extends AppCompatActivity {
@@ -21,6 +32,8 @@ public class MyRecordActivity extends AppCompatActivity {
     ArrayList<Word> data;
     WordDao wd;
 
+    private StorageReference mStorageRef;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +41,8 @@ public class MyRecordActivity extends AppCompatActivity {
         binding = ActivityMyRecordBinding.inflate(getLayoutInflater());
 
         setContentView(binding.getRoot());
+
+        mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
 
         binding.btnProfile.setOnClickListener(view -> {
             Intent i = new Intent(MyRecordActivity.this, AccountActivity.class);
@@ -63,12 +78,10 @@ public class MyRecordActivity extends AppCompatActivity {
             startActivity(i);
         });
     }
+
     class AnotherRunnable implements Runnable {
         @Override
         public void run() {
-            data = (ArrayList<Word>) wordRoomDatabase
-                    .getWordDao()
-                    .loadAll();
             wd = wordRoomDatabase.getWordDao();
             Bundle bundle = getIntent().getExtras();
             long str_id = bundle.getLong("id_info");
@@ -82,8 +95,7 @@ public class MyRecordActivity extends AppCompatActivity {
                     binding.tvInfo.setText(str_in);
                     if (str_im != null) {
                         if (!str_im.equals("")) {
-                            Uri selectedImage = Uri.parse(str_im);
-                            binding.imvWrite.setImageURI(selectedImage);
+                            Picasso.get().load(str_im).into(binding.imvWrite);
                         }
                     }
                 }

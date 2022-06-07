@@ -10,6 +10,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.cancer.data.Word;
+import com.example.cancer.data.WordDao;
+import com.example.cancer.data.WordRoomDatabase;
+import com.example.cancer.data.Write;
 import com.example.cancer.databinding.ActivityAuthBinding;
 import com.example.cancer.user.User;
 import com.example.cancer.user.UserInfo;
@@ -24,8 +28,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import soup.neumorphism.NeumorphButton;
-
 
 public class AuthActivity extends AppCompatActivity{
 
@@ -34,7 +36,11 @@ public class AuthActivity extends AppCompatActivity{
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
-    DatabaseReference mDatabase;
+    private DatabaseReference mDatabase;
+    private DatabaseReference mDatabaseWrite;
+
+    WordRoomDatabase wordRoomDatabase;
+    WordDao wd;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,6 +62,9 @@ public class AuthActivity extends AppCompatActivity{
         };
 
         mDatabase = FirebaseDatabase.getInstance().getReference("user");
+        mDatabaseWrite = FirebaseDatabase.getInstance().getReference("write");
+
+        wordRoomDatabase = WordRoomDatabase.getInstance(this);
 
         binding.btnSignIn.setOnClickListener(view ->  {
             if (isInputValid()) {
@@ -91,19 +100,18 @@ public class AuthActivity extends AppCompatActivity{
                                     UserInfo.surname = user.getSurname();
                                     UserInfo.patronymic = user.getPatronymic();
                                     UserInfo.phone = user.getPhone();
+
+                                    Thread thread=new Thread(new AnotherRunnable());
+                                    thread.start();
                                 }
                             }
                         }
-
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
                             Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
                         }
                     };
                     mDatabase.addValueEventListener(vListener);
-
-                    Intent i = new Intent(AuthActivity.this, TypesOfCancerActivity.class);
-                    startActivity(i);
                 } else {
                     Toast.makeText(AuthActivity.this, "Не удалось авторизоваться", Toast.LENGTH_SHORT).show();
                 }
@@ -113,5 +121,40 @@ public class AuthActivity extends AppCompatActivity{
 
     boolean isInputValid(){
         return !binding.etPassword.getText().toString().isEmpty() && !binding.etPassword.getText().toString().isEmpty();
+    }
+
+    class AnotherRunnable implements Runnable {
+        @Override
+        public void run() {
+            wd = wordRoomDatabase.getWordDao();
+            wd.deleteAll();
+
+            ValueEventListener vListener = new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                        Write write = ds.getValue(Write.class);
+                        if (write.getEmail().equals(UserInfo.email)) {
+                            Word word = new Word(write.getName(), write.getInfo(), write.getImage());
+                            wd.insert(word);
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+                }
+            };
+            mDatabaseWrite.addValueEventListener(vListener);
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Intent i = new Intent(AuthActivity.this, TypesOfCancerActivity.class);
+                    startActivity(i);
+                }
+            });
+        }
     }
 }

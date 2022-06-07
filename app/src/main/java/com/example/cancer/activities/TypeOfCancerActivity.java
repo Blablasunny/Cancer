@@ -8,7 +8,6 @@ import android.provider.MediaStore;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.cancer.R;
 import com.example.cancer.databinding.ActivityTypeOfCancerBinding;
 
 import java.io.IOException;

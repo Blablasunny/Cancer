@@ -12,7 +12,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cancer.client.Cancer;
-import com.example.cancer.R;
 import com.example.cancer.client.CancerClient;
 import com.example.cancer.client.CancerInterface;
 import com.example.cancer.databinding.ActivityTypeOfCancerResultBinding;

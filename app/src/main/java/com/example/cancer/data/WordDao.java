@@ -20,6 +20,9 @@ public interface WordDao {
     @Delete
     void delete(Word word);
 
+    @Query("DELETE from information")
+    void deleteAll();
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     long insert(Word word);
 

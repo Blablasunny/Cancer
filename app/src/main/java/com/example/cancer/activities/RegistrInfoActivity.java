@@ -1,16 +1,12 @@
 package com.example.cancer.activities;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.example.cancer.R;
 import com.example.cancer.databinding.ActivityRegistrInfoBinding;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class RegistrInfoActivity extends AppCompatActivity {
 

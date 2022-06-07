@@ -1,17 +1,29 @@
 package com.example.cancer.activities;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
-import com.example.cancer.R;
 import com.example.cancer.data.Word;
+import com.example.cancer.data.WordDao;
 import com.example.cancer.data.WordListAdapter;
 import com.example.cancer.data.WordRoomDatabase;
-import com.example.cancer.databinding.ActivityMyRecordBinding;
+import com.example.cancer.data.Write;
 import com.example.cancer.databinding.ActivityMyRecordsBinding;
+import com.example.cancer.user.User;
+import com.example.cancer.user.UserInfo;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
@@ -22,6 +34,7 @@ public class MyRecordsActivity extends AppCompatActivity {
     WordRoomDatabase wordRoomDatabase;
     ArrayList<Word> data;
     WordListAdapter wordAdapter;
+    WordDao wd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,25 +69,23 @@ public class MyRecordsActivity extends AppCompatActivity {
         Thread thread=new Thread(new AnotherRunnable());
         thread.start();
 
-//        bAnswer.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if (!etAnswer.getText().toString().isEmpty()) {
-//                    Thread thread1 = new Thread(new AnotherRunnable1());
-//                    thread1.start();
-//                } else {
-//                    Thread thread2 = new Thread(new AnotherRunnable());
-//                    thread2.start();
-//                }
-//            }
-//        });
+        binding.btnSearch.setOnClickListener(view ->  {
+            if (!binding.etQuestion.getText().toString().isEmpty()) {
+                Thread thread1 = new Thread(new AnotherRunnable1());
+                thread1.start();
+            } else {
+                Thread thread2 = new Thread(new AnotherRunnable());
+                thread2.start();
+            }
+        });
     }
-    class AnotherRunnable implements Runnable {
+
+    class AnotherRunnable1 implements Runnable {
         @Override
         public void run() {
-            data = (ArrayList<Word>) wordRoomDatabase
-                    .getWordDao()
-                    .loadAll();
+            String s = binding.etQuestion.getText().toString();
+            wd = wordRoomDatabase.getWordDao();
+            data = (ArrayList<Word>) wd.loadAllByName(s);
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -94,31 +105,29 @@ public class MyRecordsActivity extends AppCompatActivity {
         }
     }
 
-//    class AnotherRunnable1 implements Runnable {
-//        @Override
-//        public void run() {
-//            String s = etAnswer.getText().toString();
-//            data = (ArrayList<Word>) wordRoomDatabase
-//                    .getWordDao()
-//                    .loadAllByName(s);
-//            runOnUiThread(new Runnable() {
-//                @Override
-//                public void run() {
-//                    WordListAdapter.OnWordClickListener wordClickListener = new WordListAdapter.OnWordClickListener() {
-//                        @Override
-//                        public void onWordClick(Word word, int position) {
-//                            Intent i = new Intent(MyRecordsActivity.this, MyRecordActivity.class);
-//                            i.putExtra("id_info", word.getId());
-//                            startActivity(i);
-//                        }
-//                    };
-//                    wordAdapter = new WordListAdapter(MyRecordsActivity.this, data, wordClickListener);
-//                    recyclerView.setLayoutManager(new LinearLayoutManager(MyRecordsActivity.this));
-//                    recyclerView.setAdapter(wordAdapter);
-//                }
-//            });
-//        }
-//    }
+    class AnotherRunnable implements Runnable {
+        @Override
+        public void run() {
+            wd = wordRoomDatabase.getWordDao();
+            data = (ArrayList<Word>) wd.loadAll();
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    WordListAdapter.OnWordClickListener wordClickListener = new WordListAdapter.OnWordClickListener() {
+                        @Override
+                        public void onWordClick(Word word, int position) {
+                            Intent i = new Intent(MyRecordsActivity.this, MyRecordActivity.class);
+                            i.putExtra("id_info", word.getId());
+                            startActivity(i);
+                        }
+                    };
+                    wordAdapter = new WordListAdapter(MyRecordsActivity.this, data, wordClickListener);
+                    binding.recyclerview.setLayoutManager(new LinearLayoutManager(MyRecordsActivity.this));
+                    binding.recyclerview.setAdapter(wordAdapter);
+                }
+            });
+        }
+    }
 }
 
 

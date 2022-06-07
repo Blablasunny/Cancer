@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.cancer.R;
 import com.example.cancer.databinding.ActivityNewsBinding;
 
 public class NewsActivity extends AppCompatActivity {

@@ -23,7 +23,7 @@ public class RegistrActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-    DatabaseReference mDatabase;
+    private DatabaseReference mDatabase;
 
     private String name, surname, patronymic, med, phone;
 

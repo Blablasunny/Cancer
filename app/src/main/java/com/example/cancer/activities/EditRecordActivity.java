@@ -14,6 +14,7 @@ import com.example.cancer.data.Word;
 import com.example.cancer.data.WordDao;
 import com.example.cancer.data.WordRoomDatabase;
 import com.example.cancer.databinding.ActivityEditRecordBinding;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -122,8 +123,9 @@ public class EditRecordActivity extends AppCompatActivity {
                     binding.etInfo.setText(str_in);
                     if (str_im != null) {
                         if (!str_im.equals("")) {
-                            Uri selectedImage = Uri.parse(str_im);
-                            binding.imvWrite.setImageURI(selectedImage);
+                            Picasso.get().load(str_im).into(binding.imvWrite);
+                        } else {
+                            binding.imvWrite.setImageResource(R.drawable.ic_add_image);
                         }
                     }
                 }
@@ -138,9 +140,6 @@ public class EditRecordActivity extends AppCompatActivity {
     class AnotherRunnable1 implements Runnable {
         @Override
         public void run() {
-            data = (ArrayList<Word>) wordRoomDatabase
-                    .getWordDao()
-                    .loadAll();
             wd = wordRoomDatabase.getWordDao();
             Bundle bundle = getIntent().getExtras();
             long str_id = bundle.getLong("id_info");

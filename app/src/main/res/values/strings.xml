@@ -24,4 +24,5 @@
     <string name="phone">Телефон</string>
     <string name="password_2">Пароль не менее 8 символов</string>
     <string name="password_3">Пароль еще раз</string>
+    <string name="question">Название для поиска</string>
 </resources>
