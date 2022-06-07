@@ -62,7 +62,6 @@ public class AuthActivity extends AppCompatActivity{
         };
 
         mDatabase = FirebaseDatabase.getInstance().getReference("user");
-        mDatabaseWrite = FirebaseDatabase.getInstance().getReference("write");
 
         wordRoomDatabase = WordRoomDatabase.getInstance(this);
 
@@ -94,14 +93,17 @@ public class AuthActivity extends AppCompatActivity{
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             for (DataSnapshot ds : dataSnapshot.getChildren()) {
                                 User user = ds.getValue(User.class);
-                                if (user.getEmail().equals(UserInfo.email)) {
+                                if (user != null && user.getEmail().equals(UserInfo.email)) {
                                     UserInfo.med = user.getMed();
                                     UserInfo.name = user.getName();
                                     UserInfo.surname = user.getSurname();
                                     UserInfo.patronymic = user.getPatronymic();
                                     UserInfo.phone = user.getPhone();
+                                    mDatabaseWrite = FirebaseDatabase.getInstance().getReference("write/" +
+                                            UserInfo.email.substring(0, UserInfo.email.length() - 3) +
+                                            UserInfo.email.substring(UserInfo.email.length() - 2));
 
-                                    Thread thread=new Thread(new AnotherRunnable());
+                                    Thread thread = new Thread(new AnotherRunnable());
                                     thread.start();
                                 }
                             }
@@ -126,18 +128,15 @@ public class AuthActivity extends AppCompatActivity{
     class AnotherRunnable implements Runnable {
         @Override
         public void run() {
-            wd = wordRoomDatabase.getWordDao();
-            wd.deleteAll();
-
             ValueEventListener vListener = new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
+                    wd = wordRoomDatabase.getWordDao();
+                    wd.deleteAll();
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
                         Write write = ds.getValue(Write.class);
-                        if (write.getEmail().equals(UserInfo.email)) {
-                            Word word = new Word(write.getName(), write.getInfo(), write.getImage());
-                            wd.insert(word);
-                        }
+                        Word word = new Word(write.getName(), write.getInfo(), write.getImage());
+                        wd.insert(word);
                     }
                 }
 

@@ -1,5 +1,7 @@
 package com.example.cancer.activities;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,8 +10,9 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.provider.MediaStore;
+
+import android.util.Log;
 import android.webkit.MimeTypeMap;
 import android.widget.Toast;
 
@@ -19,14 +22,15 @@ import com.example.cancer.data.WordDao;
 import com.example.cancer.data.WordRoomDatabase;
 import com.example.cancer.data.Write;
 import com.example.cancer.databinding.ActivityCreatingRecordBinding;
-import com.example.cancer.user.User;
 import com.example.cancer.user.UserInfo;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
@@ -43,7 +47,6 @@ public class CreatingRecordActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private StorageReference mStorageRef;
 
-    ArrayList<Word> data;
     WordRoomDatabase wordRoomDatabase;
     WordDao wd;
 
@@ -58,7 +61,9 @@ public class CreatingRecordActivity extends AppCompatActivity {
 
         setContentView(binding.getRoot());
 
-        mDatabase = FirebaseDatabase.getInstance().getReference("write");
+        mDatabase = FirebaseDatabase.getInstance().getReference("write/" +
+                UserInfo.email.substring(0, UserInfo.email.length() - 3) +
+                UserInfo.email.substring(UserInfo.email.length() - 2));
         mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
 
         binding.imvWrite.setImageResource(R.drawable.ic_add_image);
@@ -163,7 +168,7 @@ public class CreatingRecordActivity extends AppCompatActivity {
                                 fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
                                     public void onSuccess(Uri uri) {
-                                        Write write = new Write(UserInfo.email, name, info, uri.toString());
+                                        Write write = new Write(name, info, uri.toString());
                                         mDatabase.push().setValue(write);
                                     }
                                 });
@@ -174,7 +179,7 @@ public class CreatingRecordActivity extends AppCompatActivity {
                             }
                         });
                     } else {
-                        Write write = new Write(UserInfo.email, binding.etName.getText().toString(), binding.etInfo.getText().toString(), "");
+                        Write write = new Write(binding.etName.getText().toString(), binding.etInfo.getText().toString(), "");
                         mDatabase.push().setValue(write);
                         Toast.makeText(CreatingRecordActivity.this, "Запись создана", Toast.LENGTH_SHORT).show();
                         binding.etName.setText("");
