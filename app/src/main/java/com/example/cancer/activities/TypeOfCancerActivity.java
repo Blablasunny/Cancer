@@ -8,6 +8,7 @@ import android.provider.MediaStore;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.cancer.R;
 import com.example.cancer.databinding.ActivityTypeOfCancerBinding;
 
 import java.io.IOException;
@@ -28,6 +29,8 @@ public class TypeOfCancerActivity extends AppCompatActivity {
         binding = ActivityTypeOfCancerBinding.inflate(getLayoutInflater());
 
         setContentView(binding.getRoot());
+
+        binding.imvDiagnosis.setImageResource(R.drawable.ic_add_image);
 
         binding.btnProfile.setOnClickListener(view -> {
             Intent i = new Intent(TypeOfCancerActivity.this, AccountActivity.class);
