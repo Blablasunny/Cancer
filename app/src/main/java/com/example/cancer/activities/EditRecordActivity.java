@@ -201,7 +201,6 @@ public class EditRecordActivity extends AppCompatActivity {
                                         mDatabase.push().setValue(write);
                                     }
                                 });
-                                Toast.makeText(EditRecordActivity.this, "Запись изменена", Toast.LENGTH_SHORT).show();
                                 binding.etName.setText("");
                                 binding.etInfo.setText("");
                                 binding.imvWrite.setImageResource(R.drawable.ic_add_image);
@@ -210,7 +209,6 @@ public class EditRecordActivity extends AppCompatActivity {
                     } else {
                         Write write = new Write(binding.etName.getText().toString(), binding.etInfo.getText().toString(), str, str_id);
                         mDatabase.push().setValue(write);
-                        Toast.makeText(EditRecordActivity.this, "Запись изменена", Toast.LENGTH_SHORT).show();
                     }
 
                     Intent i = new Intent(EditRecordActivity.this, MyRecordActivity.class);
