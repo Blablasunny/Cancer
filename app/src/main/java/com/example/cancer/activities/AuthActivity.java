@@ -28,6 +28,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 
 public class AuthActivity extends AppCompatActivity{
 
@@ -99,6 +101,7 @@ public class AuthActivity extends AppCompatActivity{
                                     UserInfo.surname = user.getSurname();
                                     UserInfo.patronymic = user.getPatronymic();
                                     UserInfo.phone = user.getPhone();
+                                    UserInfo.id = 0;
                                     mDatabaseWrite = FirebaseDatabase.getInstance().getReference("write/" +
                                             UserInfo.email.substring(0, UserInfo.email.length() - 3) +
                                             UserInfo.email.substring(UserInfo.email.length() - 2));
@@ -135,9 +138,11 @@ public class AuthActivity extends AppCompatActivity{
                     wd.deleteAll();
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
                         Write write = ds.getValue(Write.class);
-                        Word word = new Word(write.getName(), write.getInfo(), write.getImage());
+                        Word word = new Word(write.getId(), write.getName(), write.getInfo(), write.getImage());
                         wd.insert(word);
                     }
+                    ArrayList<Word> data = (ArrayList<Word>) wd.loadAll();
+                    UserInfo.id = data.size() + 1;
                 }
 
                 @Override

@@ -1,19 +1,31 @@
 package com.example.cancer.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.webkit.MimeTypeMap;
 import android.widget.Toast;
 
 import com.example.cancer.R;
 import com.example.cancer.data.Word;
 import com.example.cancer.data.WordDao;
 import com.example.cancer.data.WordRoomDatabase;
+import com.example.cancer.data.Write;
 import com.example.cancer.databinding.ActivityEditRecordBinding;
+import com.example.cancer.user.UserInfo;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
@@ -31,6 +43,11 @@ public class EditRecordActivity extends AppCompatActivity {
 
     private Uri selectedImage1;
     private String str;
+    private long str_id;
+    private Word word;
+
+    private DatabaseReference mDatabase;
+    private StorageReference mStorageRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +56,11 @@ public class EditRecordActivity extends AppCompatActivity {
         binding = ActivityEditRecordBinding.inflate(getLayoutInflater());
 
         setContentView(binding.getRoot());
+
+        mDatabase = FirebaseDatabase.getInstance().getReference("write/" +
+                UserInfo.email.substring(0, UserInfo.email.length() - 3) +
+                UserInfo.email.substring(UserInfo.email.length() - 2));
+        mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
 
         binding.imvWrite.setImageResource(R.drawable.ic_add_image);
 
@@ -107,9 +129,6 @@ public class EditRecordActivity extends AppCompatActivity {
     class AnotherRunnable implements Runnable {
         @Override
         public void run() {
-            data = (ArrayList<Word>) wordRoomDatabase
-                    .getWordDao()
-                    .loadAll();
             wd = wordRoomDatabase.getWordDao();
             Bundle bundle = getIntent().getExtras();
             long str_id = bundle.getLong("id_info");
@@ -142,7 +161,7 @@ public class EditRecordActivity extends AppCompatActivity {
         public void run() {
             wd = wordRoomDatabase.getWordDao();
             Bundle bundle = getIntent().getExtras();
-            long str_id = bundle.getLong("id_info");
+            str_id = bundle.getLong("id_info");
             String str_im = wd.getImageById(str_id);
             if (selectedImage1 == null && (str_im == null || str_im.equals(""))){
                 str = "";
@@ -151,17 +170,60 @@ public class EditRecordActivity extends AppCompatActivity {
             }else{
                 str = selectedImage1.toString();
             }
-            Word word = new Word(str_id, binding.etName.getText().toString(), binding.etInfo.getText().toString(), str);
+            word = new Word(str_id, binding.etName.getText().toString(), binding.etInfo.getText().toString(), str);
             wd.update(word);
 
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+
+                    if (selectedImage1 != null) {
+                        StorageReference fileRef = mStorageRef.child(System.currentTimeMillis()
+                                + "." + getFileExtension(selectedImage1));
+                        UploadTask uploadTask = fileRef.putFile(selectedImage1);
+
+                        String name = binding.etName.getText().toString();
+                        String info = binding.etInfo.getText().toString();
+
+                        uploadTask.addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception exception) {
+                                Toast.makeText(EditRecordActivity.this, "Не удалось сохранить изображение", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                                fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        Write write = new Write(name, info, uri.toString(), str_id);
+                                        mDatabase.push().setValue(write);
+                                    }
+                                });
+                                Toast.makeText(EditRecordActivity.this, "Запись изменена", Toast.LENGTH_SHORT).show();
+                                binding.etName.setText("");
+                                binding.etInfo.setText("");
+                                binding.imvWrite.setImageResource(R.drawable.ic_add_image);
+                            }
+                        });
+                    } else {
+                        Write write = new Write(binding.etName.getText().toString(), binding.etInfo.getText().toString(), str, str_id);
+                        mDatabase.push().setValue(write);
+                        Toast.makeText(EditRecordActivity.this, "Запись изменена", Toast.LENGTH_SHORT).show();
+                    }
+
                     Intent i = new Intent(EditRecordActivity.this, MyRecordActivity.class);
                     i.putExtra("id_info", word.getId());
                     startActivity(i);
                 }
             });
         }
+    }
+
+    String getFileExtension(Uri uri) {
+        ContentResolver cR = getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cR.getType(uri));
     }
 }

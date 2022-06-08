@@ -138,10 +138,10 @@ public class CreatingRecordActivity extends AppCompatActivity {
         public void run() {
             wd = wordRoomDatabase.getWordDao();
             if (selectedImage != null) {
-                Word word = new Word(binding.etName.getText().toString(), binding.etInfo.getText().toString(), selectedImage.toString());
+                Word word = new Word(UserInfo.id, binding.etName.getText().toString(), binding.etInfo.getText().toString(), selectedImage.toString());
                 wd.insert(word);
             } else {
-                Word word = new Word(binding.etName.getText().toString(), binding.etInfo.getText().toString(), "");
+                Word word = new Word(UserInfo.id, binding.etName.getText().toString(), binding.etInfo.getText().toString(), "");
                 wd.insert(word);
             }
             runOnUiThread(new Runnable() {
@@ -168,7 +168,7 @@ public class CreatingRecordActivity extends AppCompatActivity {
                                 fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
                                     public void onSuccess(Uri uri) {
-                                        Write write = new Write(name, info, uri.toString());
+                                        Write write = new Write(name, info, uri.toString(), UserInfo.id);
                                         mDatabase.push().setValue(write);
                                     }
                                 });
@@ -179,7 +179,7 @@ public class CreatingRecordActivity extends AppCompatActivity {
                             }
                         });
                     } else {
-                        Write write = new Write(binding.etName.getText().toString(), binding.etInfo.getText().toString(), "");
+                        Write write = new Write(binding.etName.getText().toString(), binding.etInfo.getText().toString(), "", UserInfo.id);
                         mDatabase.push().setValue(write);
                         Toast.makeText(CreatingRecordActivity.this, "Запись создана", Toast.LENGTH_SHORT).show();
                         binding.etName.setText("");

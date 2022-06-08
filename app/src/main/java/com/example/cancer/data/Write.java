@@ -6,13 +6,15 @@ import com.google.firebase.database.IgnoreExtraProperties;
 public class Write {
 
     private String name, info, image;
+    private long id;
 
     public Write() { }
 
-    public Write(String name, String info, String image) {
+    public Write(String name, String info, String image, long id) {
         this.name = name;
         this.info = info;
         this.image = image;
+        this.id = id;
     }
 
     public String getName() {
@@ -26,4 +28,6 @@ public class Write {
     public String getImage() {
         return image;
     }
+
+    public long getId() { return id; }
 }
