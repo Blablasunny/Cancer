@@ -1,4 +1,4 @@
-package com.example.cancer.data;
+package com.example.cancer.models.write;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 

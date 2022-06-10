@@ -28,28 +28,25 @@
         android:orientation="horizontal"
         android:layout_marginHorizontal="10dp">
 
-        <FrameLayout
+        <soup.neumorphism.NeumorphCardView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="3">
-
-        <soup.neumorphism.NeumorphCardView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_weight="3"
             android:background="@drawable/ic_rect_text"
-            app:neumorph_shapeType="pressed"/>
+            app:neumorph_shapeType="pressed">
 
-        <EditText
-            android:id="@+id/et_question"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="@string/question"
-            android:textSize="15sp"
-            android:textColor="@color/dark_gray"
-            android:padding="22dp"
-            android:background="@null"
-            android:gravity="center_vertical"/>
-        </FrameLayout>
+            <EditText
+                android:id="@+id/et_question"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:hint="@string/question"
+                android:padding="12dp"
+                android:textColor="@color/dark_gray"
+                android:textSize="15sp" />
+
+        </soup.neumorphism.NeumorphCardView>
 
         <FrameLayout
             android:layout_width="0dp"

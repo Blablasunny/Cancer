@@ -1,29 +1,16 @@
 package com.example.cancer.activities;
 
-import static android.content.ContentValues.TAG;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.example.cancer.data.Word;
 import com.example.cancer.data.WordDao;
 import com.example.cancer.data.WordListAdapter;
 import com.example.cancer.data.WordRoomDatabase;
-import com.example.cancer.data.Write;
 import com.example.cancer.databinding.ActivityMyRecordsBinding;
-import com.example.cancer.user.User;
-import com.example.cancer.user.UserInfo;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 

@@ -26,136 +26,115 @@
         android:layout_weight="7"
         android:orientation="vertical">
 
-        <FrameLayout
+        <soup.neumorphism.NeumorphCardView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="30dp"
-            android:layout_marginBottom="20dp">
-
-            <soup.neumorphism.NeumorphCardView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/ic_rect_text"
-                app:neumorph_shapeType="flat"/>
+            android:layout_marginBottom="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/ic_rect_text"
+            app:neumorph_shapeType="flat">
 
             <EditText
                 android:id="@+id/et_surname"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="@string/surname"
-                android:textSize="15sp"
-                android:textColor="@color/dark_gray"
-                android:padding="20dp"
                 android:background="@null"
-                android:gravity="center_vertical"/>
+                android:gravity="center_vertical"
+                android:hint="@string/surname"
+                android:padding="10dp"
+                android:textColor="@color/dark_gray"
+                android:textSize="15sp" />
 
-        </FrameLayout>
+        </soup.neumorphism.NeumorphCardView>
 
-
-        <FrameLayout
+        <soup.neumorphism.NeumorphCardView
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginHorizontal="30dp"
             android:layout_weight="1"
-            android:layout_marginHorizontal="30dp">
-
-            <soup.neumorphism.NeumorphCardView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/ic_rect_text"
-                app:neumorph_shapeType="flat"/>
+            android:background="@drawable/ic_rect_text"
+            app:neumorph_shapeType="flat">
 
             <EditText
                 android:id="@+id/et_name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="@string/name"
-                android:textSize="15sp"
-                android:textColor="@color/dark_gray"
-                android:padding="20dp"
                 android:background="@null"
-                android:gravity="center_vertical"/>
+                android:gravity="center_vertical"
+                android:hint="@string/name"
+                android:padding="10dp"
+                android:textColor="@color/dark_gray"
+                android:textSize="15sp" />
 
-        </FrameLayout>
+        </soup.neumorphism.NeumorphCardView>
 
-        <FrameLayout
+        <soup.neumorphism.NeumorphCardView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginVertical="20dp">
-
-            <soup.neumorphism.NeumorphCardView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/ic_rect_text"
-                app:neumorph_shapeType="flat"/>
+            android:layout_marginVertical="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/ic_rect_text"
+            app:neumorph_shapeType="flat">
 
             <EditText
                 android:id="@+id/et_patronymic"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="@string/patronymic"
-                android:textSize="15sp"
-                android:textColor="@color/dark_gray"
-                android:padding="20dp"
                 android:background="@null"
-                android:gravity="center_vertical"/>
+                android:gravity="center_vertical"
+                android:hint="@string/patronymic"
+                android:padding="10dp"
+                android:textColor="@color/dark_gray"
+                android:textSize="15sp" />
 
-        </FrameLayout>
+        </soup.neumorphism.NeumorphCardView>
 
-        <FrameLayout
+        <soup.neumorphism.NeumorphCardView
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginHorizontal="30dp"
             android:layout_weight="1"
-            android:layout_marginHorizontal="30dp">
-
-            <soup.neumorphism.NeumorphCardView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/ic_rect_text"
-                app:neumorph_shapeType="flat"/>
+            android:background="@drawable/ic_rect_text"
+            app:neumorph_shapeType="flat">
 
             <EditText
                 android:id="@+id/et_med"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="@string/med"
-                android:textSize="15sp"
-                android:textColor="@color/dark_gray"
-                android:padding="25dp"
                 android:background="@null"
-                android:gravity="center_vertical"/>
+                android:gravity="center_vertical"
+                android:hint="@string/med"
+                android:padding="10dp"
+                android:textColor="@color/dark_gray"
+                android:textSize="15sp" />
 
-        </FrameLayout>
+        </soup.neumorphism.NeumorphCardView>
 
-        <FrameLayout
+        <soup.neumorphism.NeumorphCardView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginVertical="20dp">
-
-            <soup.neumorphism.NeumorphCardView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/ic_rect_text"
-                app:neumorph_shapeType="flat"/>
+            android:layout_marginVertical="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/ic_rect_text"
+            app:neumorph_shapeType="flat">
 
             <EditText
                 android:id="@+id/et_phone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="@string/phone"
-                android:textSize="15sp"
-                android:textColor="@color/dark_gray"
-                android:padding="20dp"
-                android:inputType="phone"
                 android:background="@null"
-                android:gravity="center_vertical"/>
+                android:gravity="center_vertical"
+                android:hint="@string/phone"
+                android:inputType="phone"
+                android:padding="10dp"
+                android:textColor="@color/dark_gray"
+                android:textSize="15sp" />
 
-        </FrameLayout>
+        </soup.neumorphism.NeumorphCardView>
 
     </LinearLayout>
 

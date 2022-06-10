@@ -1,4 +1,4 @@
-package com.example.cancer.client;
+package com.example.cancer.client.cancer;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

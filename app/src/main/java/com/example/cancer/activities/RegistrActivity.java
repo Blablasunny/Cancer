@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.example.cancer.user.User;
+import com.example.cancer.models.user.User;
 import com.example.cancer.databinding.ActivityRegistrBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

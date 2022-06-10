@@ -9,36 +9,35 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/tv_name_news"
+        android:id="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_weight="1"
         android:textStyle="bold"
+        android:textSize="20sp"
         android:textColor="@color/dark_gray"
-        android:layout_marginHorizontal="15dp"
-        android:layout_marginTop="15dp"/>
+        android:layout_margin="15dp"
+        android:gravity="center"/>
 
-    <FrameLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="7"
-        android:layout_margin="15dp">
+        android:layout_weight="8"
+        android:background="@color/smoky_white"
+        android:layout_margin="20dp">
 
-        <soup.neumorphism.NeumorphCardView
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"/>
+
+        <WebView
+            android:id="@+id/web_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/ic_rect_text"
-            app:neumorph_shapeType="flat"/>
+            android:layout_height="match_parent"/>
 
-        <TextView
-            android:id="@+id/tv_info_news"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textSize="15sp"
-            android:textColor="@color/dark_gray"
-            android:padding="25dp"/>
-
-    </FrameLayout>
+    </androidx.cardview.widget.CardView>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -52,8 +51,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/ic_profile_active"
-            android:clickable="false"/>
+            android:background="@drawable/ic_profile"/>
 
         <Button
             android:id="@+id/btn_edit"
@@ -81,7 +79,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/ic_news"/>
+            android:background="@drawable/ic_news_active"
+            android:clickable="false"/>
 
     </LinearLayout>
 

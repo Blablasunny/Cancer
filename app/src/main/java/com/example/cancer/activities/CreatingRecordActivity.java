@@ -1,7 +1,5 @@
 package com.example.cancer.activities;
 
-import static android.content.ContentValues.TAG;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,7 +10,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 
-import android.util.Log;
 import android.webkit.MimeTypeMap;
 import android.widget.Toast;
 
@@ -20,22 +17,18 @@ import com.example.cancer.R;
 import com.example.cancer.data.Word;
 import com.example.cancer.data.WordDao;
 import com.example.cancer.data.WordRoomDatabase;
-import com.example.cancer.data.Write;
+import com.example.cancer.models.write.Write;
 import com.example.cancer.databinding.ActivityCreatingRecordBinding;
-import com.example.cancer.user.UserInfo;
+import com.example.cancer.models.user.UserInfo;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 
 public class CreatingRecordActivity extends AppCompatActivity {

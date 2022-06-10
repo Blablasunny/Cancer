@@ -13,10 +13,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.cancer.data.Word;
 import com.example.cancer.data.WordDao;
 import com.example.cancer.data.WordRoomDatabase;
-import com.example.cancer.data.Write;
+import com.example.cancer.models.write.Write;
 import com.example.cancer.databinding.ActivityAuthBinding;
-import com.example.cancer.user.User;
-import com.example.cancer.user.UserInfo;
+import com.example.cancer.models.user.User;
+import com.example.cancer.models.user.UserInfo;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -113,7 +113,7 @@ public class AuthActivity extends AppCompatActivity{
                         }
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
-                            Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+                            Log.w(TAG, "Не удалось загрузить данные", databaseError.toException());
                         }
                     };
                     mDatabase.addValueEventListener(vListener);
@@ -147,7 +147,7 @@ public class AuthActivity extends AppCompatActivity{
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
-                    Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+                    Log.w(TAG, "Не удалось загрузить данные", databaseError.toException());
                 }
             };
             mDatabaseWrite.addValueEventListener(vListener);
