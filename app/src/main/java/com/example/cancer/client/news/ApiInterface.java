@@ -8,11 +8,9 @@ import retrofit2.http.Query;
 
 public interface ApiInterface {
 
-    @GET("everything")
+    @GET("news")
     Call<HeadLines> getHeadLines(
-            @Query("q") String q,
             @Query("apiKey") String apiKey,
-            @Query("language") String language,
-            @Query("sortBy") String sortBy
+            @Query("q") String q
     );
 }

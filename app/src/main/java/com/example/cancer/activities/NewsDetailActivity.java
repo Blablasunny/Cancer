@@ -13,7 +13,7 @@ public class NewsDetailActivity extends AppCompatActivity {
 
     ActivityNewsDetailBinding binding;
 
-    private String title, url;
+    private String title, content, date, description;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,19 +23,19 @@ public class NewsDetailActivity extends AppCompatActivity {
 
         setContentView(binding.getRoot());
 
-        binding.progressBar.setVisibility(View.VISIBLE);
-
         Intent intent = getIntent();
         title = intent.getStringExtra("title");
-        url = intent.getStringExtra("url");
+        content = intent.getStringExtra("content");
+        date = intent.getStringExtra("date");
+        description = intent.getStringExtra("description");
 
         binding.tvTitle.setText(title);
-        binding.webView.getSettings().setDomStorageEnabled(true);
-        binding.webView.getSettings().setJavaScriptEnabled(true);
-        binding.webView.getSettings().setLoadsImagesAutomatically(true);
-        binding.webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
-        binding.webView.setWebViewClient(new WebViewClient());
-        binding.webView.loadUrl(url);
+        binding.tvDate.setText(date);
+        if (content == null) {
+            binding.tvContent.setText(description);
+        } else {
+            binding.tvContent.setText(content);
+        }
 
         binding.btnEdit.setOnClickListener(view -> {
             Intent i = new Intent(NewsDetailActivity.this, CreatingRecordActivity.class);
@@ -56,9 +56,5 @@ public class NewsDetailActivity extends AppCompatActivity {
             Intent i = new Intent(NewsDetailActivity.this, AccountActivity.class);
             startActivity(i);
         });
-
-        if (binding.webView.isShown()) {
-            binding.progressBar.setVisibility(View.INVISIBLE);
-        }
     }
 }

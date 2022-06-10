@@ -5,9 +5,8 @@ import java.util.List;
 
 public class HeadLines implements Serializable {
 
-    String status;
-    String totalResults;
-    List<Articles> articles;
+    String status, totalResults, nextPage;
+    List<Results> results;
 
     public String getStatus() {
         return status;
@@ -25,11 +24,19 @@ public class HeadLines implements Serializable {
         this.totalResults = totalResults;
     }
 
-    public List<Articles> getArticles() {
-        return articles;
+    public String getNextPage() {
+        return nextPage;
     }
 
-    public void setArticles(List<Articles> articles) {
-        this.articles = articles;
+    public void setNextPage(String nextPage) {
+        this.nextPage = nextPage;
+    }
+
+    public List<Results> getResults() {
+        return results;
+    }
+
+    public void setResults(List<Results> results) {
+        this.results = results;
     }
 }

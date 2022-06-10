@@ -1,21 +1,18 @@
 package com.example.cancer.activities;
 
-import static android.content.ContentValues.TAG;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.example.cancer.adapter.NewsAdapter;
 import com.example.cancer.client.news.ApiClient;
 import com.example.cancer.databinding.ActivityNewsBinding;
-import com.example.cancer.models.news.Articles;
 import com.example.cancer.models.news.HeadLines;
+import com.example.cancer.models.news.Results;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,9 +27,9 @@ public class NewsActivity extends AppCompatActivity {
     ActivityNewsBinding binding;
 
     NewsAdapter newsAdapter;
-    List<Articles> articles = new ArrayList<>();
+    List<Results> results = new ArrayList<>();
 
-    final String API_KEY = "264ab21b333a4762b00adfd90162b28e";
+    final String API_KEY = "pub_81996a6c4446b582afeed0ca0e0e5e6da28d";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,16 +74,16 @@ public class NewsActivity extends AppCompatActivity {
     public void doRequest(String apiKey) {
         binding.swipeRefresh.setRefreshing(true);
 
-        Call<HeadLines> call = ApiClient.getInstance().getApi().getHeadLines("cancer", apiKey, "ru", "publishedAt");
+        Call<HeadLines> call = ApiClient.getInstance().getApi().getHeadLines(apiKey, "cancer");
         call.enqueue(new Callback<HeadLines>() {
             @Override
             public void onResponse(Call<HeadLines> call, Response<HeadLines> response) {
-                if (response.isSuccessful() && response.body().getArticles() != null) {
+                if (response.isSuccessful() && response.body().getResults() != null) {
                     binding.swipeRefresh.setRefreshing(false);
 
-                    articles.clear();
-                    articles = response.body().getArticles();
-                    newsAdapter = new NewsAdapter(NewsActivity.this, articles);
+                    results.clear();
+                    results = response.body().getResults();
+                    newsAdapter = new NewsAdapter(NewsActivity.this, results);
                     binding.recyclerview.setAdapter(newsAdapter);
                 }
             }

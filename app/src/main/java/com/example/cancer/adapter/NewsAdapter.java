@@ -8,12 +8,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cancer.R;
 import com.example.cancer.activities.NewsDetailActivity;
-import com.example.cancer.models.news.Articles;
+import com.example.cancer.models.news.Results;
 
 import org.ocpsoft.prettytime.PrettyTime;
 
@@ -28,11 +27,11 @@ import soup.neumorphism.NeumorphCardView;
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
     Context context;
-    List<Articles> articles;
+    List<Results> results;
 
-    public NewsAdapter(Context context, List<Articles> articles) {
+    public NewsAdapter(Context context, List<Results> results) {
         this.context = context;
-        this.articles = articles;
+        this.results = results;
     }
 
     @NonNull
@@ -44,23 +43,25 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull NewsAdapter.ViewHolder holder, int position) {
-        final  Articles a = articles.get(position);
+        final Results r = results.get(position);
 
-        holder.tvTitle.setText(a.getTitle());
-        holder.tvDescription.setText(a.getDescription());
-        holder.tvDate.setText(dateTime(a.getPublishedAt()));
+        holder.tvTitle.setText(r.getTitle());
+        holder.tvDescription.setText(r.getDescription());
+        holder.tvDate.setText(r.getPubDate());
 
         holder.cardView.setOnClickListener(view -> {
             Intent i = new Intent(context, NewsDetailActivity.class);
-            i.putExtra("title", a.getTitle());
-            i.putExtra("url", a.getUrl());
+            i.putExtra("title", r.getTitle());
+            i.putExtra("content", r.getContent());
+            i.putExtra("date", r.getPubDate());
+            i.putExtra("description", r.getDescription());
             context.startActivity(i);
         });
     }
 
     @Override
     public int getItemCount() {
-        return articles.size();
+        return results.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -75,24 +76,5 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
             tvDate = itemView.findViewById(R.id.tv_date);
             cardView = itemView.findViewById(R.id.card_view);
         }
-    }
-
-    public String dateTime(String t) {
-        PrettyTime prettyTime = new PrettyTime(new Locale(getCountry()));
-        String time = null;
-        try {
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:", Locale.ENGLISH);
-            Date date = simpleDateFormat.parse(t);
-            time = prettyTime.format(date);
-        } catch(ParseException e) {
-            e.printStackTrace();
-        }
-        return time;
-    }
-
-    public String getCountry() {
-        Locale locale = Locale.getDefault();
-        String country = locale.getCountry();
-        return country.toLowerCase();
     }
 }
