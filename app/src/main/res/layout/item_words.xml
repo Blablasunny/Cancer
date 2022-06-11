@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:textColor="@color/dark_gray"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:padding="20dp"
         android:gravity="center_vertical"/>
 

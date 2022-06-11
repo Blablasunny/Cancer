@@ -4,7 +4,10 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.SystemClock;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -36,6 +39,10 @@ public class TypeOfCancerResultActivity extends AppCompatActivity {
 
     private Retrofit retrofit;
     private CancerInterface ci;
+
+    private Uri selectedImage;
+    private int n;
+    private String message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,11 +77,11 @@ public class TypeOfCancerResultActivity extends AppCompatActivity {
 
 
         Bundle bundle = getIntent().getExtras();
-        int n = bundle.getInt("type_cancer");
+        n = bundle.getInt("type_cancer");
         String str = bundle.getString("selectImage");
 
         if (!str.equals("")) {
-            Uri selectedImage = Uri.parse(str);
+            selectedImage = Uri.parse(str);
             binding.imvDiagnosis.setImageURI(selectedImage);
             if (n == 1) {
                 binding.tvType.setText("Рак легких по КТ");
@@ -91,6 +98,8 @@ public class TypeOfCancerResultActivity extends AppCompatActivity {
             }
             try {
                 doRequest(selectedImage, n);
+                ProgressTask progressTask = new ProgressTask();
+                progressTask.execute();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -125,17 +134,18 @@ public class TypeOfCancerResultActivity extends AppCompatActivity {
             @Override
             public void onResponse(@NonNull Call<Cancer> call, @NonNull Response<Cancer> response) {
                 if (response.isSuccessful()) {
+
                     Cancer body = response.body();
                     binding.tvResult.setText(body.getResult());
                 } else {
-                    Toast.makeText(TypeOfCancerResultActivity.this, "Произошла ошибка", Toast.LENGTH_SHORT).show();
+                    message = "Произошла ошибка";
                 }
             }
 
             @Override
             public void onFailure(Call<Cancer> call, Throwable t) {
                 runOnUiThread(() -> {
-                    Toast.makeText(TypeOfCancerResultActivity.this, "Произошла ошибка", Toast.LENGTH_SHORT).show();
+                    message = "Произошла ошибка";
                     t.printStackTrace();
                 });
             }
@@ -166,5 +176,38 @@ public class TypeOfCancerResultActivity extends AppCompatActivity {
             return null;
         }
         return file.getAbsolutePath();
+    }
+
+    class ProgressTask extends AsyncTask<Void, Integer, Void> {
+        @Override
+        protected void onPreExecute() {
+            binding.cardView.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected Void doInBackground(Void... unused) {
+            for (int i = 0; i<100;i++) {
+
+                publishProgress(i);
+                SystemClock.sleep(100);
+
+                if (message != null) {
+                    break;
+                }
+            }
+            return(null);
+        }
+        @Override
+        protected void onProgressUpdate(Integer... items) {
+            binding.progressCircular.setProgress(items[0]+1);
+        }
+        @Override
+        protected void onPostExecute(Void unused) {
+            binding.cardView.setVisibility(View.INVISIBLE);
+
+            if (message != null) {
+                Toast.makeText(TypeOfCancerResultActivity.this, message, Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }

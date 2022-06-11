@@ -74,7 +74,7 @@ public class NewsActivity extends AppCompatActivity {
     public void doRequest(String apiKey) {
         binding.swipeRefresh.setRefreshing(true);
 
-        Call<HeadLines> call = ApiClient.getInstance().getApi().getHeadLines(apiKey, "cancer");
+        Call<HeadLines> call = ApiClient.getInstance().getApi().getHeadLines(apiKey, "cancer OR oncology");
         call.enqueue(new Callback<HeadLines>() {
             @Override
             public void onResponse(Call<HeadLines> call, Response<HeadLines> response) {

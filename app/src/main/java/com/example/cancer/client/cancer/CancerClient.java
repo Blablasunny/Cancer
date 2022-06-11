@@ -24,7 +24,7 @@ public class CancerClient {
                 .build();
 
         return new Retrofit.Builder()
-                .baseUrl("http://192.168.0.15:5000")
+                .baseUrl("http://192.168.0.12:5000")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(client)
                 .build();
