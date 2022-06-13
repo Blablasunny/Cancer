@@ -41,4 +41,10 @@
     <string name="ex_password_short">Password is too short</string>
     <string name="ex_registr">Failed to registration</string>
     <string name="ex_fill_img">Upload an image</string>
+    <string name="tv_surname"><![CDATA[<font color=#006060>Surname: </font>]]></string>
+    <string name="tv_name"><![CDATA[<font color=#006060>Name: </font>]]></string>
+    <string name="tv_patronymic"><![CDATA[<font color=#006060>Patronymic: </font>]]></string>
+    <string name="tv_med"><![CDATA[<font color=#006060>Medical establishment: </font>]]></string>
+    <string name="tv_email"><![CDATA[<font color=#006060>Email: </font>]]></string>
+    <string name="tv_phone"><![CDATA[<font color=#006060>Phone number: </font>]]></string>
 </resources>

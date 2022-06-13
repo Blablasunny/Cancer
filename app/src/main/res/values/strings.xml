@@ -40,4 +40,10 @@
     <string name="ex_password_short">Слишком короткий пароль</string>
     <string name="ex_registr">Не удалось зарегистрироваться</string>
     <string name="ex_fill_img">Загрузите изображение</string>
+    <string name="tv_surname"><![CDATA[<font color=#006060>Фамилия: </font>]]></string>
+    <string name="tv_name"><![CDATA[<font color=#006060>Имя: </font>]]></string>
+    <string name="tv_patronymic"><![CDATA[<font color=#006060>Отчество: </font>]]></string>
+    <string name="tv_med"><![CDATA[<font color=#006060>Медицинское учреждение: </font>]]></string>
+    <string name="tv_email"><![CDATA[<font color=#006060>Email: </font>]]></string>
+    <string name="tv_phone"><![CDATA[<font color=#006060>Телефон: </font>]]></string>
 </resources>

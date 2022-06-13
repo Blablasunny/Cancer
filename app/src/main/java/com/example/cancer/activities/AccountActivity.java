@@ -22,12 +22,12 @@ public class AccountActivity extends AppCompatActivity {
 
         setContentView(binding.getRoot());
 
-        binding.tvInfo.setText(Html.fromHtml("<font color=#006060>" + R.string.surname + ": </font>" + UserInfo.surname + "<br />" +
-                "<font color=#006060>" + R.string.name + ": </font>" + UserInfo.name + "<br />" +
-                "<font color=#006060>" + R.string.patronymic + ": </font>" + UserInfo.patronymic + "<br />" +
-                "<font color=#006060>" + R.string.med + ": </font>" + UserInfo.med + "<br />" +
-                "<font color=#006060>" + R.string.email + ": </font>" + UserInfo.email + "<br />" +
-                "<font color=#006060>" + R.string.phone + ": </font>" + UserInfo.phone));
+        binding.tvInfo.setText(Html.fromHtml(getString(R.string.tv_surname) + UserInfo.surname + "<br />" +
+                getString(R.string.tv_name) + UserInfo.name + "<br />" +
+                getString(R.string.tv_patronymic) + UserInfo.patronymic + "<br />" +
+                getString(R.string.tv_med) + UserInfo.med + "<br />" +
+                getString(R.string.tv_email) + UserInfo.email + "<br />" +
+                getString(R.string.tv_phone) + UserInfo.phone));
 
         binding.btnEdit.setOnClickListener(view -> {
             Intent i = new Intent(AccountActivity.this, CreatingRecordActivity.class);

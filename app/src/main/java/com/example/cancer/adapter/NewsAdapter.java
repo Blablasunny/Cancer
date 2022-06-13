@@ -14,14 +14,7 @@ import com.example.cancer.R;
 import com.example.cancer.activities.NewsDetailActivity;
 import com.example.cancer.models.news.Results;
 
-import org.ocpsoft.prettytime.PrettyTime;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-
 import soup.neumorphism.NeumorphCardView;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
