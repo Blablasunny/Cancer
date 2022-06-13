@@ -54,7 +54,7 @@
             android:layout_height="match_parent"
             android:background="@null"
             android:gravity="start"
-            android:hint="@string/name_write"
+            android:hint="@string/info_write"
             android:padding="12dp"
             android:textColor="@color/dark_gray"
             android:textSize="15sp" />

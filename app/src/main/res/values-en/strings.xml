@@ -47,4 +47,5 @@
     <string name="tv_med"><![CDATA[<font color=#006060>Medical establishment: </font>]]></string>
     <string name="tv_email"><![CDATA[<font color=#006060>Email: </font>]]></string>
     <string name="tv_phone"><![CDATA[<font color=#006060>Phone number: </font>]]></string>
+    <string name="info_write">Write text</string>
 </resources>
