@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Cancer</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="new_write">New write</string>
+    <string name="name_write">Title of write</string>
+    <string name="writes">Writes</string>
+    <string name="diagnosis">Diagnostics</string>
+    <string name="cancer_1">Lung cancer by CT scan</string>
+    <string name="cancer_2">Skin cancer</string>
+    <string name="cancer_3">Breast cancer by biopsy</string>
+    <string name="cancer_4">Breast cancer by MRI</string>
+    <string name="cancer_5">Colon cancer by biopsy</string>
+    <string name="cancer_6">Oral cancer by biopsy</string>
+    <string name="news">News</string>
+    <string name="auth">Authorisation</string>
+    <string name="no_acc">Haven\'t an account?</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="sign_up">Registration</string>
+    <string name="surname">Surname</string>
+    <string name="name">Name</string>
+    <string name="patronymic">Patronymic</string>
+    <string name="med">Medical establishment</string>
+    <string name="phone">Phone number</string>
+    <string name="password_2">Password at least 8 characters</string>
+    <string name="password_3">Password again</string>
+    <string name="question">Title for search</string>
+    <string name="sign_in">Sign in</string>
+    <string name="message">The image has been for diagnostics \n Expect the result</string>
+    <string name="fill_fields">Fill in all fields</string>
+    <string name="auth_success">Authorisation was successful</string>
+    <string name="ex_load_data">Failed to load data</string>
+    <string name="ex_auth">Failed to authorisation</string>
+    <string name="ed_name_info">Enter the name and text of the write</string>
+    <string name="ex_load_img">Failed to save image</string>
+    <string name="data_add">Write created</string>
+    <string name="ex_internet">An error has occurred. \n Check your internet connection.</string>
+    <string name="registr_success">Registration was successful</string>
+    <string name="ex_password_is">Passwords must match</string>
+    <string name="ex_password_short">Password is too short</string>
+    <string name="ex_registr">Failed to registration</string>
+    <string name="ex_fill_img">Upload an image</string>
+</resources>

@@ -29,7 +29,6 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class EditRecordActivity extends AppCompatActivity {
 
@@ -38,7 +37,6 @@ public class EditRecordActivity extends AppCompatActivity {
     static final int GALLERY_REQUEST = 1;
 
     WordRoomDatabase wordRoomDatabase;
-    ArrayList<Word> data;
     WordDao wd;
 
     private Uri selectedImage1;
@@ -95,7 +93,7 @@ public class EditRecordActivity extends AppCompatActivity {
                 Thread thread1=new Thread(new AnotherRunnable1());
                 thread1.start();
             }else{
-                Toast.makeText(this, "Введите имя записи и текст", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.ed_name_info, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -188,7 +186,7 @@ public class EditRecordActivity extends AppCompatActivity {
                         uploadTask.addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception exception) {
-                                Toast.makeText(EditRecordActivity.this, "Не удалось сохранить изображение", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(EditRecordActivity.this, R.string.ex_load_img, Toast.LENGTH_SHORT).show();
                             }
                         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             @Override

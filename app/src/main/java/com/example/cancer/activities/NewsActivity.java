@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.example.cancer.R;
 import com.example.cancer.adapter.NewsAdapter;
 import com.example.cancer.client.news.ApiClient;
 import com.example.cancer.databinding.ActivityNewsBinding;
@@ -92,7 +93,7 @@ public class NewsActivity extends AppCompatActivity {
             public void onFailure(Call<HeadLines> call, Throwable t) {
                 binding.swipeRefresh.setRefreshing(false);
 
-                Toast.makeText(NewsActivity.this, "Произошла ошибка", Toast.LENGTH_LONG).show();
+                Toast.makeText(NewsActivity.this, R.string.ex_internet, Toast.LENGTH_LONG).show();
             }
         });
     }

@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.cancer.R;
 import com.example.cancer.models.cancer.Cancer;
 import com.example.cancer.client.cancer.CancerClient;
 import com.example.cancer.client.cancer.CancerInterface;
@@ -80,31 +81,27 @@ public class TypeOfCancerResultActivity extends AppCompatActivity {
         n = bundle.getInt("type_cancer");
         String str = bundle.getString("selectImage");
 
-        if (!str.equals("")) {
-            selectedImage = Uri.parse(str);
-            binding.imvDiagnosis.setImageURI(selectedImage);
-            if (n == 1) {
-                binding.tvType.setText("Рак легких по КТ");
-            } else if (n == 2) {
-                binding.tvType.setText("Рак кожи");
-            } else if (n == 3) {
-                binding.tvType.setText("Рак молочной железы по биопсии");
-            } else if (n == 4) {
-                binding.tvType.setText("Рак молочной железы по МРТ");
-            } else if (n == 5) {
-                binding.tvType.setText("Рак толстой кишки по биопсии");
-            } else {
-                binding.tvType.setText("Рак полости рта по биопсии");
-            }
-            try {
-                doRequest(selectedImage, n);
-                ProgressTask progressTask = new ProgressTask();
-                progressTask.execute();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        selectedImage = Uri.parse(str);
+        binding.imvDiagnosis.setImageURI(selectedImage);
+        if (n == 1) {
+            binding.tvType.setText(R.string.cancer_1);
+        } else if (n == 2) {
+            binding.tvType.setText(R.string.cancer_2);
+        } else if (n == 3) {
+            binding.tvType.setText(R.string.cancer_3);
+        } else if (n == 4) {
+            binding.tvType.setText(R.string.cancer_4);
+        } else if (n == 5) {
+            binding.tvType.setText(R.string.cancer_5);
         } else {
-            Toast.makeText(TypeOfCancerResultActivity.this, "Произошла ошибка", Toast.LENGTH_SHORT).show();
+            binding.tvType.setText(R.string.cancer_6);
+        }
+        try {
+            doRequest(selectedImage, n);
+            ProgressTask progressTask = new ProgressTask();
+            progressTask.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -138,14 +135,14 @@ public class TypeOfCancerResultActivity extends AppCompatActivity {
                     Cancer body = response.body();
                     binding.tvResult.setText(body.getResult());
                 } else {
-                    message = "Произошла ошибка";
+                    message = getString(R.string.ex_internet);
                 }
             }
 
             @Override
             public void onFailure(Call<Cancer> call, Throwable t) {
                 runOnUiThread(() -> {
-                    message = "Произошла ошибка";
+                    message = getString(R.string.ex_internet);
                     t.printStackTrace();
                 });
             }

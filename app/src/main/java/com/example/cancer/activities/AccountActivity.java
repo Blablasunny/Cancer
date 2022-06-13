@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 
+import com.example.cancer.R;
 import com.example.cancer.databinding.ActivityAccountBinding;
 import com.example.cancer.models.user.UserInfo;
 
@@ -21,12 +22,12 @@ public class AccountActivity extends AppCompatActivity {
 
         setContentView(binding.getRoot());
 
-        binding.tvInfo.setText(Html.fromHtml("<font color=#006060>" + "Фамилия: " + "</font>" + UserInfo.surname + "<br />" +
-                "<font color=#006060>Имя: </font>" + UserInfo.name + "<br />" +
-                "<font color=#006060>Отчество: </font>" + UserInfo.patronymic + "<br />" +
-                "<font color=#006060>Медицинское учреждение: </font>" + UserInfo.med + "<br />" +
-                "<font color=#006060>Почта: </font>" + UserInfo.email + "<br />" +
-                "<font color=#006060>Телефон: </font>" + UserInfo.phone));
+        binding.tvInfo.setText(Html.fromHtml("<font color=#006060>" + R.string.surname + ": </font>" + UserInfo.surname + "<br />" +
+                "<font color=#006060>" + R.string.name + ": </font>" + UserInfo.name + "<br />" +
+                "<font color=#006060>" + R.string.patronymic + ": </font>" + UserInfo.patronymic + "<br />" +
+                "<font color=#006060>" + R.string.med + ": </font>" + UserInfo.med + "<br />" +
+                "<font color=#006060>" + R.string.email + ": </font>" + UserInfo.email + "<br />" +
+                "<font color=#006060>" + R.string.phone + ": </font>" + UserInfo.phone));
 
         binding.btnEdit.setOnClickListener(view -> {
             Intent i = new Intent(AccountActivity.this, CreatingRecordActivity.class);

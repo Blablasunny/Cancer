@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1.5"
-        android:text="@string/log_up"
+        android:text="@string/sign_up"
         android:textColor="@color/white"
         android:textStyle="bold"
         android:textSize="35sp"

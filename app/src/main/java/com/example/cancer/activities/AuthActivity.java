@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.cancer.R;
 import com.example.cancer.data.Word;
 import com.example.cancer.data.WordDao;
 import com.example.cancer.data.WordRoomDatabase;
@@ -71,7 +72,7 @@ public class AuthActivity extends AppCompatActivity{
             if (isInputValid()) {
                 signIn(binding.etEmail.getText().toString(), binding.etPassword.getText().toString());
             } else {
-                Toast.makeText(AuthActivity.this, "Заполните все поля", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AuthActivity.this, R.string.fill_fields, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -87,7 +88,7 @@ public class AuthActivity extends AppCompatActivity{
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(AuthActivity.this, "Авторизация прошла успешно", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AuthActivity.this, R.string.auth_success, Toast.LENGTH_SHORT).show();
                     UserInfo.email = email;
 
                     ValueEventListener vListener = new ValueEventListener() {
@@ -113,12 +114,12 @@ public class AuthActivity extends AppCompatActivity{
                         }
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
-                            Log.w(TAG, "Не удалось загрузить данные", databaseError.toException());
+                            Log.w(TAG, getString(R.string.ex_load_data), databaseError.toException());
                         }
                     };
                     mDatabase.addValueEventListener(vListener);
                 } else {
-                    Toast.makeText(AuthActivity.this, "Не удалось авторизоваться", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AuthActivity.this, R.string.ex_auth, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -147,7 +148,7 @@ public class AuthActivity extends AppCompatActivity{
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
-                    Log.w(TAG, "Не удалось загрузить данные", databaseError.toException());
+                    Log.w(TAG, getString(R.string.ex_load_data), databaseError.toException());
                 }
             };
             mDatabaseWrite.addValueEventListener(vListener);

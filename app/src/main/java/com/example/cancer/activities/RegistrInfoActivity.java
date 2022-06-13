@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.example.cancer.R;
 import com.example.cancer.databinding.ActivityRegistrInfoBinding;
 
 public class RegistrInfoActivity extends AppCompatActivity {
@@ -30,7 +31,7 @@ public class RegistrInfoActivity extends AppCompatActivity {
                 i.putExtra("phone", binding.etPhone.getText().toString());
                 startActivity(i);
             } else {
-                Toast.makeText(RegistrInfoActivity.this, "Заполните все поля", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegistrInfoActivity.this, R.string.fill_fields, Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -1,35 +1,22 @@
 package com.example.cancer.activities;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.ContentResolver;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.webkit.MimeTypeMap;
 
-import com.example.cancer.data.Word;
 import com.example.cancer.data.WordDao;
 import com.example.cancer.data.WordRoomDatabase;
 import com.example.cancer.databinding.ActivityMyRecordBinding;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
 
 public class MyRecordActivity extends AppCompatActivity {
 
     ActivityMyRecordBinding binding;
 
     WordRoomDatabase wordRoomDatabase;
-    ArrayList<Word> data;
     WordDao wd;
 
     private StorageReference mStorageRef;

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.example.cancer.R;
 import com.example.cancer.models.user.User;
 import com.example.cancer.databinding.ActivityRegistrBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -61,7 +62,7 @@ public class RegistrActivity extends AppCompatActivity {
             if (isInputValid()) {
                 signUp(binding.etEmail.getText().toString(), binding.etPassword.getText().toString(), binding.etPassword2.getText().toString());
             } else {
-                Toast.makeText(RegistrActivity.this, "Заполните все поля", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegistrActivity.this, R.string.fill_fields, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -72,7 +73,7 @@ public class RegistrActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful() && password2.equals(password) && password.length() >= 8) {
-                    Toast.makeText(RegistrActivity.this, "Регистрация прошла успешно", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegistrActivity.this, R.string.registr_success, Toast.LENGTH_SHORT).show();
 
                     User user = new User(name, surname, patronymic, med, phone, email);
                     mDatabase.push().setValue(user);
@@ -80,11 +81,11 @@ public class RegistrActivity extends AppCompatActivity {
                     Intent i = new Intent(RegistrActivity.this, AuthActivity.class);
                     startActivity(i);
                 } else if (!password2.equals(password)) {
-                    Toast.makeText(RegistrActivity.this, "Пароли должны совпадать", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegistrActivity.this, R.string.ex_password_is, Toast.LENGTH_SHORT).show();
                 } else if (password.length() < 8) {
-                    Toast.makeText(RegistrActivity.this, "Слишком короткий пароль", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegistrActivity.this, R.string.ex_password_short, Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(RegistrActivity.this, "Не удалось зарегистрироваться", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegistrActivity.this, R.string.ex_registr, Toast.LENGTH_SHORT).show();
                 }
             }
         });

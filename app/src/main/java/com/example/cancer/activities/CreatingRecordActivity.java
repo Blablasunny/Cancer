@@ -93,7 +93,7 @@ public class CreatingRecordActivity extends AppCompatActivity {
                 Thread thread=new Thread(new AnotherRunnable());
                 thread.start();
             }else{
-                Toast.makeText(this, "Введите имя записи и текст", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.ed_name_info, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -152,7 +152,7 @@ public class CreatingRecordActivity extends AppCompatActivity {
                         uploadTask.addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception exception) {
-                                Toast.makeText(CreatingRecordActivity.this, "Не удалось сохранить изображение", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(CreatingRecordActivity.this, R.string.ex_load_img, Toast.LENGTH_SHORT).show();
                             }
                         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             @Override
@@ -165,7 +165,7 @@ public class CreatingRecordActivity extends AppCompatActivity {
                                         mDatabase.push().setValue(write);
                                     }
                                 });
-                                Toast.makeText(CreatingRecordActivity.this, "Запись создана", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(CreatingRecordActivity.this, R.string.data_add, Toast.LENGTH_SHORT).show();
                                 binding.etName.setText("");
                                 binding.etInfo.setText("");
                                 binding.imvWrite.setImageResource(R.drawable.ic_add_image);
@@ -174,7 +174,7 @@ public class CreatingRecordActivity extends AppCompatActivity {
                     } else {
                         Write write = new Write(binding.etName.getText().toString(), binding.etInfo.getText().toString(), "", UserInfo.id);
                         mDatabase.push().setValue(write);
-                        Toast.makeText(CreatingRecordActivity.this, "Запись создана", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CreatingRecordActivity.this, R.string.data_add, Toast.LENGTH_SHORT).show();
                         binding.etName.setText("");
                         binding.etInfo.setText("");
                         binding.imvWrite.setImageResource(R.drawable.ic_add_image);

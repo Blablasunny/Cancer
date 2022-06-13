@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -56,28 +57,28 @@ public class TypeOfCancerActivity extends AppCompatActivity {
         n = bundle.getInt("type_cancer");
 
         if (n == 1) {
-            binding.tvType.setText("Рак легких по КТ");
+            binding.tvType.setText(R.string.cancer_1);
         } else if (n == 2) {
-            binding.tvType.setText("Рак кожи");
+            binding.tvType.setText(R.string.cancer_2);
         } else if (n == 3) {
-            binding.tvType.setText("Рак молочной железы по биопсии");
+            binding.tvType.setText(R.string.cancer_3);
         } else if (n == 4) {
-            binding.tvType.setText("Рак молочной железы по МРТ");
+            binding.tvType.setText(R.string.cancer_4);
         } else if (n == 5) {
-            binding.tvType.setText("Рак толстой кишки по биопсии");
+            binding.tvType.setText(R.string.cancer_5);
         } else {
-            binding.tvType.setText("Рак полости рта по биопсии");
+            binding.tvType.setText(R.string.cancer_6);
         }
 
         binding.btnSend.setOnClickListener(view ->  {
-            Intent i = new Intent(TypeOfCancerActivity.this, TypeOfCancerResultActivity.class);
             if (selectedImage != null) {
+                Intent i = new Intent(TypeOfCancerActivity.this, TypeOfCancerResultActivity.class);
                 i.putExtra("selectImage", selectedImage.toString());
+                i.putExtra("type_cancer", n);
+                startActivity(i);
             } else {
-                i.putExtra("selectImage", "");
+                Toast.makeText(TypeOfCancerActivity.this, R.string.ex_fill_img, Toast.LENGTH_SHORT).show();
             }
-            i.putExtra("type_cancer", n);
-            startActivity(i);
         });
 
         binding.btnIm.setOnClickListener(view ->  {
