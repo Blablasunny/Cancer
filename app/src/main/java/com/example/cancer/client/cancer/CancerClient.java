@@ -18,13 +18,13 @@ public class CancerClient {
 
 
         OkHttpClient client = new OkHttpClient.Builder()
-                .connectTimeout(5, TimeUnit.MINUTES)
-                .writeTimeout(5, TimeUnit.MINUTES)
-                .readTimeout(5, TimeUnit.MINUTES)
+                .connectTimeout(10, TimeUnit.SECONDS)
+                .writeTimeout(10, TimeUnit.SECONDS)
+                .readTimeout(10, TimeUnit.SECONDS)
                 .build();
 
         return new Retrofit.Builder()
-                .baseUrl("http://192.168.0.12:5000")
+                .baseUrl("http://192.168.0.19:5000")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(client)
                 .build();
