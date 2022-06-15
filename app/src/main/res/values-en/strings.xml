@@ -27,7 +27,7 @@
     <string name="password_3">Password again</string>
     <string name="question">Title for search</string>
     <string name="sign_in">Sign in</string>
-    <string name="message">The image has been for diagnostics \n Expect the result</string>
+    <string name="message">The image has been sent for diagnostics. \n Expect the result</string>
     <string name="fill_fields">Fill in all fields</string>
     <string name="auth_success">Authorisation was successful</string>
     <string name="ex_load_data">Failed to load data</string>
