@@ -55,9 +55,7 @@ public class EditRecordActivity extends AppCompatActivity {
 
         setContentView(binding.getRoot());
 
-        mDatabase = FirebaseDatabase.getInstance().getReference("write/" +
-                UserInfo.email.substring(0, UserInfo.email.length() - 3) +
-                UserInfo.email.substring(UserInfo.email.length() - 2));
+        mDatabase = FirebaseDatabase.getInstance().getReference("write");
         mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
 
         binding.imvWrite.setImageResource(R.drawable.ic_add_image);
@@ -195,7 +193,7 @@ public class EditRecordActivity extends AppCompatActivity {
                                 fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
                                     public void onSuccess(Uri uri) {
-                                        Write write = new Write(name, info, uri.toString(), str_id);
+                                        Write write = new Write(UserInfo.email, name, info, uri.toString(), str_id);
                                         mDatabase.push().setValue(write);
                                     }
                                 });
@@ -205,7 +203,7 @@ public class EditRecordActivity extends AppCompatActivity {
                             }
                         });
                     } else {
-                        Write write = new Write(binding.etName.getText().toString(), binding.etInfo.getText().toString(), str, str_id);
+                        Write write = new Write(UserInfo.email, binding.etName.getText().toString(), binding.etInfo.getText().toString(), str, str_id);
                         mDatabase.push().setValue(write);
                     }
 

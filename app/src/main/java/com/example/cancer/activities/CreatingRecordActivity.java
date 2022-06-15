@@ -54,9 +54,7 @@ public class CreatingRecordActivity extends AppCompatActivity {
 
         setContentView(binding.getRoot());
 
-        mDatabase = FirebaseDatabase.getInstance().getReference("write/" +
-                UserInfo.email.substring(0, UserInfo.email.length() - 3) +
-                UserInfo.email.substring(UserInfo.email.length() - 2));
+        mDatabase = FirebaseDatabase.getInstance().getReference("write");
         mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
 
         binding.imvWrite.setImageResource(R.drawable.ic_add_image);
@@ -161,7 +159,7 @@ public class CreatingRecordActivity extends AppCompatActivity {
                                 fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
                                     public void onSuccess(Uri uri) {
-                                        Write write = new Write(name, info, uri.toString(), UserInfo.id);
+                                        Write write = new Write(UserInfo.email, name, info, uri.toString(), UserInfo.id);
                                         mDatabase.push().setValue(write);
                                     }
                                 });
@@ -172,7 +170,7 @@ public class CreatingRecordActivity extends AppCompatActivity {
                             }
                         });
                     } else {
-                        Write write = new Write(binding.etName.getText().toString(), binding.etInfo.getText().toString(), "", UserInfo.id);
+                        Write write = new Write(UserInfo.email, binding.etName.getText().toString(), binding.etInfo.getText().toString(), "", UserInfo.id);
                         mDatabase.push().setValue(write);
                         Toast.makeText(CreatingRecordActivity.this, R.string.data_add, Toast.LENGTH_SHORT).show();
                         binding.etName.setText("");

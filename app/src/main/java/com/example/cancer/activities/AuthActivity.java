@@ -103,9 +103,7 @@ public class AuthActivity extends AppCompatActivity{
                                     UserInfo.patronymic = user.getPatronymic();
                                     UserInfo.phone = user.getPhone();
                                     UserInfo.id = 0;
-                                    mDatabaseWrite = FirebaseDatabase.getInstance().getReference("write/" +
-                                            UserInfo.email.substring(0, UserInfo.email.length() - 3) +
-                                            UserInfo.email.substring(UserInfo.email.length() - 2));
+                                    mDatabaseWrite = FirebaseDatabase.getInstance().getReference("write");
 
                                     Thread thread = new Thread(new AnotherRunnable());
                                     thread.start();
@@ -139,8 +137,10 @@ public class AuthActivity extends AppCompatActivity{
                     wd.deleteAll();
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
                         Write write = ds.getValue(Write.class);
-                        Word word = new Word(write.getId(), write.getName(), write.getInfo(), write.getImage());
-                        wd.insert(word);
+                        if (write.getEmail().equals(UserInfo.email)) {
+                            Word word = new Word(write.getId(), write.getName(), write.getInfo(), write.getImage());
+                            wd.insert(word);
+                        }
                     }
                     ArrayList<Word> data = (ArrayList<Word>) wd.loadAll();
                     UserInfo.id = data.size() + 1;

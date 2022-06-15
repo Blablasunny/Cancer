@@ -5,12 +5,13 @@ import com.google.firebase.database.IgnoreExtraProperties;
 @IgnoreExtraProperties
 public class Write {
 
-    private String name, info, image;
+    private String email, name, info, image;
     private long id;
 
     public Write() { }
 
-    public Write(String name, String info, String image, long id) {
+    public Write(String email, String name, String info, String image, long id) {
+        this.email = email;
         this.name = name;
         this.info = info;
         this.image = image;
@@ -30,4 +31,6 @@ public class Write {
     }
 
     public long getId() { return id; }
+
+    public String getEmail() { return email; }
 }
