@@ -35,7 +35,7 @@
     <string name="ed_name_info">Enter the name and text of the write</string>
     <string name="ex_load_img">Failed to save image</string>
     <string name="data_add">Write created</string>
-    <string name="ex_internet">An error has occurred. \n Check your internet connection.</string>
+    <string name="ex_internet">The server isn\'t responding</string>
     <string name="registr_success">Registration was successful</string>
     <string name="ex_password_is">Passwords must match</string>
     <string name="ex_password_short">Password is too short</string>

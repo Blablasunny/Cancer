@@ -34,7 +34,7 @@
     <string name="ed_name_info">Введите название записи и текст</string>
     <string name="ex_load_img">Не удалось сохранить изображение</string>
     <string name="data_add">Запись создана</string>
-    <string name="ex_internet">Произошла ошибка. \n Проверьте интернет-соединение</string>
+    <string name="ex_internet">Сервер не отвечает</string>
     <string name="registr_success">Регистрация прошла успешно</string>
     <string name="ex_password_is">Пароли должны совпадать</string>
     <string name="ex_password_short">Слишком короткий пароль</string>
