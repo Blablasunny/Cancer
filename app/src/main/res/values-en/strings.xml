@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Cancer</string>
+    <string name="app_name">Medical assistant</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="new_write">New write</string>
     <string name="name_write">Title of write</string>
