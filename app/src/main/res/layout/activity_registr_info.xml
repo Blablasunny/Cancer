@@ -15,7 +15,7 @@
         android:text="@string/sign_up"
         android:textColor="@color/white"
         android:textStyle="bold"
-        android:textSize="35sp"
+        android:textSize="@dimen/text_size_heading"
         android:background="@color/electric"
         android:gravity="center"
         android:layout_gravity="center" />
@@ -43,7 +43,8 @@
                 android:background="@null"
                 android:gravity="center_vertical"
                 android:hint="@string/surname"
-                android:padding="10dp"
+                android:paddingVertical="@dimen/vertical_padding"
+                android:paddingHorizontal="@dimen/horizontal_padding"
                 android:textColor="@color/dark_gray"
                 android:textSize="15sp" />
 
@@ -64,7 +65,8 @@
                 android:background="@null"
                 android:gravity="center_vertical"
                 android:hint="@string/name"
-                android:padding="10dp"
+                android:paddingVertical="@dimen/vertical_padding"
+                android:paddingHorizontal="@dimen/horizontal_padding"
                 android:textColor="@color/dark_gray"
                 android:textSize="15sp" />
 
@@ -86,7 +88,8 @@
                 android:background="@null"
                 android:gravity="center_vertical"
                 android:hint="@string/patronymic"
-                android:padding="10dp"
+                android:paddingVertical="@dimen/vertical_padding"
+                android:paddingHorizontal="@dimen/horizontal_padding"
                 android:textColor="@color/dark_gray"
                 android:textSize="15sp" />
 
@@ -107,7 +110,8 @@
                 android:background="@null"
                 android:gravity="center_vertical"
                 android:hint="@string/med"
-                android:padding="10dp"
+                android:paddingVertical="@dimen/vertical_padding"
+                android:paddingHorizontal="@dimen/horizontal_padding"
                 android:textColor="@color/dark_gray"
                 android:textSize="15sp" />
 
@@ -130,7 +134,8 @@
                 android:gravity="center_vertical"
                 android:hint="@string/phone"
                 android:inputType="phone"
-                android:padding="10dp"
+                android:paddingVertical="@dimen/vertical_padding"
+                android:paddingHorizontal="@dimen/horizontal_padding"
                 android:textColor="@color/dark_gray"
                 android:textSize="15sp" />
 

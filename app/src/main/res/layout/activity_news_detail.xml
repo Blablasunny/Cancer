@@ -14,7 +14,7 @@
         android:layout_height="0dp"
         android:layout_weight="2"
         android:textStyle="bold"
-        android:textSize="20sp"
+        android:textSize="@dimen/text_size_heading_item"
         android:textColor="@color/dark_gray"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="15dp"
@@ -38,20 +38,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:paddingVertical="@dimen/vertical_padding"
+                android:paddingHorizontal="@dimen/horizontal_padding">
 
                 <TextView
                     android:id="@+id/tv_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
+                    android:textSize="@dimen/text_size_text_item"
                     android:paddingBottom="5dp" />
 
                 <TextView
                     android:id="@+id/tv_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
+                    android:textSize="@dimen/text_size_text_item"
                     android:gravity="right" />
 
             </LinearLayout>

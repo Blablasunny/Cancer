@@ -23,7 +23,7 @@
             android:layout_weight="1.5"
             android:gravity="center"
             android:textColor="@color/dark_gray"
-            android:textSize="35sp"
+            android:textSize="@dimen/text_size_heading"
             android:textStyle="bold" />
 
         <View
@@ -71,7 +71,8 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center_vertical"
-                android:padding="10dp"
+                android:paddingVertical="@dimen/vertical_padding"
+                android:paddingHorizontal="@dimen/horizontal_padding"
                 android:textColor="@color/dark_gray"
                 android:textSize="20sp" />
 
@@ -140,22 +141,22 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textColor="@color/dark_gray"
-            android:text="@string/message"
-            android:gravity="center"
             android:layout_gravity="bottom"
             android:layout_marginHorizontal="10dp"
             android:layout_marginVertical="60dp"
-            android:visibility="visible"/>
+            android:gravity="center"
+            android:text="@string/message"
+            android:textColor="@color/dark_gray"
+            android:textSize="18sp"
+            android:visibility="visible" />
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
             android:id="@+id/progress_circular"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
-            app:indicatorColor="@color/dark_gray"
-            android:visibility="visible" />
+            android:visibility="visible"
+            app:indicatorColor="@color/dark_gray" />
 
     </androidx.cardview.widget.CardView>
 

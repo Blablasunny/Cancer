@@ -33,7 +33,8 @@
             android:background="@null"
             android:gravity="center_vertical"
             android:hint="@string/name_write"
-            android:padding="12dp"
+            android:paddingVertical="@dimen/vertical_padding_pressed"
+            android:paddingHorizontal="@dimen/horizontal_padding_pressed"
             android:textColor="@color/dark_gray"
             android:textSize="15sp" />
 
@@ -55,7 +56,8 @@
             android:background="@null"
             android:gravity="start"
             android:hint="@string/info_write"
-            android:padding="12dp"
+            android:paddingVertical="@dimen/vertical_padding_pressed"
+            android:paddingHorizontal="@dimen/horizontal_padding_pressed"
             android:textColor="@color/dark_gray"
             android:textSize="15sp" />
     </soup.neumorphism.NeumorphCardView>

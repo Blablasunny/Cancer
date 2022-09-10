@@ -9,15 +9,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/ic_rect_text"
-        app:neumorph_shapeType="flat"/>
+        app:neumorph_shapeType="flat">
 
-    <TextView
-        android:id="@+id/tv_name"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textColor="@color/dark_gray"
-        android:textSize="18sp"
-        android:padding="20dp"
-        android:gravity="center_vertical"/>
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/dark_gray"
+            android:textSize="@dimen/text_size_heading_item"
+            android:paddingVertical="@dimen/vertical_padding"
+            android:paddingHorizontal="@dimen/horizontal_padding"
+            android:gravity="center_vertical"/>
+
+    </soup.neumorphism.NeumorphCardView>
 
 </FrameLayout>

@@ -15,7 +15,7 @@
         android:text="@string/auth"
         android:textColor="@color/white"
         android:textStyle="bold"
-        android:textSize="35sp"
+        android:textSize="@dimen/text_size_heading"
         android:background="@color/electric"
         android:gravity="center"
         android:layout_gravity="center" />
@@ -43,7 +43,8 @@
                 android:gravity="center_vertical"
                 android:hint="@string/email"
                 android:inputType="textEmailAddress"
-                android:padding="10dp"
+                android:paddingVertical="@dimen/vertical_padding"
+                android:paddingHorizontal="@dimen/horizontal_padding"
                 android:textColor="@color/dark_gray"
                 android:textSize="15sp" />
 
@@ -66,7 +67,8 @@
                 android:gravity="center_vertical"
                 android:hint="@string/password"
                 android:inputType="textPassword"
-                android:padding="10dp"
+                android:paddingVertical="@dimen/vertical_padding"
+                android:paddingHorizontal="@dimen/horizontal_padding"
                 android:textColor="@color/dark_gray"
                 android:textSize="15sp" />
 
@@ -85,7 +87,7 @@
             android:text="@string/sign_in"
             android:textColor="@color/dark_gray"
             android:textStyle="bold"
-            android:textSize="22sp"
+            android:textSize="@dimen/text_size_button"
             android:gravity="center"/>
 
     </LinearLayout>
@@ -97,7 +99,7 @@
         android:text="@string/no_acc"
         android:textColor="@color/white"
         android:textStyle="bold"
-        android:textSize="35sp"
+        android:textSize="@dimen/text_size_heading"
         android:background="@color/electric"
         android:gravity="center"
         android:layout_gravity="center" />
