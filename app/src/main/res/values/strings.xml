@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MMedical assistant</string>
+    <string name="app_name">Medical assistant</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="new_write">Новая запись</string>
     <string name="name_write">Название записи</string>
