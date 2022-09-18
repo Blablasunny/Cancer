@@ -1,32 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.AccountActivity"
+    tools:context=".activities.NewsActivity"
     android:background="@color/smoky_white"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="1.5"
         android:text="@string/news"
         android:textColor="@color/dark_gray"
         android:textStyle="bold"
         android:textSize="@dimen/text_size_heading"
         android:gravity="center"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="10dp"/>
+        android:paddingTop="30dp"
+        android:paddingBottom="10dp"/>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="8"
-        android:layout_margin="20dp">
+        android:layout_weight="7.5"
+        android:padding="20dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"
@@ -79,6 +78,5 @@
             android:clickable="false"/>
 
     </LinearLayout>
-
 
 </LinearLayout>

@@ -4,44 +4,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.AccountActivity"
+    tools:context=".fragments.NewsDetailFragment"
     android:background="@color/smoky_white"
     android:orientation="vertical">
 
-    <FrameLayout
+    <TextView
+        android:id="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2.5"
-        android:background="@color/electric">
-
-        <ImageView
-            android:layout_width="132dp"
-            android:layout_height="132dp"
-            android:background="@drawable/ic_avatars"
-            android:layout_gravity="center"
-            android:paddingBottom="20dp"/>
-
-    </FrameLayout>
+        android:layout_weight="2"
+        android:textStyle="bold"
+        android:textSize="@dimen/text_size_heading_item"
+        android:textColor="@color/dark_gray"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="5dp"
+        android:gravity="center"/>
 
     <soup.neumorphism.NeumorphCardView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:padding="15dp"
-        android:layout_weight="6.5"
+        android:layout_weight="7"
         android:background="@drawable/ic_rect_text"
+        android:paddingHorizontal="20dp"
+        android:paddingBottom="20dp"
         app:neumorph_shapeType="flat">
 
-        <TextView
-            android:id="@+id/tv_info"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingVertical="@dimen/vertical_padding"
-            android:paddingHorizontal="@dimen/horizontal_padding"
-            android:textColor="@color/dark_gray"
-            android:textSize="18sp" />
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingVertical="@dimen/vertical_padding"
+                android:paddingHorizontal="@dimen/horizontal_padding">
+
+                <TextView
+                    android:id="@+id/tv_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_text_item"
+                    android:paddingBottom="5dp" />
+
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_text_item"
+                    android:gravity="right" />
+
+            </LinearLayout>
+
+        </ScrollView>
 
     </soup.neumorphism.NeumorphCardView>
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -55,8 +73,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/ic_profile_active"
-            android:clickable="false"/>
+            android:background="@drawable/ic_profile"/>
 
         <Button
             android:id="@+id/btn_edit"
@@ -84,7 +101,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/ic_news"/>
+            android:background="@drawable/ic_news_active"
+            android:clickable="false"/>
 
     </LinearLayout>
 

@@ -56,8 +56,7 @@ public class AccountFragment extends Fragment {
         });
 
         binding.btnNews.setOnClickListener(view -> {
-            Intent i = new Intent(getActivity(), NewsActivity.class);
-            startActivity(i);
+            getFragmentManager().beginTransaction().add(R.id.MA, new NewsFragment()).commit();
         });
 
         return binding.getRoot();

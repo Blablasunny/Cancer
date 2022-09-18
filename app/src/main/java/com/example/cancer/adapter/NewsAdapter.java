@@ -2,6 +2,7 @@ package com.example.cancer.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cancer.R;
+import com.example.cancer.activities.MainActivity;
 import com.example.cancer.activities.NewsDetailActivity;
+import com.example.cancer.fragments.NewsDetailFragment;
 import com.example.cancer.models.news.Results;
 
 import java.util.List;
@@ -43,12 +46,21 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         holder.tvDate.setText(r.getPubDate());
 
         holder.cardView.setOnClickListener(view -> {
-            Intent i = new Intent(context, NewsDetailActivity.class);
-            i.putExtra("title", r.getTitle());
-            i.putExtra("content", r.getContent());
-            i.putExtra("date", r.getPubDate());
-            i.putExtra("description", r.getDescription());
-            context.startActivity(i);
+            Bundle b = new Bundle();
+            b.putString("title", r.getTitle());
+            b.putString("content", r.getContent());
+            b.putString("date", r.getPubDate());
+            b.putString("description", r.getDescription());
+            NewsDetailFragment newsDetailFragment = new NewsDetailFragment();
+            newsDetailFragment.setArguments(b);
+            MainActivity activity = (MainActivity) view.getContext();
+            activity.getSupportFragmentManager().beginTransaction().add(R.id.MA, newsDetailFragment).commit();
+//            Intent i = new Intent(context, NewsDetailActivity.class);
+//            i.putExtra("title", r.getTitle());
+//            i.putExtra("content", r.getContent());
+//            i.putExtra("date", r.getPubDate());
+//            i.putExtra("description", r.getDescription());
+//            context.startActivity(i);
         });
     }
 

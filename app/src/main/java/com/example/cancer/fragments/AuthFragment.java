@@ -160,7 +160,6 @@ public class AuthFragment extends Fragment {
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-
                     getFragmentManager().beginTransaction().add(R.id.MA, new AccountFragment()).commit();
                 }
             });

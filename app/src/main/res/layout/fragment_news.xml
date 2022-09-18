@@ -1,47 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.AccountActivity"
+    tools:context=".fragments.NewsFragment"
     android:background="@color/smoky_white"
     android:orientation="vertical">
 
-    <FrameLayout
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        android:text="@string/news"
+        android:textColor="@color/dark_gray"
+        android:textStyle="bold"
+        android:textSize="@dimen/text_size_heading"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:paddingTop="25dp"/>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2.5"
-        android:background="@color/electric">
+        android:layout_weight="7.5"
+        android:paddingHorizontal="15dp"
+        android:paddingBottom="20dp"
+        android:paddingTop="15dp">
 
-        <ImageView
-            android:layout_width="132dp"
-            android:layout_height="132dp"
-            android:background="@drawable/ic_avatars"
-            android:layout_gravity="center"
-            android:paddingBottom="20dp"/>
-
-    </FrameLayout>
-
-    <soup.neumorphism.NeumorphCardView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:padding="15dp"
-        android:layout_weight="6.5"
-        android:background="@drawable/ic_rect_text"
-        app:neumorph_shapeType="flat">
-
-        <TextView
-            android:id="@+id/tv_info"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingVertical="@dimen/vertical_padding"
-            android:paddingHorizontal="@dimen/horizontal_padding"
-            android:textColor="@color/dark_gray"
-            android:textSize="18sp" />
+            android:layout_height="match_parent"/>
 
-    </soup.neumorphism.NeumorphCardView>
-
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -55,8 +47,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/ic_profile_active"
-            android:clickable="false"/>
+            android:background="@drawable/ic_profile"/>
 
         <Button
             android:id="@+id/btn_edit"
@@ -84,7 +75,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/ic_news"/>
+            android:background="@drawable/ic_news_active"
+            android:clickable="false"/>
 
     </LinearLayout>
 
