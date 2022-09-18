@@ -47,4 +47,6 @@
     <string name="tv_email"><![CDATA[<font color=#006060>Email: </font>]]></string>
     <string name="tv_phone"><![CDATA[<font color=#006060>Телефон: </font>]]></string>
     <string name="info_write">Текст записи</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

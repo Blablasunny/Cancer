@@ -1,24 +1,26 @@
-package com.example.cancer.activities;
+package com.example.cancer.fragments;
 
 import static android.content.ContentValues.TAG;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.cancer.R;
 import com.example.cancer.data.Word;
 import com.example.cancer.data.WordDao;
 import com.example.cancer.data.WordRoomDatabase;
-import com.example.cancer.fragments.AuthFragment;
-import com.example.cancer.models.write.Write;
-import com.example.cancer.databinding.ActivityAuthBinding;
+import com.example.cancer.databinding.FragmentAuthBinding;
 import com.example.cancer.models.user.User;
 import com.example.cancer.models.user.UserInfo;
+import com.example.cancer.models.write.Write;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -32,10 +34,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+public class AuthFragment extends Fragment {
 
-public class AuthActivity extends AppCompatActivity{
-
-    ActivityAuthBinding binding;
+    FragmentAuthBinding binding;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -47,12 +48,10 @@ public class AuthActivity extends AppCompatActivity{
     WordDao wd;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 
-        binding = ActivityAuthBinding.inflate(getLayoutInflater());
-
-        setContentView(binding.getRoot());
+        binding = FragmentAuthBinding.inflate(inflater, container, false);
 
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -67,29 +66,33 @@ public class AuthActivity extends AppCompatActivity{
 
         mDatabase = FirebaseDatabase.getInstance().getReference("user");
 
-        wordRoomDatabase = WordRoomDatabase.getInstance(this);
+        wordRoomDatabase = WordRoomDatabase.getInstance(getActivity());
 
         binding.btnSignIn.setOnClickListener(view ->  {
             if (isInputValid()) {
                 signIn(binding.etEmail.getText().toString(), binding.etPassword.getText().toString());
             } else {
-                Toast.makeText(AuthActivity.this, R.string.fill_fields, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), R.string.fill_fields, Toast.LENGTH_SHORT).show();
             }
         });
 
         binding.btnSignUp.setOnClickListener(view ->  {
-            Intent i = new Intent(AuthActivity.this, RegistrInfoActivity.class);
-            startActivity(i);
+            Bundle b = new Bundle();
+            b.putString("flag", "0");
+            RegistrInfoFragment registrInfoFragment = new RegistrInfoFragment();
+            registrInfoFragment.setArguments(b);
+            getFragmentManager().beginTransaction().add(R.id.MA, registrInfoFragment).commit();
         });
 
+        return binding.getRoot();
     }
 
     public void signIn(String email, String password) {
-        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(AuthActivity.this, R.string.auth_success, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.auth_success, Toast.LENGTH_SHORT).show();
                     UserInfo.email = email;
 
                     ValueEventListener vListener = new ValueEventListener() {
@@ -118,7 +121,7 @@ public class AuthActivity extends AppCompatActivity{
                     };
                     mDatabase.addValueEventListener(vListener);
                 } else {
-                    Toast.makeText(AuthActivity.this, R.string.ex_auth, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.ex_auth, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -154,11 +157,11 @@ public class AuthActivity extends AppCompatActivity{
             };
             mDatabaseWrite.addValueEventListener(vListener);
 
-            runOnUiThread(new Runnable() {
+            getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Intent i = new Intent(AuthActivity.this, TypesOfCancerActivity.class);
-                    startActivity(i);
+
+                    getFragmentManager().beginTransaction().add(R.id.MA, new AccountFragment()).commit();
                 }
             });
         }
