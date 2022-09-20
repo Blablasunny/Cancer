@@ -56,13 +56,11 @@ public class NewsFragment extends Fragment {
         doRequest(API_KEY);
 
         binding.btnEdit.setOnClickListener(view -> {
-            Intent i = new Intent(getActivity(), CreatingRecordActivity.class);
-            startActivity(i);
+            getFragmentManager().beginTransaction().add(R.id.MA, new CreatingRecordFragment()).commit();
         });
 
         binding.btnScroll.setOnClickListener(view -> {
-            Intent i = new Intent(getActivity(), MyRecordsActivity.class);
-            startActivity(i);
+            getFragmentManager().beginTransaction().add(R.id.MA, new MyRecordsFragment()).commit();
         });
 
         binding.btnDiagnosis.setOnClickListener(view -> {

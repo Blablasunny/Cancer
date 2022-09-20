@@ -4,16 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.EditRecordActivity"
+    tools:context=".fragments.CreatingRecordFragment"
     android:background="@color/smoky_white"
     android:orientation="vertical">
 
-    <View
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_gravity="center" />
-
+        android:text="@string/new_write"
+        android:textColor="@color/dark_gray"
+        android:textStyle="bold"
+        android:textSize="@dimen/text_size_heading"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:paddingTop="15dp"
+        android:paddingBottom="5dp"/>
 
     <soup.neumorphism.NeumorphCardView
         android:layout_width="match_parent"
@@ -29,7 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@null"
-            android:gravity="center_vertical"
+            android:gravity="start"
             android:hint="@string/name_write"
             android:paddingVertical="@dimen/vertical_padding_pressed"
             android:paddingHorizontal="@dimen/horizontal_padding_pressed"
@@ -58,6 +64,7 @@
             android:paddingHorizontal="@dimen/horizontal_padding_pressed"
             android:textColor="@color/dark_gray"
             android:textSize="15sp" />
+
     </soup.neumorphism.NeumorphCardView>
 
     <FrameLayout
@@ -65,8 +72,7 @@
         android:layout_height="0dp"
         android:layout_weight="2"
         android:paddingHorizontal="30dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="15dp">
+        android:paddingTop="5dp">
 
         <soup.neumorphism.NeumorphButton
             android:id="@+id/btn_im"
@@ -90,7 +96,7 @@
         android:layout_weight="1.5"
         android:paddingHorizontal="45dp"
         android:paddingTop="10dp"
-        android:paddingBottom="25dp">
+        android:paddingBottom="5dp">
 
         <soup.neumorphism.NeumorphButton
             android:id="@+id/btn_approve"
@@ -126,15 +132,15 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/ic_edit"/>
+            android:background="@drawable/ic_edit_active"
+            android:clickable="false"/>
 
         <Button
             android:id="@+id/btn_scroll"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/ic_scroll_active"
-            android:clickable="false"/>
+            android:background="@drawable/ic_scroll"/>
 
         <Button
             android:id="@+id/btn_diagnosis"

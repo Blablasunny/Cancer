@@ -10,12 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.cancer.R;
-import com.example.cancer.activities.AccountActivity;
 import com.example.cancer.activities.CreatingRecordActivity;
 import com.example.cancer.activities.MyRecordsActivity;
-import com.example.cancer.activities.NewsDetailActivity;
 import com.example.cancer.activities.TypesOfCancerActivity;
-import com.example.cancer.databinding.ActivityNewsDetailBinding;
 import com.example.cancer.databinding.FragmentNewsDetailBinding;
 
 public class NewsDetailFragment extends Fragment {
@@ -44,13 +41,11 @@ public class NewsDetailFragment extends Fragment {
         }
 
         binding.btnEdit.setOnClickListener(view -> {
-            Intent i = new Intent(getActivity(), CreatingRecordActivity.class);
-            startActivity(i);
+            getFragmentManager().beginTransaction().add(R.id.MA, new CreatingRecordFragment()).commit();
         });
 
         binding.btnScroll.setOnClickListener(view -> {
-            Intent i = new Intent(getActivity(), MyRecordsActivity.class);
-            startActivity(i);
+            getFragmentManager().beginTransaction().add(R.id.MA, new MyRecordsFragment()).commit();
         });
 
         binding.btnDiagnosis.setOnClickListener(view -> {

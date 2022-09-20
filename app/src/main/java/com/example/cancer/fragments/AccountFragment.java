@@ -14,9 +14,6 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 
 import com.example.cancer.R;
-import com.example.cancer.activities.CreatingRecordActivity;
-import com.example.cancer.activities.MyRecordsActivity;
-import com.example.cancer.activities.NewsActivity;
 import com.example.cancer.activities.TypesOfCancerActivity;
 import com.example.cancer.databinding.FragmentAccountBinding;
 import com.example.cancer.models.user.UserInfo;
@@ -41,13 +38,11 @@ public class AccountFragment extends Fragment {
                 getString(R.string.tv_phone) + UserInfo.phone));
 
         binding.btnEdit.setOnClickListener(view -> {
-            Intent i = new Intent(getActivity(), CreatingRecordActivity.class);
-            startActivity(i);
+            getFragmentManager().beginTransaction().add(R.id.MA, new CreatingRecordFragment()).commit();
         });
 
         binding.btnScroll.setOnClickListener(view -> {
-            Intent i = new Intent(getActivity(), MyRecordsActivity.class);
-            startActivity(i);
+            getFragmentManager().beginTransaction().add(R.id.MA, new MyRecordsFragment()).commit();
         });
 
         binding.btnDiagnosis.setOnClickListener(view -> {

@@ -80,9 +80,13 @@
         <entry key="..\:/Users/blasu/AndroidStudioProjects/Cancer/app/src/main/res/layout/activity_types_of_cancer.xml" value="0.176" />
         <entry key="..\:/Users/blasu/AndroidStudioProjects/Cancer/app/src/main/res/layout/content_scrolling.xml" value="0.10085470085470086" />
         <entry key="..\:/Users/blasu/AndroidStudioProjects/Cancer/app/src/main/res/layout/creating_record.xml" value="0.10400000000000001" />
-        <entry key="..\:/Users/blasu/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_account.xml" value="0.136" />
+        <entry key="..\:/Users/blasu/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_account.xml" value="0.10400000000000001" />
         <entry key="..\:/Users/blasu/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_auth.xml" value="0.20854700854700856" />
         <entry key="..\:/Users/blasu/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_blank.xml" value="0.10384615384615385" />
+        <entry key="..\:/Users/blasu/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_creating_record.xml" value="0.10384615384615385" />
+        <entry key="..\:/Users/blasu/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_edit_record.xml" value="0.20854700854700856" />
+        <entry key="..\:/Users/blasu/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_my_record.xml" value="0.20854700854700856" />
+        <entry key="..\:/Users/blasu/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_my_records.xml" value="0.20854700854700856" />
         <entry key="..\:/Users/blasu/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_news.xml" value="0.10427350427350428" />
         <entry key="..\:/Users/blasu/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_news_detail.xml" value="0.1" />
         <entry key="..\:/Users/blasu/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_registr.xml" value="0.1" />
