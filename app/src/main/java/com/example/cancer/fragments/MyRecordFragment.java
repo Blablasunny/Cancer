@@ -10,11 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.cancer.R;
-import com.example.cancer.activities.AccountActivity;
-import com.example.cancer.activities.CreatingRecordActivity;
-import com.example.cancer.activities.EditRecordActivity;
-import com.example.cancer.activities.MyRecordActivity;
-import com.example.cancer.activities.NewsActivity;
 import com.example.cancer.activities.TypesOfCancerActivity;
 import com.example.cancer.data.WordDao;
 import com.example.cancer.data.WordRoomDatabase;
