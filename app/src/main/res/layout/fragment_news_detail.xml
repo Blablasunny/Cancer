@@ -24,7 +24,7 @@
     <soup.neumorphism.NeumorphCardView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="7"
+        android:layout_weight="5.5"
         android:background="@drawable/ic_rect_text"
         android:paddingHorizontal="20dp"
         android:paddingBottom="20dp"
@@ -60,6 +60,29 @@
         </ScrollView>
 
     </soup.neumorphism.NeumorphCardView>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        android:paddingHorizontal="45dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="5dp">
+
+        <soup.neumorphism.NeumorphButton
+            android:id="@+id/btn_back"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/ic_rect_text"
+            app:neumorph_shapeType="flat"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_left_arrow"
+            android:layout_gravity="center"/>
+
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

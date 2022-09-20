@@ -57,6 +57,10 @@ public class NewsDetailFragment extends Fragment {
             getFragmentManager().beginTransaction().add(R.id.MA, new AccountFragment()).commit();
         });
 
+        binding.btnBack.setOnClickListener(view -> {
+            getFragmentManager().beginTransaction().add(R.id.MA, new NewsFragment()).commit();
+        });
+
         return binding.getRoot();
     }
 }
