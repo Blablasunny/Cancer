@@ -39,7 +39,7 @@ public class TypesOfCancerFragment extends Fragment {
 
         binding.btnCancer1.setOnClickListener(view ->  {
             Bundle b = new Bundle();
-            b.putString("type_cancer", String.valueOf(R.string.cancer_1));
+            b.putString("type_cancer", getString(R.string.cancer_1));
             b.putInt("type_cancer_number", 1);
             TypeOfCancerFragment typeOfCancerFragment = new TypeOfCancerFragment();
             typeOfCancerFragment.setArguments(b);
@@ -48,7 +48,7 @@ public class TypesOfCancerFragment extends Fragment {
 
         binding.btnCancer2.setOnClickListener(view ->  {
             Bundle b = new Bundle();
-            b.putString("type_cancer", String.valueOf(R.string.cancer_2));
+            b.putString("type_cancer", getString(R.string.cancer_2));
             b.putInt("type_cancer_number", 2);
             TypeOfCancerFragment typeOfCancerFragment = new TypeOfCancerFragment();
             typeOfCancerFragment.setArguments(b);
@@ -57,7 +57,7 @@ public class TypesOfCancerFragment extends Fragment {
 
         binding.btnCancer3.setOnClickListener(view ->  {
             Bundle b = new Bundle();
-            b.putString("type_cancer", String.valueOf(R.string.cancer_3));
+            b.putString("type_cancer", getString(R.string.cancer_3));
             b.putInt("type_cancer_number", 3);
             TypeOfCancerFragment typeOfCancerFragment = new TypeOfCancerFragment();
             typeOfCancerFragment.setArguments(b);
@@ -66,7 +66,7 @@ public class TypesOfCancerFragment extends Fragment {
 
         binding.btnCancer4.setOnClickListener(view ->  {
             Bundle b = new Bundle();
-            b.putString("type_cancer", String.valueOf(R.string.cancer_4));
+            b.putString("type_cancer", getString(R.string.cancer_4));
             b.putInt("type_cancer_number", 4);
             TypeOfCancerFragment typeOfCancerFragment = new TypeOfCancerFragment();
             typeOfCancerFragment.setArguments(b);
@@ -75,7 +75,7 @@ public class TypesOfCancerFragment extends Fragment {
 
         binding.btnCancer5.setOnClickListener(view ->  {
             Bundle b = new Bundle();
-            b.putString("type_cancer", String.valueOf(R.string.cancer_5));
+            b.putString("type_cancer", getString(R.string.cancer_5));
             b.putInt("type_cancer_number", 5);
             TypeOfCancerFragment typeOfCancerFragment = new TypeOfCancerFragment();
             typeOfCancerFragment.setArguments(b);
@@ -84,7 +84,7 @@ public class TypesOfCancerFragment extends Fragment {
 
         binding.btnCancer6.setOnClickListener(view ->  {
             Bundle b = new Bundle();
-            b.putString("type_cancer", String.valueOf(R.string.cancer_6));
+            b.putString("type_cancer", getString(R.string.cancer_6));
             b.putInt("type_cancer_number", 6);
             TypeOfCancerFragment typeOfCancerFragment = new TypeOfCancerFragment();
             typeOfCancerFragment.setArguments(b);
