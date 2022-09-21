@@ -76,6 +76,7 @@ public class TypeOfCancerResultFragment extends Fragment {
         ci = retrofit.create(CancerInterface.class);
 
         selectedImage = Uri.parse(getArguments().getString("selectImage"));
+        binding.imvDiagnosis.setImageURI(selectedImage);
         n = getArguments().getInt("type_cancer_number");
 
         try {
