@@ -4,7 +4,7 @@
     <dimen name="vertical_padding">5dp</dimen>
     <dimen name="horizontal_padding_pressed">12dp</dimen>
     <dimen name="vertical_padding_pressed">7dp</dimen>
-    <dimen name="text_size_cancer_types">17sp</dimen>
+    <dimen name="text_size_cancer_types">20sp</dimen>
     <dimen name="text_size_heading">35sp</dimen>
     <dimen name="text_size_button">22sp</dimen>
     <dimen name="text_size_text_item">15sp</dimen>
