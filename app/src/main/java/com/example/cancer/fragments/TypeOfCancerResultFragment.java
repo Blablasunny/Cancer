@@ -69,6 +69,15 @@ public class TypeOfCancerResultFragment extends Fragment {
             getFragmentManager().beginTransaction().add(R.id.MA, new NewsFragment()).commit();
         });
 
+        binding.btnBack.setOnClickListener(view -> {
+            Bundle b = new Bundle();
+            b.putString("type_cancer", getArguments().getString("type_cancer"));
+            b.putInt("type_cancer_number", getArguments().getInt("type_cancer_number"));
+            TypeOfCancerFragment typeOfCancerFragment = new TypeOfCancerFragment();
+            typeOfCancerFragment.setArguments(b);
+            getFragmentManager().beginTransaction().add(R.id.MA, typeOfCancerFragment).commit();
+        });
+
         binding.tvType.setText(getArguments().getString("type_cancer"));
 
         retrofit = CancerClient.getClient();
