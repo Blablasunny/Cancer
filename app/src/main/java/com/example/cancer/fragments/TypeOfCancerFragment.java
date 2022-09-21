@@ -55,6 +55,10 @@ public class TypeOfCancerFragment extends Fragment {
 
         binding.tvType.setText(getArguments().getString("type_cancer"));
 
+        binding.btnBack.setOnClickListener(view -> {
+            getFragmentManager().beginTransaction().add(R.id.MA, new TypesOfCancerFragment()).commit();
+        });
+
         binding.btnSend.setOnClickListener(view ->  {
             if (selectedImage != null) {
                 Bundle b = new Bundle();
