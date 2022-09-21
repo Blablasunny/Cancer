@@ -1,24 +1,27 @@
-package com.example.cancer.activities;
+package com.example.cancer.fragments;
 
 import android.content.ContentResolver;
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.SystemClock;
-import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+
+import android.os.SystemClock;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.cancer.R;
-import com.example.cancer.models.cancer.Cancer;
+import com.example.cancer.activities.TypeOfCancerResultActivity;
 import com.example.cancer.client.cancer.CancerClient;
 import com.example.cancer.client.cancer.CancerInterface;
-import com.example.cancer.databinding.ActivityTypeOfCancerResultBinding;
+import com.example.cancer.databinding.FragmentTypeOfCancerResultBinding;
+import com.example.cancer.models.cancer.Cancer;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -34,9 +37,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class TypeOfCancerResultActivity extends AppCompatActivity {
+public class TypeOfCancerResultFragment extends Fragment {
 
-    ActivityTypeOfCancerResultBinding binding;
+    FragmentTypeOfCancerResultBinding binding;
 
     private Retrofit retrofit;
     private CancerInterface ci;
@@ -46,56 +49,35 @@ public class TypeOfCancerResultActivity extends AppCompatActivity {
     private String message;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 
-        binding = ActivityTypeOfCancerResultBinding.inflate(getLayoutInflater());
-
-        setContentView(binding.getRoot());
+        binding = FragmentTypeOfCancerResultBinding.inflate(inflater, container, false);
 
         binding.btnProfile.setOnClickListener(view -> {
-            Intent i = new Intent(TypeOfCancerResultActivity.this, AccountActivity.class);
-            startActivity(i);
+            getFragmentManager().beginTransaction().add(R.id.MA, new AccountFragment()).commit();
         });
 
         binding.btnEdit.setOnClickListener(view -> {
-            Intent i = new Intent(TypeOfCancerResultActivity.this, CreatingRecordActivity.class);
-            startActivity(i);
+            getFragmentManager().beginTransaction().add(R.id.MA, new CreatingRecordFragment()).commit();
         });
 
         binding.btnScroll.setOnClickListener(view -> {
-            Intent i = new Intent(TypeOfCancerResultActivity.this, MyRecordsActivity.class);
-            startActivity(i);
+            getFragmentManager().beginTransaction().add(R.id.MA, new MyRecordsFragment()).commit();
         });
 
         binding.btnNews.setOnClickListener(view -> {
-            Intent i = new Intent(TypeOfCancerResultActivity.this, NewsActivity.class);
-            startActivity(i);
+            getFragmentManager().beginTransaction().add(R.id.MA, new NewsFragment()).commit();
         });
+
+        binding.tvType.setText(getArguments().getString("type_cancer"));
 
         retrofit = CancerClient.getClient();
         ci = retrofit.create(CancerInterface.class);
 
+        selectedImage = Uri.parse(getArguments().getString("selectImage"));
+        n = getArguments().getInt("type_cancer_number");
 
-        Bundle bundle = getIntent().getExtras();
-        n = bundle.getInt("type_cancer");
-        String str = bundle.getString("selectImage");
-
-        selectedImage = Uri.parse(str);
-        binding.imvDiagnosis.setImageURI(selectedImage);
-        if (n == 1) {
-            binding.tvType.setText(R.string.cancer_1);
-        } else if (n == 2) {
-            binding.tvType.setText(R.string.cancer_2);
-        } else if (n == 3) {
-            binding.tvType.setText(R.string.cancer_3);
-        } else if (n == 4) {
-            binding.tvType.setText(R.string.cancer_4);
-        } else if (n == 5) {
-            binding.tvType.setText(R.string.cancer_5);
-        } else {
-            binding.tvType.setText(R.string.cancer_6);
-        }
         try {
             doRequest(selectedImage, n);
             ProgressTask progressTask = new ProgressTask();
@@ -103,11 +85,13 @@ public class TypeOfCancerResultActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        return binding.getRoot();
     }
 
     private void doRequest(Uri fileUri, int n) {
 
-        File file = new File(createCopyAndReturnRealPath(this, fileUri));
+        File file = new File(createCopyAndReturnRealPath(getActivity(), fileUri));
 
         MultipartBody.Part body = MultipartBody.Part.createFormData("file", file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
 
@@ -141,7 +125,7 @@ public class TypeOfCancerResultActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Cancer> call, Throwable t) {
-                runOnUiThread(() -> {
+                getActivity().runOnUiThread(() -> {
                     message = getString(R.string.ex_internet);
                     t.printStackTrace();
                 });
@@ -175,7 +159,7 @@ public class TypeOfCancerResultActivity extends AppCompatActivity {
         return file.getAbsolutePath();
     }
 
-    public class ProgressTask extends AsyncTask<Void, Integer, Void> {
+    class ProgressTask extends AsyncTask<Void, Integer, Void> {
         @Override
         protected void onPreExecute() {
             binding.cardView.setVisibility(View.VISIBLE);
@@ -203,7 +187,7 @@ public class TypeOfCancerResultActivity extends AppCompatActivity {
             binding.cardView.setVisibility(View.INVISIBLE);
 
             if (message != null) {
-                Toast.makeText(TypeOfCancerResultActivity.this, message, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
             }
         }
     }

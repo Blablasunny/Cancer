@@ -2,7 +2,6 @@ package com.example.cancer.fragments;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -14,7 +13,6 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 
 import com.example.cancer.R;
-import com.example.cancer.activities.TypesOfCancerActivity;
 import com.example.cancer.databinding.FragmentAccountBinding;
 import com.example.cancer.models.user.UserInfo;
 
@@ -46,8 +44,7 @@ public class AccountFragment extends Fragment {
         });
 
         binding.btnDiagnosis.setOnClickListener(view -> {
-            Intent i = new Intent(getActivity(), TypesOfCancerActivity.class);
-            startActivity(i);
+            getFragmentManager().beginTransaction().add(R.id.MA, new TypesOfCancerFragment()).commit();
         });
 
         binding.btnNews.setOnClickListener(view -> {

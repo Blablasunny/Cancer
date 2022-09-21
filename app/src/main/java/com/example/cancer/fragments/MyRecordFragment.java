@@ -1,6 +1,5 @@
 package com.example.cancer.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,14 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.cancer.R;
-import com.example.cancer.activities.TypesOfCancerActivity;
 import com.example.cancer.data.WordDao;
 import com.example.cancer.data.WordRoomDatabase;
 import com.example.cancer.databinding.FragmentMyRecordBinding;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
-
 
 public class MyRecordFragment extends Fragment {
 
@@ -47,8 +44,7 @@ public class MyRecordFragment extends Fragment {
         });
 
         binding.btnDiagnosis.setOnClickListener(view -> {
-            Intent i = new Intent(getActivity(), TypesOfCancerActivity.class);
-            startActivity(i);
+            getFragmentManager().beginTransaction().add(R.id.MA, new TypesOfCancerFragment()).commit();
         });
 
         binding.btnNews.setOnClickListener(view -> {

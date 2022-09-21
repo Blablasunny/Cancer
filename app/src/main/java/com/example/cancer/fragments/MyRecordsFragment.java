@@ -1,6 +1,5 @@
 package com.example.cancer.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.cancer.R;
-import com.example.cancer.activities.TypesOfCancerActivity;
 import com.example.cancer.data.Word;
 import com.example.cancer.data.WordDao;
 import com.example.cancer.data.WordListAdapter;
@@ -19,7 +17,6 @@ import com.example.cancer.data.WordRoomDatabase;
 import com.example.cancer.databinding.FragmentMyRecordsBinding;
 
 import java.util.ArrayList;
-
 
 public class MyRecordsFragment extends Fragment {
 
@@ -45,8 +42,7 @@ public class MyRecordsFragment extends Fragment {
         });
 
         binding.btnDiagnosis.setOnClickListener(view -> {
-            Intent i = new Intent(getActivity(), TypesOfCancerActivity.class);
-            startActivity(i);
+            getFragmentManager().beginTransaction().add(R.id.MA, new TypesOfCancerFragment()).commit();
         });
 
         binding.btnNews.setOnClickListener(view -> {

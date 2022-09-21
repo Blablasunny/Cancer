@@ -1,6 +1,5 @@
 package com.example.cancer.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,9 +12,6 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.cancer.R;
-import com.example.cancer.activities.CreatingRecordActivity;
-import com.example.cancer.activities.MyRecordsActivity;
-import com.example.cancer.activities.TypesOfCancerActivity;
 import com.example.cancer.adapter.NewsAdapter;
 import com.example.cancer.client.news.ApiClient;
 import com.example.cancer.databinding.FragmentNewsBinding;
@@ -64,8 +60,7 @@ public class NewsFragment extends Fragment {
         });
 
         binding.btnDiagnosis.setOnClickListener(view -> {
-            Intent i = new Intent(getActivity(), TypesOfCancerActivity.class);
-            startActivity(i);
+            getFragmentManager().beginTransaction().add(R.id.MA, new TypesOfCancerFragment()).commit();
         });
 
         binding.btnProfile.setOnClickListener(view -> {

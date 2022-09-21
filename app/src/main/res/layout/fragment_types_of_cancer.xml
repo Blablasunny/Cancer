@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.TypesOfCancerActivity"
+    tools:context=".fragments.TypesOfCancerFragment"
     android:background="@color/smoky_white"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:clickable="true"
+    android:focusable="true">
 
     <TextView
         android:layout_width="wrap_content"
@@ -18,15 +20,15 @@
         android:textSize="@dimen/text_size_heading"
         android:gravity="center"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="10dp"/>
+        android:paddingTop="15dp"
+        android:paddingBottom="5dp"/>
 
 
     <soup.neumorphism.NeumorphCardView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginHorizontal="45dp"
-        android:layout_marginVertical="5dp"
+        android:paddingHorizontal="45dp"
+        android:paddingVertical="5dp"
         android:layout_weight="1.3"
         android:background="@drawable/ic_rect_text"
         app:neumorph_shapeType="flat">
@@ -53,7 +55,7 @@
                 android:id="@+id/btn_cancer_1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginVertical="10dp"
+                android:paddingVertical="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/ic_right_arrow" />
 
@@ -64,8 +66,8 @@
     <soup.neumorphism.NeumorphCardView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginHorizontal="45dp"
-        android:layout_marginVertical="5dp"
+        android:paddingHorizontal="45dp"
+        android:paddingVertical="5dp"
         android:layout_weight="1.3"
         android:background="@drawable/ic_rect_text"
         app:neumorph_shapeType="flat">
@@ -92,7 +94,7 @@
                 android:id="@+id/btn_cancer_2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginVertical="10dp"
+                android:paddingVertical="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/ic_right_arrow" />
 
@@ -103,8 +105,8 @@
     <soup.neumorphism.NeumorphCardView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginHorizontal="45dp"
-        android:layout_marginVertical="5dp"
+        android:paddingHorizontal="45dp"
+        android:paddingVertical="5dp"
         android:layout_weight="1.3"
         android:background="@drawable/ic_rect_text"
         app:neumorph_shapeType="flat">
@@ -131,7 +133,7 @@
                 android:id="@+id/btn_cancer_3"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginVertical="10dp"
+                android:paddingVertical="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/ic_right_arrow" />
 
@@ -142,8 +144,8 @@
     <soup.neumorphism.NeumorphCardView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginHorizontal="45dp"
-        android:layout_marginVertical="5dp"
+        android:paddingHorizontal="45dp"
+        android:paddingVertical="5dp"
         android:layout_weight="1.3"
         android:background="@drawable/ic_rect_text"
         app:neumorph_shapeType="flat">
@@ -170,7 +172,7 @@
                 android:id="@+id/btn_cancer_4"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginVertical="10dp"
+                android:paddingVertical="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/ic_right_arrow" />
 
@@ -181,8 +183,8 @@
     <soup.neumorphism.NeumorphCardView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginHorizontal="45dp"
-        android:layout_marginVertical="5dp"
+        android:paddingHorizontal="45dp"
+        android:paddingVertical="5dp"
         android:layout_weight="1.3"
         android:background="@drawable/ic_rect_text"
         app:neumorph_shapeType="flat">
@@ -209,7 +211,7 @@
                 android:id="@+id/btn_cancer_5"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginVertical="10dp"
+                android:paddingVertical="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/ic_right_arrow" />
 
@@ -219,8 +221,8 @@
     <soup.neumorphism.NeumorphCardView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginHorizontal="45dp"
-        android:layout_marginVertical="5dp"
+        android:paddingHorizontal="45dp"
+        android:paddingVertical="5dp"
         android:layout_weight="1.3"
         android:background="@drawable/ic_rect_text"
         app:neumorph_shapeType="flat">
@@ -247,7 +249,7 @@
                 android:id="@+id/btn_cancer_6"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginVertical="10dp"
+                android:paddingVertical="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/ic_right_arrow" />
 

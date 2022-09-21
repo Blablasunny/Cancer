@@ -12,7 +12,6 @@ import android.widget.Toast;
 import com.example.cancer.R;
 import com.example.cancer.databinding.FragmentRegistrInfoBinding;
 
-
 public class RegistrInfoFragment extends Fragment {
 
     FragmentRegistrInfoBinding binding;

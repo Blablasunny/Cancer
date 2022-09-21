@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".fragments.MyRecordsFragment"
     android:background="@color/smoky_white"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:clickable="true"
+    android:focusable="true">
 
     <TextView
         android:layout_width="wrap_content"

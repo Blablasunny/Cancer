@@ -19,12 +19,6 @@ import android.webkit.MimeTypeMap;
 import android.widget.Toast;
 
 import com.example.cancer.R;
-import com.example.cancer.activities.AccountActivity;
-import com.example.cancer.activities.CreatingRecordActivity;
-import com.example.cancer.activities.EditRecordActivity;
-import com.example.cancer.activities.MyRecordActivity;
-import com.example.cancer.activities.NewsActivity;
-import com.example.cancer.activities.TypesOfCancerActivity;
 import com.example.cancer.data.Word;
 import com.example.cancer.data.WordDao;
 import com.example.cancer.data.WordRoomDatabase;
@@ -80,8 +74,7 @@ public class EditRecordFragment extends Fragment {
         });
 
         binding.btnDiagnosis.setOnClickListener(view -> {
-            Intent i = new Intent(getActivity(), TypesOfCancerActivity.class);
-            startActivity(i);
+            getFragmentManager().beginTransaction().add(R.id.MA, new TypesOfCancerFragment()).commit();
         });
 
         binding.btnNews.setOnClickListener(view -> {

@@ -4,64 +4,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.NewsDetailFragment"
+    tools:context=".fragments.TypesOfCancerFragment"
     android:background="@color/smoky_white"
     android:orientation="vertical"
     android:clickable="true"
     android:focusable="true">
 
     <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="match_parent"
+        android:id="@+id/tv_type"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="2"
-        android:textStyle="bold"
-        android:textSize="@dimen/text_size_heading_item"
+        android:layout_weight="1.5"
         android:textColor="@color/dark_gray"
-        android:paddingHorizontal="20dp"
-        android:paddingTop="15dp"
-        android:paddingBottom="5dp"
-        android:gravity="center"/>
+        android:textStyle="bold"
+        android:textSize="@dimen/text_size_heading"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:paddingTop="15dp"/>
 
-    <soup.neumorphism.NeumorphCardView
+    <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="5.5"
-        android:background="@drawable/ic_rect_text"
-        android:paddingHorizontal="20dp"
-        android:paddingBottom="20dp"
-        app:neumorph_shapeType="flat">
+        android:layout_weight="0.5"/>
 
-        <ScrollView
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:paddingHorizontal="30dp"
+        android:paddingBottom="14dp">
+
+        <soup.neumorphism.NeumorphButton
+            android:id="@+id/btn_im"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@drawable/ic_rect_text"
+            app:neumorph_shapeType="pressed" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:paddingVertical="@dimen/vertical_padding"
-                android:paddingHorizontal="@dimen/horizontal_padding">
+        <ImageView
+            android:id="@+id/imv_diagnosis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="10dp"/>
 
-                <TextView
-                    android:id="@+id/tv_content"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_size_text_item"
-                    android:paddingBottom="5dp" />
+    </FrameLayout>
 
-                <TextView
-                    android:id="@+id/tv_date"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_size_text_item"
-                    android:gravity="right" />
-
-            </LinearLayout>
-
-        </ScrollView>
-
-    </soup.neumorphism.NeumorphCardView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.75"/>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -72,7 +64,7 @@
         android:paddingBottom="5dp">
 
         <soup.neumorphism.NeumorphButton
-            android:id="@+id/btn_back"
+            android:id="@+id/btn_send"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/ic_rect_text"
@@ -81,10 +73,15 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_left_arrow"
+            android:background="@drawable/ic_paper_plane"
             android:layout_gravity="center"/>
 
     </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.75"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -119,15 +116,15 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/ic_heart"/>
+            android:background="@drawable/ic_heart_active"
+            android:clickable="false"/>
 
         <Button
             android:id="@+id/btn_news"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/ic_news_active"
-            android:clickable="false"/>
+            android:background="@drawable/ic_news"/>
 
     </LinearLayout>
 

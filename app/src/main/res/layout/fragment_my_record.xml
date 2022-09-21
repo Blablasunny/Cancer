@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".activities.MyRecordActivity"
     android:background="@color/smoky_white"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:clickable="true"
+    android:focusable="true">
 
     <View
         android:layout_width="wrap_content"
