@@ -35,10 +35,10 @@
         <soup.neumorphism.NeumorphCardView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:paddingHorizontal="30dp"
-            android:paddingBottom="14dp"
             android:layout_weight="4"
             android:background="@drawable/ic_rect_text"
+            android:paddingHorizontal="45dp"
+            android:paddingBottom="14dp"
             app:neumorph_shapeType="pressed">
 
             <ImageView
@@ -141,9 +141,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
+            android:gravity="center"
             android:paddingHorizontal="10dp"
             android:paddingVertical="60dp"
-            android:gravity="center"
             android:text="@string/message"
             android:textColor="@color/dark_gray"
             android:textSize="18sp"

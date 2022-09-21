@@ -17,7 +17,6 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.cancer.R;
-import com.example.cancer.activities.TypeOfCancerResultActivity;
 import com.example.cancer.client.cancer.CancerClient;
 import com.example.cancer.client.cancer.CancerInterface;
 import com.example.cancer.databinding.FragmentTypeOfCancerResultBinding;
