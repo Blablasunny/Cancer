@@ -65,9 +65,9 @@ public class MyRecFragment extends Fragment {
             editor.commit();
             Bundle b = new Bundle();
             b.putLong("id_info", id);
-            EditRecordFragment editRecordFragment = new EditRecordFragment();
-            editRecordFragment.setArguments(b);
-            getFragmentManager().beginTransaction().add(R.id.MA, editRecordFragment).commit();
+            EdRecordFragment edRecordFragment = new EdRecordFragment();
+            edRecordFragment.setArguments(b);
+            getFragmentManager().beginTransaction().add(R.id.MA, edRecordFragment).commit();
         });
 
         binding.btnBack.setOnClickListener(view -> {

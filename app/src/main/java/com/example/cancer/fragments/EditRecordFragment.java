@@ -1,9 +1,12 @@
 package com.example.cancer.fragments;
 
 import static android.app.Activity.RESULT_OK;
+import static android.content.Context.MODE_PRIVATE;
 
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,6 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,13 +51,13 @@ public class EditRecordFragment extends Fragment {
     WordDao wd;
 
     private Uri selectedImage1;
-    private String str;
     private long id;
-    private Word word;
 
     private DatabaseReference mDatabase;
     private StorageReference mStorageRef;
 
+    SharedPreferences sharedpreferences;
+    public static final String MyPREFERENCES = "MyPrefs";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -65,50 +70,49 @@ public class EditRecordFragment extends Fragment {
 
         binding.imvWrite.setImageResource(R.drawable.ic_add_image);
 
-        binding.btnProfile.setOnClickListener(view -> {
-            getFragmentManager().beginTransaction().add(R.id.MA, new AccountFragment()).commit();
-        });
-
-        binding.btnEdit.setOnClickListener(view -> {
-            getFragmentManager().beginTransaction().add(R.id.MA, new CreateRecordFragment()).commit();
-        });
-
-        binding.btnDiagnosis.setOnClickListener(view -> {
-            getFragmentManager().beginTransaction().add(R.id.MA, new TypesOfCancerFragment()).commit();
-        });
-
-        binding.btnNews.setOnClickListener(view -> {
-            getFragmentManager().beginTransaction().add(R.id.MA, new NewsFragment()).commit();
-        });
-
         wordRoomDatabase = WordRoomDatabase.getInstance(getActivity());
+
+        TextWatcher textWatcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                if (isInputValid()) {
+                    editor.putString("record_name", binding.etName.getText().toString());
+                    editor.putString("info", binding.etInfo.getText().toString());
+                    if (selectedImage1 != null) {
+                        editor.putString("image", selectedImage1.toString());
+                    } else {
+                        editor.putString("image", "");
+                    }
+                    editor.putString("flag_edit_2", "1");
+                } else {
+                    editor.putString("flag_edit_2", "0");
+                }
+                editor.commit();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        };
+
+        binding.etName.addTextChangedListener(textWatcher);
+        binding.etInfo.addTextChangedListener(textWatcher);
 
         Thread thread=new Thread(new AnotherRunnable());
         thread.start();
-
-        binding.btnApprove.setOnClickListener(view -> {
-            if (isInputValid()){
-                wordRoomDatabase = WordRoomDatabase.getInstance(getActivity());
-                Thread thread1=new Thread(new AnotherRunnable1());
-                thread1.start();
-            }else{
-                Toast.makeText(getActivity(), R.string.ed_name_info, Toast.LENGTH_SHORT).show();
-            }
-        });
 
         binding.btnIm.setOnClickListener(view ->  {
             Intent photoPickerIntent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
             photoPickerIntent.setType("image/*");
             startActivityForResult(photoPickerIntent, GALLERY_REQUEST);
-        });
-
-        binding.btnBack.setOnClickListener(view -> {
-            id = getArguments().getLong("id_info");
-            Bundle b = new Bundle();
-            b.putLong("id_info", id);
-            MyRecordFragment myRecordFragment = new MyRecordFragment();
-            myRecordFragment.setArguments(b);
-            getFragmentManager().beginTransaction().add(R.id.MA, myRecordFragment).commit();
         });
 
         return binding.getRoot();
@@ -129,6 +133,17 @@ public class EditRecordFragment extends Fragment {
                         e.printStackTrace();
                     }
                     binding.imvWrite.setImageBitmap(bitmap);
+                    sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedpreferences.edit();
+                    String strIm = wd.getImageById(id);
+                    if (selectedImage1 == null && (strIm == null || strIm.equals(""))) {
+                        editor.putString("image", "");
+                    } else if (selectedImage1 == null) {
+                        editor.putString("image", strIm);
+                    } else {
+                        editor.putString("image", selectedImage1.toString());
+                    }
+                    editor.commit();
                 }
         }
     }
@@ -138,20 +153,19 @@ public class EditRecordFragment extends Fragment {
         @Override
         public void run() {
             wd = wordRoomDatabase.getWordDao();
-            id = getArguments().getLong("id_info");
-            String str_in = wd.getInfoById(id);
-            String str_im = wd.getImageById(id);
-            String str_n = wd.getNameById(id);
+            SharedPreferences prefs = getActivity().getSharedPreferences(MyPREFERENCES , MODE_PRIVATE);
+            id = prefs.getLong("id_info", 0);
+            String strInfo = wd.getInfoById(id);
+            String strImage = wd.getImageById(id);
+            String strName = wd.getNameById(id);
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    binding.etName.setText(str_n);
-                    binding.etInfo.setText(str_in);
-                    if (str_im != null) {
-                        if (!str_im.equals("")) {
-                            Picasso.get().load(str_im).into(binding.imvWrite);
-                        } else {
-                            binding.imvWrite.setImageResource(R.drawable.ic_add_image);
+                    binding.etName.setText(strName);
+                    binding.etInfo.setText(strInfo);
+                    if (strImage != null) {
+                        if (!strImage.equals("")) {
+                            Picasso.get().load(strImage).into(binding.imvWrite);
                         }
                     }
                 }
@@ -161,75 +175,5 @@ public class EditRecordFragment extends Fragment {
 
     boolean isInputValid(){
         return !binding.etName.getText().toString().isEmpty() && !binding.etInfo.getText().toString().isEmpty();
-    }
-
-    class AnotherRunnable1 implements Runnable {
-        @Override
-        public void run() {
-            wd = wordRoomDatabase.getWordDao();
-            id = getArguments().getLong("id_info");
-            String str_im = wd.getImageById(id);
-            if (selectedImage1 == null && (str_im == null || str_im.equals(""))){
-                str = "";
-            }else if (selectedImage1 == null) {
-                str = wd.getImageById(id);
-            }else{
-                str = selectedImage1.toString();
-            }
-            //word = new Word(id, binding.etName.getText().toString(), binding.etInfo.getText().toString(), str);
-            //wd.update(word);
-
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-
-                    if (selectedImage1 != null) {
-                        StorageReference fileRef = mStorageRef.child(System.currentTimeMillis()
-                                + "." + getFileExtension(selectedImage1));
-                        UploadTask uploadTask = fileRef.putFile(selectedImage1);
-
-                        String name = binding.etName.getText().toString();
-                        String info = binding.etInfo.getText().toString();
-
-                        uploadTask.addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception exception) {
-                                Toast.makeText(getActivity(), R.string.ex_load_img, Toast.LENGTH_SHORT).show();
-                            }
-                        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                            @Override
-                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-                                fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                    @Override
-                                    public void onSuccess(Uri uri) {
-                                        //Write write = new Write(UserInfo.email, name, info, uri.toString(), id);
-                                        //mDatabase.push().setValue(write);
-                                    }
-                                });
-                                binding.etName.setText("");
-                                binding.etInfo.setText("");
-                                binding.imvWrite.setImageResource(R.drawable.ic_add_image);
-                            }
-                        });
-                    } else {
-                        //Write write = new Write(UserInfo.email, binding.etName.getText().toString(), binding.etInfo.getText().toString(), str, id);
-                        //mDatabase.push().setValue(write);
-                    }
-
-                    Bundle b = new Bundle();
-                    b.putLong("id_info", word.getId());
-                    MyRecordFragment myRecordFragment = new MyRecordFragment();
-                    myRecordFragment.setArguments(b);
-                    getFragmentManager().beginTransaction().add(R.id.MA, myRecordFragment).commit();
-                }
-            });
-        }
-    }
-
-    String getFileExtension(Uri uri) {
-        ContentResolver cR = getActivity().getContentResolver();
-        MimeTypeMap mime = MimeTypeMap.getSingleton();
-        return mime.getExtensionFromMimeType(cR.getType(uri));
     }
 }

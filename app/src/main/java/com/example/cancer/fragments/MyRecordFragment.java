@@ -26,10 +26,9 @@ public class MyRecordFragment extends Fragment {
     WordRoomDatabase wordRoomDatabase;
     WordDao wd;
 
-    private StorageReference mStorageRef;
-
     private long id;
 
+    private StorageReference mStorageRef;
     public static final String MyPREFERENCES = "MyPrefs";
 
     @Override
