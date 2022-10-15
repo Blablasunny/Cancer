@@ -30,11 +30,13 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView nameTextView;
+        private final TextView nameTextView, patientTextView, dateTextView;
 
         public ViewHolder(View view) {
             super(view);
             nameTextView = view.findViewById(R.id.tv_name);
+            patientTextView = view.findViewById(R.id.tv_patient);
+            dateTextView = view.findViewById(R.id.tv_date);
         }
     }
 
@@ -48,6 +50,9 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.nameTextView.setText(data.get(position).name);
+        holder.patientTextView.setText(data.get(position).patientSurname + " " + data.get(position).patientName +
+                " " + data.get(position).patientPatronymic);
+        holder.dateTextView.setText(data.get(position).day + "." + data.get(position).month + "." + data.get(position).year);
         Word word = data.get(position);
         holder.itemView.setOnClickListener(new View.OnClickListener(){
             @Override

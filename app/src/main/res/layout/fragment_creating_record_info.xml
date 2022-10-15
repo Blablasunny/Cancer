@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.CreatingRecordInfoFragment"
+    android:background="@color/smoky_white"
+    android:orientation="vertical"
+    android:clickable="true"
+    android:focusable="true">
+
+    <soup.neumorphism.NeumorphCardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="30dp"
+        android:paddingTop="5dp"
+        android:layout_weight="1"
+        android:background="@drawable/ic_rect_text"
+        app:neumorph_shapeType="pressed">
+
+        <EditText
+            android:id="@+id/et_patient_surname"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:gravity="start"
+            android:hint="@string/patient_surname"
+            android:paddingVertical="@dimen/vertical_padding_pressed"
+            android:paddingHorizontal="@dimen/horizontal_padding_pressed"
+            android:textColor="@color/dark_gray"
+            android:textSize="15sp" />
+
+    </soup.neumorphism.NeumorphCardView>
+
+    <soup.neumorphism.NeumorphCardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="30dp"
+        android:paddingTop="5dp"
+        android:layout_weight="1"
+        android:background="@drawable/ic_rect_text"
+        app:neumorph_shapeType="pressed">
+
+        <EditText
+            android:id="@+id/et_patient_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:gravity="start"
+            android:hint="@string/patient_name"
+            android:paddingVertical="@dimen/vertical_padding_pressed"
+            android:paddingHorizontal="@dimen/horizontal_padding_pressed"
+            android:textColor="@color/dark_gray"
+            android:textSize="15sp" />
+
+    </soup.neumorphism.NeumorphCardView>
+
+    <soup.neumorphism.NeumorphCardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="30dp"
+        android:paddingTop="5dp"
+        android:layout_weight="1"
+        android:background="@drawable/ic_rect_text"
+        app:neumorph_shapeType="pressed">
+
+        <EditText
+            android:id="@+id/et_patient_patronymic"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:gravity="start"
+            android:hint="@string/patient_patronymic"
+            android:paddingVertical="@dimen/vertical_padding_pressed"
+            android:paddingHorizontal="@dimen/horizontal_padding_pressed"
+            android:textColor="@color/dark_gray"
+            android:textSize="15sp" />
+
+    </soup.neumorphism.NeumorphCardView>
+
+    <soup.neumorphism.NeumorphCardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="30dp"
+        android:paddingTop="5dp"
+        android:layout_weight="1"
+        android:background="@drawable/ic_rect_text"
+        app:neumorph_shapeType="pressed">
+
+        <EditText
+            android:id="@+id/et_patient_phone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:gravity="start"
+            android:hint="@string/patient_phone"
+            android:paddingVertical="@dimen/vertical_padding_pressed"
+            android:paddingHorizontal="@dimen/horizontal_padding_pressed"
+            android:textColor="@color/dark_gray"
+            android:textSize="15sp"
+            android:inputType="phone"/>
+
+    </soup.neumorphism.NeumorphCardView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="30dp"
+        android:paddingTop="5dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/date"
+        android:paddingVertical="@dimen/vertical_padding_pressed"
+        android:paddingHorizontal="@dimen/horizontal_padding_pressed"
+        android:textColor="@color/dark_gray"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"/>
+
+    <soup.neumorphism.NeumorphCardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="30dp"
+        android:paddingTop="5dp"
+        android:layout_weight="1"
+        app:neumorph_shapeType="pressed">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/et_day"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="15sp"
+                android:hint="@string/day"
+                android:paddingVertical="@dimen/vertical_padding_pressed"
+                android:paddingHorizontal="@dimen/horizontal_padding_pressed"
+                android:inputType="number"
+                android:maxLength="2"/>
+
+            <EditText
+                android:id="@+id/et_month"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="15sp"
+                android:hint="@string/month"
+                android:paddingVertical="@dimen/vertical_padding_pressed"
+                android:paddingHorizontal="@dimen/horizontal_padding_pressed"
+                android:inputType="number"
+                android:maxLength="2"/>
+
+            <EditText
+                android:id="@+id/et_year"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="15sp"
+                android:hint="@string/year"
+                android:paddingVertical="@dimen/vertical_padding_pressed"
+                android:paddingHorizontal="@dimen/horizontal_padding_pressed"
+                android:inputType="number"
+                android:maxLength="4"/>
+
+        </LinearLayout>
+
+    </soup.neumorphism.NeumorphCardView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.3"/>
+
+    <ImageView
+        android:layout_width="21.6dp"
+        android:layout_height="6dp"
+        android:layout_gravity="center"
+        android:background="@drawable/ic_chose_1"
+        android:layout_marginBottom="10dp"/>
+
+</LinearLayout>

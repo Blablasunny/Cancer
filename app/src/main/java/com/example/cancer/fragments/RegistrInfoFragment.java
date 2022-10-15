@@ -1,9 +1,14 @@
 package com.example.cancer.fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +21,8 @@ public class RegistrInfoFragment extends Fragment {
 
     FragmentRegistrInfoBinding binding;
 
-    private String flag;
+    SharedPreferences sharedpreferences;
+    public static final String MyPREFERENCES = "MyPrefs";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -24,34 +30,40 @@ public class RegistrInfoFragment extends Fragment {
 
         binding = FragmentRegistrInfoBinding.inflate(inflater, container, false);
 
-        flag = getArguments().getString("flag");
-        if (flag.equals("1")) {
-            binding.etName.setText(getArguments().getString("name"));
-            binding.etSurname.setText(getArguments().getString("surname"));
-            binding.etPatronymic.setText(getArguments().getString("patronymic"));
-            binding.etMed.setText(getArguments().getString("med"));
-            binding.etPhone.setText(getArguments().getString("phone"));
-        }
+        TextWatcher textWatcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-        binding.btnNext.setOnClickListener(view ->  {
-            if (isInputValid()) {
-                Bundle b = new Bundle();
-                b.putString("name", binding.etName.getText().toString());
-                b.putString("surname", binding.etSurname.getText().toString());
-                b.putString("patronymic", binding.etPatronymic.getText().toString());
-                b.putString("med", binding.etMed.getText().toString());
-                b.putString("phone", binding.etPhone.getText().toString());
-                RegistrFragment registrFragment = new RegistrFragment();
-                registrFragment.setArguments(b);
-                getFragmentManager().beginTransaction().add(R.id.MA, registrFragment).commit();
-            } else {
-                Toast.makeText(getActivity(), R.string.fill_fields, Toast.LENGTH_SHORT).show();
             }
-        });
 
-        binding.btnBack.setOnClickListener(view -> {
-            getFragmentManager().beginTransaction().add(R.id.MA, new AuthFragment()).commit();
-        });
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                if (isInputValid()) {
+                    editor.putString("name", binding.etName.getText().toString());
+                    editor.putString("surname", binding.etSurname.getText().toString());
+                    editor.putString("patronymic", binding.etPatronymic.getText().toString());
+                    editor.putString("med", binding.etMed.getText().toString());
+                    editor.putString("phone", binding.etPhone.getText().toString());
+                    editor.putString("flag_reg_1", "1");
+                } else {
+                    editor.putString("flag_reg_1", "0");
+                }
+                editor.commit();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        };
+
+        binding.etName.addTextChangedListener(textWatcher);
+        binding.etSurname.addTextChangedListener(textWatcher);
+        binding.etPatronymic.addTextChangedListener(textWatcher);
+        binding.etPhone.addTextChangedListener(textWatcher);
+        binding.etMed.addTextChangedListener(textWatcher);
 
         return binding.getRoot();
     }

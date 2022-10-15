@@ -2,6 +2,8 @@ package com.example.cancer.fragments;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -47,11 +49,20 @@ public class AuthFragment extends Fragment {
     WordRoomDatabase wordRoomDatabase;
     WordDao wd;
 
+    SharedPreferences sharedpreferences;
+    public static final String MyPREFERENCES = "MyPrefs";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         binding = FragmentAuthBinding.inflate(inflater, container, false);
+
+        sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putString("flag_reg_1", "0");
+        editor.putString("flag_reg_2", "0");
+        editor.commit();
 
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -77,11 +88,7 @@ public class AuthFragment extends Fragment {
         });
 
         binding.btnSignUp.setOnClickListener(view ->  {
-            Bundle b = new Bundle();
-            b.putString("flag", "0");
-            RegistrInfoFragment registrInfoFragment = new RegistrInfoFragment();
-            registrInfoFragment.setArguments(b);
-            getFragmentManager().beginTransaction().add(R.id.MA, registrInfoFragment).commit();
+            getFragmentManager().beginTransaction().add(R.id.MA, new RegistFragment()).commit();
         });
 
         return binding.getRoot();
@@ -142,7 +149,9 @@ public class AuthFragment extends Fragment {
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
                         Write write = ds.getValue(Write.class);
                         if (write.getEmail().equals(UserInfo.email)) {
-                            Word word = new Word(write.getId(), write.getName(), write.getInfo(), write.getImage());
+                            Word word = new Word(write.getId(), write.getName(), write.getInfo(), write.getImage(),
+                                    write.getPatientName(), write.getPatientSurname(), write.getPatientPatronymic(),
+                                    write.getPatientPhone(), write.getDay(), write.getMonth(), write.getYear());
                             wd.insert(word);
                         }
                     }

@@ -3,6 +3,34 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/drawable/ic_chose_1.xml" value="0.13376068376068376" />
+        <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/drawable/ic_group_34.xml" value="0.13376068376068376" />
+        <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/activity_auth.xml" value="0.20854700854700856" />
+        <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/activity_main.xml" value="0.12051282051282051" />
+        <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/activity_main2.xml" value="0.12051282051282051" />
+        <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/activity_med.xml" value="0.10897435897435898" />
+        <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/activity_registr_info.xml" value="0.20854700854700856" />
+        <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_account.xml" value="0.20854700854700856" />
+        <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_auth.xml" value="0.20854700854700856" />
+        <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_create_record.xml" value="0.197008547008547" />
+        <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_creating_record.xml" value="0.20854700854700856" />
+        <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_creating_record_info.xml" value="0.20854700854700856" />
+        <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_ed_record.xml" value="0.20854700854700856" />
+        <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_edit_record.xml" value="0.20854700854700856" />
+        <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_edit_record_info.xml" value="0.20854700854700856" />
+        <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_my_rec.xml" value="0.20854700854700856" />
+        <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_my_record.xml" value="0.20854700854700856" />
+        <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_my_record_info.xml" value="0.20854700854700856" />
+        <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_my_records.xml" value="0.20854700854700856" />
+        <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_my_records_date.xml" value="0.20854700854700856" />
+        <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_my_records_name.xml" value="0.264" />
+        <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_my_records_surname.xml" value="0.20854700854700856" />
+        <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_regist.xml" value="0.20854700854700856" />
+        <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_registr.xml" value="0.20854700854700856" />
+        <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_registr_info.xml" value="0.20854700854700856" />
+        <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_type_of_cancer_result.xml" value="0.20854700854700856" />
+        <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/item_words.xml" value="0.17777777777777778" />
+        <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/menu/bottom_nav_menu.xml" value="0.12051282051282051" />
         <entry key="..\:/Users/blasu/AndroidStudioProjects/Cancer/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1358974358974359" />
         <entry key="..\:/Users/blasu/AndroidStudioProjects/Cancer/app/src/main/res/drawable-v24/rec_gray.xml" value="0.1170940170940171" />
         <entry key="..\:/Users/blasu/AndroidStudioProjects/Cancer/app/src/main/res/drawable/a.xml" value="0.1358974358974359" />

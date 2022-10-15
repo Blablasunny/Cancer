@@ -1,5 +1,8 @@
 package com.example.cancer.fragments;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -27,6 +30,8 @@ public class MyRecordFragment extends Fragment {
 
     private long id;
 
+    public static final String MyPREFERENCES = "MyPrefs";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -35,36 +40,10 @@ public class MyRecordFragment extends Fragment {
 
         mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
 
-        binding.btnProfile.setOnClickListener(view -> {
-            getFragmentManager().beginTransaction().add(R.id.MA, new AccountFragment()).commit();
-        });
-
-        binding.btnEdit.setOnClickListener(view -> {
-            getFragmentManager().beginTransaction().add(R.id.MA, new CreatingRecordFragment()).commit();
-        });
-
-        binding.btnDiagnosis.setOnClickListener(view -> {
-            getFragmentManager().beginTransaction().add(R.id.MA, new TypesOfCancerFragment()).commit();
-        });
-
-        binding.btnNews.setOnClickListener(view -> {
-            getFragmentManager().beginTransaction().add(R.id.MA, new NewsFragment()).commit();
-        });
-
         wordRoomDatabase = WordRoomDatabase.getInstance(getActivity());
 
         Thread thread=new Thread(new AnotherRunnable());
         thread.start();
-
-
-        binding.btnEditWrite.setOnClickListener(view ->  {
-            id = getArguments().getLong("id_info");
-            Bundle b = new Bundle();
-            b.putLong("id_info", id);
-            EditRecordFragment editRecordFragment = new EditRecordFragment();
-            editRecordFragment.setArguments(b);
-            getFragmentManager().beginTransaction().add(R.id.MA, editRecordFragment).commit();
-        });
 
         return binding.getRoot();
     }
@@ -73,18 +52,19 @@ public class MyRecordFragment extends Fragment {
         @Override
         public void run() {
             wd = wordRoomDatabase.getWordDao();
-            id = getArguments().getLong("id_info");
-            String str_in = wd.getInfoById(id);
-            String str_im = wd.getImageById(id);
-            String str_n = wd.getNameById(id);
+            SharedPreferences prefs = getActivity().getSharedPreferences(MyPREFERENCES , MODE_PRIVATE);
+            id = prefs.getLong("id_info", 0);
+            String strInfo = wd.getInfoById(id);
+            String strImage = wd.getImageById(id);
+            String strName = wd.getNameById(id);
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    binding.tvName.setText(str_n);
-                    binding.tvInfo.setText(str_in);
-                    if (str_im != null) {
-                        if (!str_im.equals("")) {
-                            Picasso.get().load(str_im).into(binding.imvWrite);
+                    binding.tvName.setText(strName);
+                    binding.tvInfo.setText(strInfo);
+                    if (strImage != null) {
+                        if (!strImage.equals("")) {
+                            Picasso.get().load(strImage).into(binding.imvWrite);
                         }
                     }
                 }

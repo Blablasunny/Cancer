@@ -3,7 +3,9 @@ package com.example.cancer.fragments;
 import static android.app.Activity.RESULT_OK;
 
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,6 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,13 +45,10 @@ public class CreatingRecordFragment extends Fragment {
 
     static final int GALLERY_REQUEST = 1;
 
-    private DatabaseReference mDatabase;
-    private StorageReference mStorageRef;
-
-    WordRoomDatabase wordRoomDatabase;
-    WordDao wd;
-
     private Uri selectedImage;
+
+    SharedPreferences sharedpreferences;
+    public static final String MyPREFERENCES = "MyPrefs";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,41 +56,46 @@ public class CreatingRecordFragment extends Fragment {
 
         binding = FragmentCreatingRecordBinding.inflate(inflater, container, false);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference("write");
-        mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
+        TextWatcher textWatcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                if (isInputValid()) {
+                    editor.putString("record_name", binding.etName.getText().toString());
+                    editor.putString("info", binding.etInfo.getText().toString());
+                    if (selectedImage != null) {
+                        editor.putString("image", selectedImage.toString());
+                    } else {
+                        editor.putString("image", "");
+                    }
+                    editor.putString("flag_create_2", "1");
+                } else {
+                    editor.putString("flag_create_2", "0");
+                }
+                editor.commit();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        };
+
+        binding.etName.addTextChangedListener(textWatcher);
+        binding.etInfo.addTextChangedListener(textWatcher);
 
         binding.imvWrite.setImageResource(R.drawable.ic_add_image);
-
-        binding.btnProfile.setOnClickListener(view -> {
-            getFragmentManager().beginTransaction().add(R.id.MA, new AccountFragment()).commit();
-        });
-
-        binding.btnScroll.setOnClickListener(view -> {
-            getFragmentManager().beginTransaction().add(R.id.MA, new MyRecordsFragment()).commit();
-        });
-
-        binding.btnDiagnosis.setOnClickListener(view -> {
-            getFragmentManager().beginTransaction().add(R.id.MA, new TypesOfCancerFragment()).commit();
-        });
-
-        binding.btnNews.setOnClickListener(view -> {
-            getFragmentManager().beginTransaction().add(R.id.MA, new NewsFragment()).commit();
-        });
 
         binding.btnIm.setOnClickListener(view ->  {
             Intent photoPickerIntent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
             photoPickerIntent.setType("image/*");
             startActivityForResult(photoPickerIntent, GALLERY_REQUEST);
-        });
-
-        binding.btnApprove.setOnClickListener(view -> {
-            if (isInputValid()){
-                wordRoomDatabase = WordRoomDatabase.getInstance(getActivity());
-                Thread thread=new Thread(new AnotherRunnable());
-                thread.start();
-            }else{
-                Toast.makeText(getActivity(), R.string.ed_name_info, Toast.LENGTH_SHORT).show();
-            }
         });
 
         return binding.getRoot();
@@ -110,74 +116,18 @@ public class CreatingRecordFragment extends Fragment {
                         e.printStackTrace();
                     }
                     binding.imvWrite.setImageBitmap(bitmap);
+                    sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedpreferences.edit();
+                    if (selectedImage != null) {
+                        editor.putString("image", selectedImage.toString());
+                    } else {
+                        editor.putString("image", "");
+                    }
+                    editor.commit();
                 }
         }
     }
     boolean isInputValid(){
         return !binding.etName.getText().toString().isEmpty() && !binding.etInfo.getText().toString().isEmpty();
-    }
-
-    String getFileExtension(Uri uri) {
-        ContentResolver cR = getActivity().getContentResolver();
-        MimeTypeMap mime = MimeTypeMap.getSingleton();
-        return mime.getExtensionFromMimeType(cR.getType(uri));
-    }
-
-    class AnotherRunnable implements Runnable {
-        @Override
-        public void run() {
-            wd = wordRoomDatabase.getWordDao();
-            if (selectedImage != null) {
-                Word word = new Word(UserInfo.id, binding.etName.getText().toString(), binding.etInfo.getText().toString(), selectedImage.toString());
-                wd.insert(word);
-            } else {
-                Word word = new Word(UserInfo.id, binding.etName.getText().toString(), binding.etInfo.getText().toString(), "");
-                wd.insert(word);
-            }
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-
-                    if (selectedImage != null) {
-                        StorageReference fileRef = mStorageRef.child(System.currentTimeMillis()
-                                + "." + getFileExtension(selectedImage));
-                        UploadTask uploadTask = fileRef.putFile(selectedImage);
-
-                        String name = binding.etName.getText().toString();
-                        String info = binding.etInfo.getText().toString();
-
-                        uploadTask.addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception exception) {
-                                Toast.makeText(getActivity(), R.string.ex_load_img, Toast.LENGTH_SHORT).show();
-                            }
-                        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                            @Override
-                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-                                fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                    @Override
-                                    public void onSuccess(Uri uri) {
-                                        Write write = new Write(UserInfo.email, name, info, uri.toString(), UserInfo.id);
-                                        mDatabase.push().setValue(write);
-                                    }
-                                });
-                                Toast.makeText(getActivity(), R.string.data_add, Toast.LENGTH_SHORT).show();
-                                binding.etName.setText("");
-                                binding.etInfo.setText("");
-                                binding.imvWrite.setImageResource(R.drawable.ic_add_image);
-                            }
-                        });
-                    } else {
-                        Write write = new Write(UserInfo.email, binding.etName.getText().toString(), binding.etInfo.getText().toString(), "", UserInfo.id);
-                        mDatabase.push().setValue(write);
-                        Toast.makeText(getActivity(), R.string.data_add, Toast.LENGTH_SHORT).show();
-                        binding.etName.setText("");
-                        binding.etInfo.setText("");
-                        binding.imvWrite.setImageResource(R.drawable.ic_add_image);
-                    }
-                }
-            });
-        }
     }
 }

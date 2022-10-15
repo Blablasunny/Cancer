@@ -25,7 +25,9 @@
     <string name="phone">Phone number</string>
     <string name="password_2">Password at least 8 characters</string>
     <string name="password_3">Password again</string>
-    <string name="question">Title for search</string>
+    <string name="question_name">Title of write</string>
+    <string name="question_date">The date of admission. For example: 13.12.2009</string>
+    <string name="question_surname">Patient\'s surname</string>
     <string name="sign_in">Sign in</string>
     <string name="message">The image has been sent for diagnostics. \n Expect the result</string>
     <string name="fill_fields">Fill in all fields</string>
@@ -48,4 +50,14 @@
     <string name="tv_email"><![CDATA[<font color=#006060>Email: </font>]]></string>
     <string name="tv_phone"><![CDATA[<font color=#006060>Phone number: </font>]]></string>
     <string name="info_write">Write text</string>
+    <string name="message_sign_in">Authorisation is underway. \n Please wait</string>
+    <string name="patient_name">Patient\'s name</string>
+    <string name="patient_surname">Patient\'s surname</string>
+    <string name="patient_patronymic">Patient\'s patronymic</string>
+    <string name="patient_phone">Patient\'s phone number</string>
+    <string name="date">The date of admission</string>
+    <string name="day">Day</string>
+    <string name="month">Month</string>
+    <string name="year">Year</string>
+    <string name="ex_date">Date entered incorrectly</string>
 </resources>

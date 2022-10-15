@@ -70,7 +70,7 @@ public class EditRecordFragment extends Fragment {
         });
 
         binding.btnEdit.setOnClickListener(view -> {
-            getFragmentManager().beginTransaction().add(R.id.MA, new CreatingRecordFragment()).commit();
+            getFragmentManager().beginTransaction().add(R.id.MA, new CreateRecordFragment()).commit();
         });
 
         binding.btnDiagnosis.setOnClickListener(view -> {
@@ -100,6 +100,15 @@ public class EditRecordFragment extends Fragment {
             Intent photoPickerIntent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
             photoPickerIntent.setType("image/*");
             startActivityForResult(photoPickerIntent, GALLERY_REQUEST);
+        });
+
+        binding.btnBack.setOnClickListener(view -> {
+            id = getArguments().getLong("id_info");
+            Bundle b = new Bundle();
+            b.putLong("id_info", id);
+            MyRecordFragment myRecordFragment = new MyRecordFragment();
+            myRecordFragment.setArguments(b);
+            getFragmentManager().beginTransaction().add(R.id.MA, myRecordFragment).commit();
         });
 
         return binding.getRoot();
@@ -167,8 +176,8 @@ public class EditRecordFragment extends Fragment {
             }else{
                 str = selectedImage1.toString();
             }
-            word = new Word(id, binding.etName.getText().toString(), binding.etInfo.getText().toString(), str);
-            wd.update(word);
+            //word = new Word(id, binding.etName.getText().toString(), binding.etInfo.getText().toString(), str);
+            //wd.update(word);
 
             getActivity().runOnUiThread(new Runnable() {
                 @Override
@@ -194,8 +203,8 @@ public class EditRecordFragment extends Fragment {
                                 fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
                                     public void onSuccess(Uri uri) {
-                                        Write write = new Write(UserInfo.email, name, info, uri.toString(), id);
-                                        mDatabase.push().setValue(write);
+                                        //Write write = new Write(UserInfo.email, name, info, uri.toString(), id);
+                                        //mDatabase.push().setValue(write);
                                     }
                                 });
                                 binding.etName.setText("");
@@ -204,8 +213,8 @@ public class EditRecordFragment extends Fragment {
                             }
                         });
                     } else {
-                        Write write = new Write(UserInfo.email, binding.etName.getText().toString(), binding.etInfo.getText().toString(), str, id);
-                        mDatabase.push().setValue(write);
+                        //Write write = new Write(UserInfo.email, binding.etName.getText().toString(), binding.etInfo.getText().toString(), str, id);
+                        //mDatabase.push().setValue(write);
                     }
 
                     Bundle b = new Bundle();

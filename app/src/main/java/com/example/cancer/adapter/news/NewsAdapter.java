@@ -1,7 +1,6 @@
-package com.example.cancer.adapter;
+package com.example.cancer.adapter.news;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cancer.R;
 import com.example.cancer.activities.MainActivity;
-import com.example.cancer.activities.NewsDetailActivity;
 import com.example.cancer.fragments.NewsDetailFragment;
 import com.example.cancer.models.news.Results;
 

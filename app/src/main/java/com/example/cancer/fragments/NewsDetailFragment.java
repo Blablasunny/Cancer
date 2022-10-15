@@ -37,11 +37,11 @@ public class NewsDetailFragment extends Fragment {
         }
 
         binding.btnEdit.setOnClickListener(view -> {
-            getFragmentManager().beginTransaction().add(R.id.MA, new CreatingRecordFragment()).commit();
+            getFragmentManager().beginTransaction().add(R.id.MA, new CreateRecordFragment()).commit();
         });
 
         binding.btnScroll.setOnClickListener(view -> {
-            getFragmentManager().beginTransaction().add(R.id.MA, new MyRecordsFragment()).commit();
+            getFragmentManager().beginTransaction().add(R.id.MA, new MyRecordsNameFragment()).commit();
         });
 
         binding.btnDiagnosis.setOnClickListener(view -> {

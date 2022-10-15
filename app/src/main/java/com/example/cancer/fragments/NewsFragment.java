@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.cancer.R;
-import com.example.cancer.adapter.NewsAdapter;
+import com.example.cancer.adapter.news.NewsAdapter;
 import com.example.cancer.client.news.ApiClient;
 import com.example.cancer.databinding.FragmentNewsBinding;
 import com.example.cancer.models.news.HeadLines;
@@ -52,11 +52,11 @@ public class NewsFragment extends Fragment {
         doRequest(API_KEY);
 
         binding.btnEdit.setOnClickListener(view -> {
-            getFragmentManager().beginTransaction().add(R.id.MA, new CreatingRecordFragment()).commit();
+            getFragmentManager().beginTransaction().add(R.id.MA, new CreateRecordFragment()).commit();
         });
 
         binding.btnScroll.setOnClickListener(view -> {
-            getFragmentManager().beginTransaction().add(R.id.MA, new MyRecordsFragment()).commit();
+            getFragmentManager().beginTransaction().add(R.id.MA, new MyRecordsNameFragment()).commit();
         });
 
         binding.btnDiagnosis.setOnClickListener(view -> {

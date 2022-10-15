@@ -24,7 +24,9 @@
     <string name="phone">Телефон</string>
     <string name="password_2">Пароль не менее 8 символов</string>
     <string name="password_3">Пароль еще раз</string>
-    <string name="question">Название для поиска</string>
+    <string name="question_name">Название записи</string>
+    <string name="question_date">Дата приема. Например: 13.12.2009</string>
+    <string name="question_surname">Фамилия пациента</string>
     <string name="sign_in">Войти</string>
     <string name="message">Изображение отправлено на диагностику. \n Ожидайте результат</string>
     <string name="fill_fields">Заполните все поля</string>
@@ -47,6 +49,17 @@
     <string name="tv_email"><![CDATA[<font color=#006060>Email: </font>]]></string>
     <string name="tv_phone"><![CDATA[<font color=#006060>Телефон: </font>]]></string>
     <string name="info_write">Текст записи</string>
+    <string name="message_sign_in">Идет авторизация. Ожидайте, пожалуйста.</string>
+    <string name="patient_name">Имя пациента</string>
+    <string name="patient_surname">Фамилия пациента</string>
+    <string name="patient_patronymic">Отчество пациента</string>
+    <string name="patient_phone">Номер телефона пациента</string>
+    <string name="date">Дата приема</string>
+    <string name="day">День</string>
+    <string name="month">Месяц</string>
+    <string name="year">Год</string>
+    <string name="ex_date">Дата введене некорректно</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- TODO: Remove or change this placeholder text -->
 </resources>

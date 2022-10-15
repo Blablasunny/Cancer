@@ -1,10 +1,14 @@
 package com.example.cancer.fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,11 +29,8 @@ public class RegistrFragment extends Fragment {
 
     FragmentRegistrBinding binding;
 
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
-    private DatabaseReference mDatabase;
-
-    private String name, surname, patronymic, med, phone;
+    SharedPreferences sharedpreferences;
+    public static final String MyPREFERENCES = "MyPrefs";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,71 +38,37 @@ public class RegistrFragment extends Fragment {
 
         binding = FragmentRegistrBinding.inflate(inflater, container, false);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference("user");
-
-        mAuth = FirebaseAuth.getInstance();
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
+        TextWatcher textWatcher = new TextWatcher() {
             @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                if (isInputValid()) {
+                    editor.putString("email", binding.etEmail.getText().toString());
+                    editor.putString("password", binding.etPassword.getText().toString());
+                    editor.putString("password2", binding.etPassword2.getText().toString());
+                    editor.putString("flag_reg_2", "1");
                 } else {
-
+                    editor.putString("flag_reg_2", "0");
                 }
+                editor.commit();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
             }
         };
 
-        name = getArguments().getString("name");
-        surname = getArguments().getString("surname");
-        patronymic = getArguments().getString("patronymic");
-        med = getArguments().getString("med");
-        phone = getArguments().getString("phone");
-
-        binding.btnSignUp.setOnClickListener(view ->  {
-            if (isInputValid()) {
-                signUp(binding.etEmail.getText().toString(), binding.etPassword.getText().toString(), binding.etPassword2.getText().toString());
-            } else {
-                Toast.makeText(getActivity(), R.string.fill_fields, Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        binding.btnBack.setOnClickListener(view -> {
-            Bundle b = new Bundle();
-            b.putString("name", name);
-            b.putString("surname", surname);
-            b.putString("patronymic", patronymic);
-            b.putString("med", med);
-            b.putString("phone", phone);
-            b.putString("flag", "1");
-            RegistrInfoFragment registrInfoFragment = new RegistrInfoFragment();
-            registrInfoFragment.setArguments(b);
-            getFragmentManager().beginTransaction().add(R.id.MA, registrInfoFragment).commit();
-        });
-
+        binding.etEmail.addTextChangedListener(textWatcher);
+        binding.etPassword.addTextChangedListener(textWatcher);
+        binding.etPassword2.addTextChangedListener(textWatcher);
         return binding.getRoot();
-    }
-
-    public void signUp(String email, String password, String password2) {
-        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful() && password2.equals(password) && password.length() >= 8) {
-                    Toast.makeText(getActivity(), R.string.registr_success, Toast.LENGTH_SHORT).show();
-
-                    User user = new User(name, surname, patronymic, med, phone, email);
-                    mDatabase.push().setValue(user);
-
-                    getFragmentManager().beginTransaction().add(R.id.MA, new AuthFragment()).commit();
-                } else if (!password2.equals(password)) {
-                    Toast.makeText(getActivity(), R.string.ex_password_is, Toast.LENGTH_SHORT).show();
-                } else if (password.length() < 8) {
-                    Toast.makeText(getActivity(), R.string.ex_password_short, Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getActivity(), R.string.ex_registr, Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
     }
 
     boolean isInputValid(){
