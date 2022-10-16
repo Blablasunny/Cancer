@@ -19,7 +19,6 @@ import android.webkit.MimeTypeMap;
 import android.widget.Toast;
 
 import com.example.cancer.R;
-import com.example.cancer.adapter.create.CreateAdapter;
 import com.example.cancer.adapter.edit.EditAdapter;
 import com.example.cancer.data.Word;
 import com.example.cancer.data.WordDao;
@@ -144,11 +143,11 @@ public class EdRecordFragment extends Fragment {
         public void run() {
             wd = wordRoomDatabase.getWordDao();
             if (selectedImage != null) {
-                Word word = new Word(UserInfo.id, name, info, image,
+                Word word = new Word(id, name, info, image,
                         patientName, patientSurname, patientPatronymic, patientPhone, day, month, year);
                 wd.insert(word);
             } else {
-                Word word = new Word(UserInfo.id, name, info, "",
+                Word word = new Word(id, name, info, "",
                         patientName, patientSurname, patientPatronymic, patientPhone, day, month, year);
                 wd.insert(word);
             }
@@ -182,11 +181,11 @@ public class EdRecordFragment extends Fragment {
                                         mDatabase.push().setValue(write);
                                     }
                                 });
-                                Toast.makeText(getActivity(), R.string.data_add, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), R.string.data_change, Toast.LENGTH_SHORT).show();
                                 editor.putLong("id_info", 0);
                                 editor.commit();
                                 Bundle b = new Bundle();
-                                b.putLong("id_info", UserInfo.id);
+                                b.putLong("id_info", id);
                                 MyRecFragment myRecFragment = new MyRecFragment();
                                 myRecFragment.setArguments(b);
                                 getFragmentManager().beginTransaction().add(R.id.MA, myRecFragment).commit();
@@ -197,11 +196,11 @@ public class EdRecordFragment extends Fragment {
                                 patientName, patientSurname, patientPatronymic, patientPhone,
                                 day, month, year, id);
                         mDatabase.push().setValue(write);
-                        Toast.makeText(getActivity(), R.string.data_add, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), R.string.data_change, Toast.LENGTH_SHORT).show();
                         editor.putLong("id_info", 0);
                         editor.commit();
                         Bundle b = new Bundle();
-                        b.putLong("id_info", UserInfo.id);
+                        b.putLong("id_info", id);
                         MyRecFragment myRecFragment = new MyRecFragment();
                         myRecFragment.setArguments(b);
                         getFragmentManager().beginTransaction().add(R.id.MA, myRecFragment).commit();

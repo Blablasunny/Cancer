@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.text.Html;
@@ -15,10 +16,15 @@ import android.view.inputmethod.InputMethodManager;
 import com.example.cancer.R;
 import com.example.cancer.databinding.FragmentAccountBinding;
 import com.example.cancer.models.user.UserInfo;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class AccountFragment extends Fragment {
 
     FragmentAccountBinding binding;
+
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -27,6 +33,22 @@ public class AccountFragment extends Fragment {
         binding = FragmentAccountBinding.inflate(inflater, container, false);
 
         hideKeyboardFrom(getActivity(), container);
+
+        mAuth = FirebaseAuth.getInstance();
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                } else {
+                }
+            }
+        };
+
+        binding.btnLogOut.setOnClickListener(view -> {
+            FirebaseAuth.getInstance().signOut();
+            getFragmentManager().beginTransaction().add(R.id.MA, new AuthFragment()).commit();
+        });
 
         binding.tvInfo.setText(Html.fromHtml(getString(R.string.tv_surname) + UserInfo.surname + "<br />" +
                 getString(R.string.tv_name) + UserInfo.name + "<br />" +

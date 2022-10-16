@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.cancer.R;
-import com.example.cancer.adapter.create.CreateAdapter;
 import com.example.cancer.adapter.records.RecordAdapter;
 import com.example.cancer.databinding.FragmentMyRecBinding;
 
