@@ -10,10 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.cancer.R;
-import com.example.cancer.data.Word;
-import com.example.cancer.data.WordDao;
-import com.example.cancer.data.WordListAdapter;
-import com.example.cancer.data.WordRoomDatabase;
+import com.example.cancer.data.words.Word;
+import com.example.cancer.data.words.WordDao;
+import com.example.cancer.data.words.WordListAdapter;
+import com.example.cancer.data.words.WordRoomDatabase;
 import com.example.cancer.databinding.FragmentMyRecordsNameBinding;
 
 import java.util.ArrayList;

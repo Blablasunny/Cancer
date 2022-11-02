@@ -11,8 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.cancer.data.WordDao;
-import com.example.cancer.data.WordRoomDatabase;
+import com.example.cancer.data.words.WordDao;
+import com.example.cancer.data.words.WordRoomDatabase;
 import com.example.cancer.databinding.FragmentMyRecordBinding;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;

@@ -1,4 +1,4 @@
-package com.example.cancer.data;
+package com.example.cancer.data.words;
 
 import android.content.Context;
 

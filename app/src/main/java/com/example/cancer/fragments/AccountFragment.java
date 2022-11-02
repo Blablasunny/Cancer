@@ -15,6 +15,7 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.example.cancer.R;
 import com.example.cancer.databinding.FragmentAccountBinding;
+import com.example.cancer.models.user.User;
 import com.example.cancer.models.user.UserInfo;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -49,6 +50,10 @@ public class AccountFragment extends Fragment {
             FirebaseAuth.getInstance().signOut();
             getFragmentManager().beginTransaction().add(R.id.MA, new AuthFragment()).commit();
         });
+
+//        binding.btnNotify.setOnClickListener(view -> {
+//            getFragmentManager().beginTransaction().add(R.id.MA, new NotifyFragment()).commit();
+//        });
 
         binding.tvInfo.setText(Html.fromHtml(getString(R.string.tv_surname) + UserInfo.surname + "<br />" +
                 getString(R.string.tv_name) + UserInfo.name + "<br />" +

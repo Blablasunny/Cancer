@@ -9,10 +9,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.cancer.R;
-import com.example.cancer.data.Word;
-import com.example.cancer.data.WordDao;
-import com.example.cancer.data.WordListAdapter;
-import com.example.cancer.data.WordRoomDatabase;
+import com.example.cancer.data.words.Word;
+import com.example.cancer.data.words.WordDao;
+import com.example.cancer.data.words.WordListAdapter;
+import com.example.cancer.data.words.WordRoomDatabase;
 import com.example.cancer.databinding.FragmentMyRecordsSurnameBinding;
 
 import java.util.ArrayList;

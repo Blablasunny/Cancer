@@ -20,9 +20,9 @@ import android.widget.Toast;
 
 import com.example.cancer.R;
 import com.example.cancer.adapter.edit.EditAdapter;
-import com.example.cancer.data.Word;
-import com.example.cancer.data.WordDao;
-import com.example.cancer.data.WordRoomDatabase;
+import com.example.cancer.data.words.Word;
+import com.example.cancer.data.words.WordDao;
+import com.example.cancer.data.words.WordRoomDatabase;
 import com.example.cancer.databinding.FragmentEdRecordBinding;
 import com.example.cancer.models.user.UserInfo;
 import com.example.cancer.models.write.Write;
@@ -142,12 +142,13 @@ public class EdRecordFragment extends Fragment {
         @Override
         public void run() {
             wd = wordRoomDatabase.getWordDao();
+            String strIm = wd.getImageById(id);
             if (selectedImage != null) {
                 Word word = new Word(id, name, info, image,
                         patientName, patientSurname, patientPatronymic, patientPhone, day, month, year);
                 wd.insert(word);
             } else {
-                Word word = new Word(id, name, info, "",
+                Word word = new Word(id, name, info, strIm,
                         patientName, patientSurname, patientPatronymic, patientPhone, day, month, year);
                 wd.insert(word);
             }
@@ -192,7 +193,7 @@ public class EdRecordFragment extends Fragment {
                             }
                         });
                     } else {
-                        Write write = new Write(UserInfo.email, name, info, "",
+                        Write write = new Write(UserInfo.email, name, info, strIm,
                                 patientName, patientSurname, patientPatronymic, patientPhone,
                                 day, month, year, id);
                         mDatabase.push().setValue(write);

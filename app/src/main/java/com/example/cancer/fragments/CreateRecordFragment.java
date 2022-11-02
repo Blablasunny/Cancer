@@ -20,9 +20,9 @@ import android.widget.Toast;
 
 import com.example.cancer.R;
 import com.example.cancer.adapter.create.CreateAdapter;
-import com.example.cancer.data.Word;
-import com.example.cancer.data.WordDao;
-import com.example.cancer.data.WordRoomDatabase;
+import com.example.cancer.data.words.Word;
+import com.example.cancer.data.words.WordDao;
+import com.example.cancer.data.words.WordRoomDatabase;
 import com.example.cancer.databinding.FragmentCreateRecordBinding;
 import com.example.cancer.models.user.UserInfo;
 import com.example.cancer.models.write.Write;

@@ -4,8 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/drawable/ic_avatars.xml" value="0.2189873417721519" />
+        <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/drawable/ic_bell.xml" value="0.10042735042735043" />
         <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/drawable/ic_chose_1.xml" value="0.13376068376068376" />
         <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/drawable/ic_group_34.xml" value="0.13376068376068376" />
+        <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/drawable/ic_heart.xml" value="0.2189873417721519" />
+        <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/drawable/ic_heart_greean.xml" value="0.2189873417721519" />
         <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/drawable/ic_logout.xml" value="0.2189873417721519" />
         <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/drawable/ic_paper_plane.xml" value="0.2189873417721519" />
         <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/drawable/ic_plus.xml" value="0.2189873417721519" />
@@ -15,6 +18,7 @@
         <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/activity_main2.xml" value="0.12051282051282051" />
         <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/activity_med.xml" value="0.10897435897435898" />
         <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/activity_registr_info.xml" value="0.20854700854700856" />
+        <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/activity_ring.xml" value="0.12051282051282051" />
         <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_account.xml" value="0.20854700854700856" />
         <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_auth.xml" value="0.20854700854700856" />
         <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_create_record.xml" value="0.197008547008547" />
@@ -32,6 +36,9 @@
         <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_my_records_surname.xml" value="0.20854700854700856" />
         <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_news.xml" value="0.20854700854700856" />
         <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_news_detail.xml" value="0.20854700854700856" />
+        <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_notify.xml" value="0.20854700854700856" />
+        <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_notify2.xml" value="0.10897435897435898" />
+        <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_notify_create.xml" value="0.20854700854700856" />
         <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_regist.xml" value="0.20854700854700856" />
         <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_registr.xml" value="0.20854700854700856" />
         <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_registr_info.xml" value="0.20854700854700856" />
@@ -39,8 +46,10 @@
         <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_type_of_cancer_result.xml" value="0.20854700854700856" />
         <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/fragment_types_of_cancer.xml" value="0.20854700854700856" />
         <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/item_news.xml" value="0.20854700854700856" />
+        <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/item_notifications.xml" value="0.20854700854700856" />
         <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/layout/item_words.xml" value="0.17777777777777778" />
         <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/menu/bottom_nav_menu.xml" value="0.12051282051282051" />
+        <entry key="..\:/AndroidStudioProjects/Cancer/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2189873417721519" />
         <entry key="..\:/Users/blasu/AndroidStudioProjects/Cancer/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1358974358974359" />
         <entry key="..\:/Users/blasu/AndroidStudioProjects/Cancer/app/src/main/res/drawable-v24/rec_gray.xml" value="0.1170940170940171" />
         <entry key="..\:/Users/blasu/AndroidStudioProjects/Cancer/app/src/main/res/drawable/a.xml" value="0.1358974358974359" />

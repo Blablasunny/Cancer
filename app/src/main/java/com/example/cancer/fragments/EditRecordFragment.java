@@ -20,8 +20,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.cancer.R;
-import com.example.cancer.data.WordDao;
-import com.example.cancer.data.WordRoomDatabase;
+import com.example.cancer.data.words.WordDao;
+import com.example.cancer.data.words.WordRoomDatabase;
 import com.example.cancer.databinding.FragmentEditRecordBinding;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -75,10 +75,11 @@ public class EditRecordFragment extends Fragment {
                 if (isInputValid()) {
                     editor.putString("record_name", binding.etName.getText().toString());
                     editor.putString("info", binding.etInfo.getText().toString());
-                    if (selectedImage1 != null) {
-                        editor.putString("image", selectedImage1.toString());
-                    } else {
+                    String strIm = wd.getImageById(id);
+                    if (selectedImage1 == null) {
                         editor.putString("image", "");
+                    }else {
+                        editor.putString("image", selectedImage1.toString());
                     }
                     editor.putString("flag_edit_2", "1");
                 } else {

@@ -1,4 +1,4 @@
-package com.example.cancer.data;
+package com.example.cancer.data.words;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -6,8 +6,6 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
-
-import com.example.cancer.data.Word;
 
 import java.util.List;
 

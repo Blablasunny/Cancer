@@ -59,7 +59,6 @@ public class RegistFragment extends Fragment {
         editor.putString("flag_reg_2", "0");
         editor.commit();
 
-
         binding.btnBack.setOnClickListener(view -> {
             getFragmentManager().beginTransaction().add(R.id.MA, new AuthFragment()).commit();
         });

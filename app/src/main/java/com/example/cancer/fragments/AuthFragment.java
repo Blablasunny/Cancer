@@ -16,9 +16,9 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.cancer.R;
-import com.example.cancer.data.Word;
-import com.example.cancer.data.WordDao;
-import com.example.cancer.data.WordRoomDatabase;
+import com.example.cancer.data.words.Word;
+import com.example.cancer.data.words.WordDao;
+import com.example.cancer.data.words.WordRoomDatabase;
 import com.example.cancer.databinding.FragmentAuthBinding;
 import com.example.cancer.models.user.User;
 import com.example.cancer.models.user.UserInfo;
@@ -52,12 +52,14 @@ public class AuthFragment extends Fragment {
     SharedPreferences sharedpreferences;
     public static final String MyPREFERENCES = "MyPrefs";
 
+    String myEmail, myPass;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         binding = FragmentAuthBinding.inflate(inflater, container, false);
-
+        System.out.println(binding.etEmail.getText().toString() + "222");
         sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.putString("flag_reg_1", "0");
@@ -105,6 +107,10 @@ public class AuthFragment extends Fragment {
                     ValueEventListener vListener = new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
+                            myPass = binding.etPassword.getText().toString();
+                            myEmail = binding.etEmail.getText().toString();
+                            binding.etEmail.setText("");
+                            System.out.println(binding.etEmail.getText().toString() + "333");
                             for (DataSnapshot ds : dataSnapshot.getChildren()) {
                                 User user = ds.getValue(User.class);
                                 if (user != null && user.getEmail().equals(UserInfo.email)) {
@@ -138,6 +144,10 @@ public class AuthFragment extends Fragment {
         return !binding.etPassword.getText().toString().isEmpty() && !binding.etPassword.getText().toString().isEmpty();
     }
 
+    boolean isInputValidMy(){
+        return !myEmail.isEmpty() && !myPass.isEmpty();
+    }
+
     class AnotherRunnable implements Runnable {
         @Override
         public void run() {
@@ -169,7 +179,9 @@ public class AuthFragment extends Fragment {
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    getFragmentManager().beginTransaction().add(R.id.MA, new AccountFragment()).commit();
+                    if (isInputValidMy()) {
+                        getFragmentManager().beginTransaction().add(R.id.MA, new AccountFragment()).commit();
+                    }
                 }
             });
         }
